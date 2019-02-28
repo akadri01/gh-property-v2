@@ -1,0 +1,14 @@
+.show-navigation-menu {
+  display: block!important;
+}
+.animate-burger-icon {
+  .top {
+    transform: rotate(-40deg) translateY(9px);
+  }
+  .bottom {
+    transform: rotate(40deg) translateY(-9px);
+  }
+  .middle {
+    opacity: 0!important;
+  }
+}

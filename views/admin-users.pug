@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="/static/admin/styles/normalize.css")
+    link(rel='stylesheet', href='/static/admin/styles/user.css')
+    link(rel='stylesheet', href='/static/admin/styles/navigation.css')
+  body
+    .nav
+      a(href="/admin/payments") Payments
+      a.active(href="/admin/users") Users
+      a(href="/admin/adverts") Adverts
+      a(href="/admin/enquires") Enquires
+      a(href="/admin/emails") Emails
+      a.logout(href="/admin/logout") Logout
+    .alert=alert
+    .user
+      .find
+        h3 Find & Edit
+        form(action="/admin/user/find" method="post")
+          input(type="email" placeholder=" User email" name="email")
+          button(type="submit") Search
+        h3 Remove
+        form(action="/admin/user/remove" method="post")
+          input(type="email" placeholder=" User email" name="email")
+          button(type="submit") Remove
+      .list
+        h1 Users
+        .users
+          each user in users
+            a(href=`/admin/users/user/${user._id}`)
+              .name <b>#{user.joined_date.toString().slice(4,16)}</b> &nbsp; #{user.name} <span>#{user.email}</span>
+        .buttons
+          a(href="/admin/users?pagination=prev") prev
+          a(href="/admin/users?pagination=next") next

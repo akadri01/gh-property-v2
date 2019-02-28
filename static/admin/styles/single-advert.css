@@ -1,0 +1,102 @@
+.advert {
+  width: 1060px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.advert h1 {
+  color: tomato;
+}
+
+.advert-data-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.advert-data-flex .advert-data {
+  width: 33%;
+}
+
+.advert .advert-data b div {
+  font-size: 1.1rem;
+}
+
+.advert .advert-data pre {
+  white-space: pre-wrap;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+}
+
+.advert .advert-data {
+  margin-bottom: 10px;
+  font-size: 0.87rem;
+}
+
+.advert-images img {
+  display: inline-block;
+  width: 120px;
+  margin-left: 5px;
+}
+
+.advert-img-tags {
+  display: flex;
+}
+
+.advert-img-tags div {
+  width: 120px;
+  margin-left: 5px;
+}
+
+.advert form.advert-edit {
+  width: 540px;
+}
+
+.advert form.advert-edit label {
+  display: block;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  margin-top: 20px;
+}
+
+.advert form.advert-edit .label-adition {
+  font-size: 0.65rem;
+  margin: 0;
+  font-style: italic;
+  color: #4c4c4c;
+}
+
+.advert form.advert-edit input {
+  text-transform: uppercase;
+  width: 240px;
+  margin: 10px auto;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 33px;
+  font-size: 0.9rem;
+  text-indent: 6px;
+  margin-top: 6px;
+}
+
+.advert form.advert-edit button {
+  background-color: lightgray;
+  padding: 9px 22px 8px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+  display: block;
+}
+
+.advert form.advert-edit textarea {
+  border-radius: 4px;
+  width: 500px;
+  padding: 10px;
+  line-height: 1.1rem;
+  font-size: 0.87rem;
+  height: 240px;
+}

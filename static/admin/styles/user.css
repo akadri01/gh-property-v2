@@ -1,0 +1,103 @@
+.user {
+  width: 1060px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user .find {
+  width: 230px;
+}
+
+.user .find h3 {
+  margin-bottom: 0;
+  margin-top: 43px;
+  color: tomato;
+}
+
+.user .find h3:first-child {
+  margin-top: 28px;
+}
+
+.user .find input {
+  margin: 10px auto;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 33px;
+  width: 100%;
+  font-size: 0.9rem;
+  text-indent: 6px;
+  margin-top: 6px;
+}
+
+.user .find button {
+  background-color: lightgray;
+  padding: 9px 22px 8px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.user .list {
+  width: 760px;
+}
+
+.user .list h1 {
+  margin-bottom: 13px;
+  color: tomato;
+}
+
+.user .list .users a {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 0.83rem;
+  position: relative;
+}
+
+.user .list .users a:hover {
+  text-decoration: underline;
+}
+
+.user .list .users a .name {
+  font-weight: 100;
+}
+
+.user .list .users a .name b {
+  color: gray;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 0.7rem;
+}
+
+.user .list .users a .name span {
+  position: absolute;
+  left: 330px;
+  top: 0;
+}
+
+.user .list .buttons {
+  margin-top: 15px;
+  width: 140px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user .list .buttons a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: lightgray;
+  padding: 7px 14px 8px;
+  color: black;
+  border-radius: 4px;
+  border: none;
+  font-weight: 900;
+  margin-top: 10px;
+  cursor: pointer;
+}

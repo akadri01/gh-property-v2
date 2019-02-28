@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel='stylesheet', href='/static/admin/styles/normalize.css')
+    link(rel='stylesheet', href='/static/admin/styles/single-enquire.css')
+    link(rel='stylesheet', href='/static/admin/styles/navigation.css')
+  body
+    .nav
+      a(href="/admin/payments") Payments
+      a(href="/admin/users") Users
+      a(href="/admin/adverts") Adverts
+      a(href="/admin/enquires") Enquires
+      a(href="/admin/emails") Emails
+      a.logout(href="/admin/logout") Logout
+    .alert=alert
+    .enquire
+      h1 Enquire
+      .advert-data-flex
+        .enquire-data <b>Name:</b> #{enquire.name}
+        .enquire-data <b>Contact:</b> #{enquire.contact}
+        br
+        br
+        .enquire-data <i>Date: #{enquire.date.toString().slice(0,21)}</i>
+        br
+        br
+      .enquire-data <b><div>Message:</div></b>
+        pre #{enquire.text}
+      br
+      br
+      br
+      br
+      h1 Remove enquire
+      form.enquire-edit(action="/admin/enquire/remove" method="post")
+        input(type="hidden" name="id" value=`${enquire._id}`)
+        button(type="submit") Remove
+      br
+      br

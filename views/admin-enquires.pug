@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel='stylesheet', href='/static/admin/styles/enquire.css')
+    link(rel='stylesheet', href='/static/admin/styles/navigation.css')
+  body
+    .nav
+      a(href="/admin/payments") Payments
+      a(href="/admin/users") Users
+      a(href="/admin/adverts") Adverts
+      a.active(href="/admin/enquires") Enquires
+      a(href="/admin/emails") Emails
+      a.logout(href="/admin/logout") Logout
+    .alert=alert
+    .enquire
+      h1 Enquires
+      .list
+        each enquire in enquires
+          a(href=`/admin/enquires/enquire/${enquire._id}`)
+            .name <b>#{enquire.date.toString().slice(4,21)}</b> &nbsp; #{enquire.name}
+      .buttons
+        a(href="/admin/enquires?pagination=prev") prev
+        a(href="/admin/enquires?pagination=next") next

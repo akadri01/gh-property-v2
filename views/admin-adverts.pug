@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="/static/admin/styles/normalize.css")
+    link(rel='stylesheet', href='/static/admin/styles/adverts.css')
+    link(rel='stylesheet', href='/static/admin/styles/navigation.css')
+  body
+    .nav
+      a(href="/admin/payments") Payments
+      a(href="/admin/users") Users
+      a.active(href="/admin/adverts") Adverts
+      a(href="/admin/enquires") Enquires
+      a(href="/admin/emails") Emails
+      a.logout(href="/admin/logout") Logout
+    .alert=alert
+    .advert
+      .find
+        h3 Find | Edit | Remove
+        form(action="/admin/advert/find" method="post")
+          input(type="text" placeholder=" Reference number" name="ref")
+          button(type="submit") Search
+      .list
+        h1 Adverts
+        .adverts 
+          each advert in adverts
+            a(href=`/admin/adverts/advert/${advert._id}`)
+              .name <b>#{advert.date.toString().slice(4,16)}</b> &nbsp; #{advert.ref} <span>#{advert.make} #{advert.year} #{advert.transmission} #{advert.price}GH¢ #{advert.location} #{advert.km}km</span>
+        .buttons
+          a(href="/admin/adverts?pagination=prev") prev
+          a(href="/admin/adverts?pagination=next") next

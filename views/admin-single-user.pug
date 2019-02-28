@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel='stylesheet', href='/static/admin/styles/normalize.css')
+    link(rel='stylesheet', href='/static/admin/styles/single-user.css')
+    link(rel='stylesheet', href='/static/admin/styles/navigation.css')
+  body
+    .nav
+      a(href="/admin/payments") Payments
+      a(href="/admin/users") Users
+      a(href="/admin/adverts") Adverts
+      a(href="/admin/enquires") Enquires
+      a(href="/admin/emails") Emails
+      a.logout(href="/admin/logout") Logout
+    .alert=alert
+    .user
+      h1 User information
+      .user-data User id: #{user._id}
+      .user-data #{user.name}
+      .user-data #{user.email}
+      .user-data Account credit: #{user.posts_allowed}
+      .user-data Joined at: #{user.joined_date.toString().slice(0,21)}
+      .user-data <b>Live Adverts:</b>
+      .user-posts
+        each post in user.posts
+          a(href=`/admin/adverts/advert-by-url/${post[0]}`)
+            img(src=`/static/images/car-uploads/${post[2]}`)
+            .post-name #{post[1]}
+      h1 Edit user information
+      form.user-edit(action="/admin/user/edit" method="post")
+        input(type="hidden" name="userId" value=`${user._id}`)
+        label Change user name
+        input(type="text" name="name" value=`${user.name}`)
+        label Change user password
+        input(type="text" name="password" placeholder=" *********")
+        label Change user email
+        input(type="email" name="email" value=`${user.email}`)
+        label Change account credit
+        input(type="number" name="credit" value=`${user.posts_allowed}`)
+        label Confirm user account 
+        .label-adition do not confirm unless needed, users should confirm their own account
+        input.checkbox(type="checkbox" name="confirm")
+        button(type="submit") Update
+      br
+      br
+      br
+      br
+      h1 Remove user
+      form.user-edit(action="/admin/user/remove" method="post")
+        input(type="hidden" name="email" value=`${user.email}`)
+        button(type="submit") Remove
+      br
+      br

@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel='stylesheet', href='/static/admin/styles/normalize.css')
+    link(rel='stylesheet', href='/static/admin/styles/login.css')
+  body
+    .alert=alert
+    .login
+      form(method="post" action="/admin/login")
+        label Email
+        input(type="email" placeholder=" @" required name="email" maxlength="90" minlength="10")
+        label Password
+        input(type="password" placeholder=" ********" required name="password" minlength="8" maxlength="120")
+        button(type="submit") LOGIN
