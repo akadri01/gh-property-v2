@@ -3,7 +3,8 @@ import Head from "next/head";
 import "../public/styles/Main.scss";
 
 // Components
-import Navigation from '../components/header/navigation/navigation';
+import Navigation from '../components/navigation/navigation';
+import Banner from '../components/banner/banner';
 
 const home = props => {
   return (
@@ -13,6 +14,7 @@ const home = props => {
         <meta name="description" content="Ghana realt estate web platform" />
       </Head>
       <Navigation/>
+      <Banner/>
     </section>
   );
 };

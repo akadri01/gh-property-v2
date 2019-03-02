@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {Regions, Towns} from '../shared';
 const logo = '/static/images/icons/logo.png';
 
 export default () => {
@@ -26,20 +27,33 @@ export default () => {
         </div>
         <nav className="navigation__navbar" id="navMenu">
           <Link>
-            <a>
+            <a className="links">
               buy
             </a>
           </Link>
           <Link>
-            <a>
+            <a className="links">
               rent 
             </a>
           </Link>
-          <div>
-            locations
+          <div className="navigation__navbar-location" id="locationDownArrow" onClick={()=> {
+              document.getElementById('locationMegaMenu').classList.toggle('show-location-menu');
+              document.getElementById('locationDownArrow').classList.toggle('replace-arrow-with-close');
+            }}>
+            <span className="navigation__navbar-location-title">locations</span>
+            <div className="navigation__navbar-location-menu" id="locationMegaMenu">
+              <div className="mobile-desktop-frame">
+                <div className="navigation__navbar-location-menu-items">
+                  {Regions}
+                </div>
+                <div className="navigation__navbar-location-menu-items">
+                  {Towns}
+                </div>
+              </div>
+            </div>
           </div>
           <Link>
-            <a>
+            <a className="links">
               Login-Register
             </a>
           </Link>
@@ -51,3 +65,16 @@ export default () => {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

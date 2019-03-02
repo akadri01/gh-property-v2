@@ -12,7 +12,8 @@
 @import "vendors/carousel.scss";
 
 // Components
-@import "../../components/header/navigation/navigation.scss";
+@import "../../components/navigation/navigation.scss";
+@import "../../components/banner/banner.scss";
 
 // Shared styles  *keep at the bottom (overides)
 @import "shared/_js-classes.scss";

@@ -38,6 +38,14 @@
   background-position: $position;
 }
 
+@mixin hoverGreen {
+  color: white;
+  transition: .2s;
+  cursor: pointer;
+  &:hover {
+    color: $color-green;
+  }
+}
 
 // Rem Coverter
 @function calculateRem($size) {

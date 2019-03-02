@@ -12,3 +12,9 @@
     opacity: 0!important;
   }
 }
+.show-location-menu {
+  display: block!important;
+}
+.replace-arrow-with-close {
+  background-image: url('/static/images/icons/close-green.svg');
+}
