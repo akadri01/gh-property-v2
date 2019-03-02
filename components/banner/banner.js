@@ -1,5 +1,5 @@
 import { Picture } from "react-responsive-picture";
-import {LocationOptions, MaxPriceOptions, MinPriceOptions} from '../shared';
+import {LocationOptions} from '../shared';
 
 export default () => {
   return (

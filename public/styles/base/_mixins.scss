@@ -27,6 +27,10 @@
   border: 5px solid #dbf6d4;
   border-radius: 5px;
 }
+@mixin showTextShadow {
+  text-shadow: 1px 1px 1px black;
+  color: white;
+}
 
 
 // background icon

@@ -5,6 +5,8 @@ import "../public/styles/Main.scss";
 // Components
 import Navigation from '../components/navigation/navigation';
 import Banner from '../components/banner/banner';
+import TownNavigation from '../components/town-nav/town-nav';
+import Footer from '../components/footer/footer';
 
 const home = props => {
   return (
@@ -15,6 +17,8 @@ const home = props => {
       </Head>
       <Navigation/>
       <Banner/>
+      <TownNavigation/>
+      <Footer/>
     </section>
   );
 };

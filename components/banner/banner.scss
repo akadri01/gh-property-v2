@@ -28,8 +28,7 @@
       top: 290px;
     }
     h2 {
-      text-shadow: 1px 1px 1px black;
-      color: white;
+      @include showTextShadow;
       font-size: $font-size-large;
       text-align: center;
       @include desktopSmall {
@@ -114,8 +113,8 @@
       width: 80%;
       height: 42px;
       margin-left: 10%;
-      background-color: #f9b942;
-      outline: 1px solid #f9b942;
+      background-color: $color-yellow;
+      outline: 1px solid $color-yellow;
       color: #fff;
       font-weight: 900;
       border: none;
@@ -124,7 +123,7 @@
       padding-top: 3px;
       text-transform: uppercase;
       @include desktopSmall {
-        @include backgroundIcon('right-arrow-white.svg', 14px, 91% 17px)
+        @include backgroundIcon('right-arrow-white.svg', 14px, 91% 17px);
         height: 48px;
         width: 25%;
         margin-left: 0;

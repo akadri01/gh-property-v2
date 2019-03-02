@@ -1,0 +1,93 @@
+
+
+
+.town-nav {
+  margin-top: 30px;
+  @include desktopSmall {
+    margin-top: 80px;
+  }
+  &-title {
+    color: $color-black;
+    font-size: $font-size-medium;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 900;
+    @include desktopSmall {
+      margin-bottom: 1px;
+      font-size: $font-size-large;
+    }
+  }
+  &-text {
+    color: $color-black;
+    text-align: center;
+    font-family: $font-family-title;
+    font-size: $font-size-large;
+    line-height: $font-size-xxlarge;
+    margin-bottom: 25px;
+    @include desktopSmall {
+      font-size: $font-size-mega;
+    }
+  }
+  hr {
+    border: 0;
+    border-bottom: 3px solid #009da5;
+    width: 5rem;
+    margin: .75rem auto 2.625rem auto;
+  }
+  @include desktopSmall {
+    .top,
+    .middle,
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .top {
+      .town-nav__town {
+        width: 49.3%;
+      }
+    }
+    .middle {
+      .town-nav__town {
+        width: 32.5%;
+      }
+    }
+    .bottom {
+      .town-nav__town {
+        width: 100%;
+      }
+    }
+  }
+  &__town {
+    width: 100%;
+    position: relative;
+    &-overlay {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    &-title {
+      text-align: center;
+      font-size: calculateRem(29px);
+      color: white;
+      margin-top: 55px;
+      margin-bottom: 0;
+      @include desktopSmall {
+        font-size: calculateRem(32px);
+      }
+    }
+    &-text {
+      width: 100%;
+      color: $color-yellow;
+      margin-top: 18px;
+      text-align: center;
+      font-size: $font-size-xlarge;
+      font-weight: 900;
+      @include desktopSmall {
+        font-size: $font-size-xxlarge;
+      }
+    }
+  }
+}
