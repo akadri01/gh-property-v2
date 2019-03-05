@@ -1,5 +1,135 @@
 .footer {
+  background-color: $color-black;
+  color: white;
+  padding: 13px 0 35px;
+  border-bottom: 1px solid $color-green;
+  margin-top: 20px;
+  @include desktopSmall {
+    margin-top: 80px;
+    padding: 31px 0 73px;
+  }
   &__top {
-   
+    @include desktopSmall {
+      display: flex;
+      justify-content: space-between;
+      .footer__top-location,
+      .footer__top-type,
+      .footer__top-advert {
+        width: 33.3%;
+      }
+    }
+    h2 {
+      position: relative;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      font-weight: 100;
+      margin-top: 56px;
+      margin-bottom: 24px;
+    }
+    h2::after {
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+      content: '';
+      width: 80px;
+      height: 1px;
+      background-color: #009da5;
+    }
+    &-locations {
+      div {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        a {
+          width: 33.3%;
+          padding: 6px 0;
+          margin-bottom: 7px;
+          font-size: $font-size-medium;
+          @include hoverGreen;    
+        }
+      }
+    }
+    &-types {
+      div {
+        a {
+          @include hoverGreen;    
+          display: block;
+          padding: 6px 0;
+          margin-bottom: 7px;
+          font-size: $font-size-medium;
+        }
+      }
+    }
+    &-advert {
+      p {
+        font-size: $font-size-small;
+        font-family: $font-family-title;
+        line-height: $font-size-large;
+      }
+      form {
+        margin-top: 20px;
+        @include clearfix;
+        label {
+          display: block;
+          color: $color-green;
+          margin-bottom: 4px;
+          font-weight: 900;
+        }
+        input {
+          height: 39px;
+          width: 160px;
+          border: none;
+          text-indent: 10px;
+          float: left;
+        }
+        ::placeholder {
+          font-size: $font-size-medium;
+          text-indent: 10px;
+        }
+        a {
+          float: left;
+          button {
+            font-size: $font-size-small;
+            text-transform: uppercase;
+            font-weight: 900;
+            border: none;
+            color: white;
+            font-family: $font-family-body;
+            height: 39px;
+            background: $color-green;
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+.footer-end {
+  background-color: black;
+  color: white;
+  font-size: $font-size-small;
+  @include clearfix;
+  padding: 10px 0;
+  img {
+    @include desktopSmall {
+      float: left;
+      margin-top: 5px;
+    }
+  }
+  &__links {
+    a {
+      display: block;
+      padding: 10px 0 ;
+    }
+    @include desktopSmall {
+      margin-top: 19px;
+      float: right;
+      a {
+        display: inline-block;
+        padding: 2px 0;
+        margin-left: 13px;
+        @include hoverGreen;
+      }
+    }
   }
 }

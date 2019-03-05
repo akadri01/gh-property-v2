@@ -10,11 +10,16 @@ class NextRoutes {
 
   registerRoutes() {
     this.server.get("/", this.renderHome.bind(this));
+    this.server.get("/user/auth", this.renderAuth.bind(this));
     this.server.all("*", this.handleAll.bind(this));
   }
 
   renderHome(req, res) {
     return this.app.render(req, res, "/index");
+  }
+
+  renderAuth(req, res) {
+    return this.app.render(req, res, "/user/auth");
   }
 
   handleAll(req, res) {

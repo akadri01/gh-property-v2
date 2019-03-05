@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export default link => {
+export default (basePath, link, query, customLink) => {
   return (
-    <Link href={`/property?location=${link.toUpperCase()}`}>
+    <Link href={`/${basePath}${query}=${customLink ? customLink.toUpperCase() : link.toUpperCase()}`}>
       <a>{link}</a>
     </Link>
   )

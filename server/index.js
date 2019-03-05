@@ -13,6 +13,7 @@ const session = require("../session");
 const isomorphicRoutes = require("./routes/isomorphic.js");
 const apiRoutes = require("./routes/api.js");
 const adminRoutes = require("./routes/admin/");
+const authRoutes = require("./routes/auth.js");
 
 require("../db");
 
@@ -54,6 +55,7 @@ process.env.PORT = process.env.PORT || 80;
     server.use("/admin", adminRoutes);
     server.use("/api", apiRoutes);
     server.use("/iso", isomorphicRoutes);
+    server.use('/auth', authRoutes);
     require("./routes/nextJS.js")(server, nextApp, handle);
 
     server.listen(3000, err => {

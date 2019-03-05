@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {Regions, Towns} from '../shared';
-const logo = '/static/images/icons/logo.png';
 
 export default () => {
   return (
@@ -10,7 +9,7 @@ export default () => {
           <Link href="/">
             <a className="navigation__brand-logo">
               <img
-                src={logo}
+                src='/static/images/icons/logo.png'
                 alt='WeGhana logo'
                 title='Go to home page'
               />
@@ -52,7 +51,7 @@ export default () => {
               </div>
             </div>
           </div>
-          <Link>
+          <Link href="/user/auth">
             <a className="links">
               Login-Register
             </a>
