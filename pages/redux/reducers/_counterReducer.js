@@ -1,6 +1,6 @@
-import {exampleInitialState} from '../example-initial-state.js';
+import {reduxInitialState} from '../redux-initial-state.js';
 
-const counterReducer = (state = exampleInitialState, action) => {
+const counterReducer = (state = reduxInitialState.count, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return Object.assign({}, state, {

@@ -4,7 +4,7 @@ import counterReducer from './_counterReducer';
 import userReducer from './_userReducer';
 
 export default combineReducers({
-  loginForm: userReducer,
+  user: userReducer,
   counter: counterReducer,
   form: formReducer
 })

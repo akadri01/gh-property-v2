@@ -9,7 +9,7 @@ export default class FacebookLoginForm extends Component {
     return (
       <section className="auth__forms-facebook" id="facebookRegisterLogin">
         <FacebookLogin
-          appId="306118983364378="
+          appId="306118983364378"
           autoLoad={true}
           fields="name,email,picture"
           callback={this.responseFacebook}

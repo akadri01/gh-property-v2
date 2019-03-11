@@ -4,11 +4,11 @@ import { incrementCount, decrementCount } from '../redux/actions'
 
 class Counter extends Component {
   increment = () => {
-    this.props.dispatch(incrementCount())
+    this.props.increment();
   }
 
   decrement = () => {
-    this.props.dispatch(decrementCount())
+    this.props.decrement();
   }
 
   render () {
@@ -29,5 +29,10 @@ function mapStateToProps (state) {
     count: state.counter.count
   }
 }
-
-export default connect(mapStateToProps)(Counter)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      increment: () => dispatch(incrementCount()),
+      decrement: () => dispatch(decrementCount()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)

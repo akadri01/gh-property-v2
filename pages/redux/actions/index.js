@@ -1,5 +1,3 @@
-
-// ACTIONS
 export const incrementCount = () => dispatch => {
   return dispatch({ type: 'INCREMENT' })
 }
@@ -22,6 +20,13 @@ export const registerUser = formValues => async dispatch => {
   return dispatch({
     type: 'REGISTER_USER',
     payload: data
+  });
+};
+
+export const refreshUserConsole = userData => dispatch => {
+  return dispatch({
+    type: 'REFRESH_USER_CONSOLE',
+    payload: userData
   });
 };
 

@@ -3,8 +3,6 @@ import Head from "next/head";
 import "./styles/Main.scss";
 import { connect } from 'react-redux'
 import Counter from './components/counter'
-
-// Components
 import Navigation from './components/navigation/navigation';
 import Banner from './components/banner/banner';
 import TownNavigation from './components/town-nav/town-nav';

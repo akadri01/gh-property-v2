@@ -32,6 +32,12 @@
   color: white;
 }
 
+@mixin navbarGap {
+  margin-top: 60px;
+  @include desktopSmall {
+    margin-top: 63px;
+  }
+}
 
 // background icon
 @mixin backgroundIcon($imgPath, $size, $position) {

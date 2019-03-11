@@ -1,6 +1,7 @@
 .banner {
   position: relative;
   font-family: $font-family-title;
+  @include navbarGap;
   &__form {
     @include absCenter;
     top: 120px;

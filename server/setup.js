@@ -7,15 +7,21 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const consolidate = require("consolidate");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const mongoose = require("mongoose");
-const MongoStore = require("connect-mongo")(session);
-const config = require("../config");
+const {DB_URI, SESSION_SECRET} = require("../config");
+
+// Routes
 const isomorphicRoutes = require("./routes/isomorphic.js");
 const apiRoutes = require("./routes/api.js");
 const adminRoutes = require("./routes/admin.js");
 const authRoutes = require("./routes/auth.js");
-const dataBase = mongoose.connect(config.DB_URI);
+
+// Sessions
+const session = require("express-session");
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+// Database
+const mongoose = require("mongoose");
+mongoose.connect(DB_URI);
 
 class SetupServer {
   constructor(server) {
@@ -28,7 +34,7 @@ class SetupServer {
     this.server.use(helmet());
     this.server.use(compression());
     this.server.use(cors());
-    this.server.use(this.session);
+    this.server.use(this.determineSession);
     this.server.use(cookieParser());
     this.server.use((req, res, next) => {
       res.locals.currentUser = req.session.userId;
@@ -52,18 +58,21 @@ class SetupServer {
     require("./routes/ssr.js")(this.server, nextApp);
   }
 
-  get session() {
+  get determineSession() {
     const prod = session({
-      secret: config.SESSION_SECRET,
-      resave: false,
-      cookie: { maxAge: 3600000 * 2 },
-      saveUninitialized: true,
-      store: new MongoStore({
-        db: mongoose.connection.db
-      })
+      secret: SESSION_SECRET,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+      },
+      store: new MongoDBStore({
+        uri: DB_URI,
+        collection: 's_e_s_s_i_o_n_s'
+      }),
+      resave: true,
+      saveUninitialized: true
     });
     const dev = session({
-      secret: config.SESSION_SECRET,
+      secret: SESSION_SECRET,
       cookie: { maxAge: 3600000 * 2 },
       resave: false,
       saveUninitialized: true

@@ -1,6 +1,3 @@
-/**
- * Inserts buttons loader background image
- */
 export function displayLoader(targetBtnSelector) {
   const targetBtn = document.querySelector(targetBtnSelector);
   if (!targetBtn.classList.contains("button-loader")) {

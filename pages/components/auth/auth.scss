@@ -3,6 +3,7 @@
 .auth {
   padding-top: 20px;
   padding-bottom: 30px;
+  @include navbarGap;
   h2 {
     font-size: $font-size-xxlarge;
     font-weight: 100;

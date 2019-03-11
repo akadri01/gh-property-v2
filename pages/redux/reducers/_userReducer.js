@@ -1,5 +1,6 @@
+import {reduxInitialState} from '../redux-initial-state.js';
 
-export default (state = [], action) => {
+export default (state = reduxInitialState.user, action) => {
   switch (action.type) {
     case 'REGISTER_USER':
     return {
@@ -19,6 +20,11 @@ export default (state = [], action) => {
     case 'LOGOUT_USER':
       return {
         ...state
+      };
+    case 'REFRESH_USER_CONSOLE':
+      return {
+        ...state,
+        userData: action.payload
       };
     default:
       return state;
