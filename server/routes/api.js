@@ -14,9 +14,9 @@ const multer = require("multer");
 const rimraf = require("rimraf");
 const randomString = require("randomstring");
 const crypto = require("crypto");
-const logger = require("../../logger");
 const User = require("../../db/models/user");
-const helpers = require("../../helpers/server");
+const helpers = require("../helpers");
+const logger = helpers.logger;
 
 class ApiRouter {
   constructor(router) {

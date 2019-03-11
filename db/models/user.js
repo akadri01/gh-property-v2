@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 const schema = mongoose.Schema;
-const logger = require("../../logger");
+const logger = require('../../server/helpers/index.js').logger;
 
 const userSchema = new schema({
   name: String,

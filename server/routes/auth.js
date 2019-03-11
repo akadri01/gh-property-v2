@@ -23,7 +23,7 @@ class AuthRouter {
   authUser(req, res) {
     User.authenticate(req.body.email, req.body.password, user => {
       if (!user) {
-        return res.json({ saved: false });
+        return res.json(false);
       }
       req.session.userData = user;
       res.json(user);

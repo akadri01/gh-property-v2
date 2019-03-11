@@ -1,30 +1,30 @@
 /**
- *  Only handles isomorphic-unfetch initial props
+ *   Admin routes
  *
- *      /iso/...
+ *        /admin/...
  */
 
 "use strict";
 
 const express = require("express");
 const router = express.Router();
-const enableCors = require("cors");
+const path = require("path");
+const rimraf = require("rimraf");
 const helpers = require("../helpers");
 const logger = helpers.logger;
 
-
-class IsomorphicRouter {
+class AdminRouter {
   constructor(router) {
     this.router = router;
     this.registerRoutes();
   }
 
   registerRoutes() {
-    
   }
 
+  
 }
 
-new IsomorphicRouter(router);
+new AdminRouter(router);
 
 module.exports = router;
