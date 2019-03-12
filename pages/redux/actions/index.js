@@ -30,3 +30,10 @@ export const refreshUserConsole = userData => dispatch => {
   });
 };
 
+export const postAdvert = formValues => async dispatch => {
+  // const {data} = await axios.post("/auth/user/register", formValues);
+  return dispatch({
+    type: 'POST_ADVERT',
+    payload: data
+  });
+};

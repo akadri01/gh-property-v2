@@ -26,6 +26,11 @@ export default (state = reduxInitialState.user, action) => {
         ...state,
         userData: action.payload
       };
+    case 'POST_ADVERT':
+      return {
+        ...state,
+        userData: action.payload
+      };
     default:
       return state;
   }

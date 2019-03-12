@@ -55,6 +55,15 @@
     border: 1px solid #c6cece;
     width: 100%;
   }
+  select {
+    font-size: $font-size-medium;
+    padding-left: 31px;
+    @include backgroundIcon('list.svg', 13px, 12px center);
+    border: 1px solid #c6cece;
+    height: 42px;
+    width: 100%;
+    background-color: transparent;
+  }
   label {
     font-family: $font-family-title;
     font-size: $font-size-medium;
