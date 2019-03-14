@@ -1,4 +1,90 @@
 
 .console {
   @include navbarGap;
+  position: relative;
+  &__topup {
+    z-index: 2;
+    position: fixed;
+    top: 65px;
+    background: white;
+    width: 92%;
+    height: 58px;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    &-text-container {
+      margin-top: 6px;
+      &-text {
+        font-size: $font-size-small;
+        margin-top: 9px;
+        display: block;
+        b {
+          color: red;
+          text-decoration: underline;
+        }
+      }
+      &-btn {
+        background: $color-yellow;
+        display: inline-block;
+        margin-top: 10px;
+        padding-top: 12px;
+        padding-left: 38px;
+        width: 100px;
+        height: 40px;
+        font-weight: 900;
+        text-decoration: underline;
+        @include backgroundIcon('cedis.svg', 23px, 10px center);
+      }
+    }
+  }
+  &__post-advert {
+    margin-top: 170px;
+    .section-main-title {
+      padding-top: 32px;
+      text-align: center;
+      @include backgroundIcon('paper-plane.svg', 37px, center -1px);
+      
+    }
+    &-form {
+      &-section-title {
+        margin-top: 30px;
+        padding-left: 30px;
+        @include backgroundIcon('down-tick.svg', 27px, 0 center);
+        color: $color-green;
+        @include desktopSmall {
+          margin-top: 50px;
+
+        }
+
+      }
+      .desktop-flex-container {
+        @include tablet {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          .desktop-flex {
+            width: 46%;
+            @include desktopSmall {
+              width: 32%;
+              margin-bottom: 18px;
+            }
+            @include desktopMedium {
+              width: 18%;
+            }
+          }
+        }
+      }
+      &-features-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .redux-checkbox-container {
+          width: 190px;
+        }
+      }
+      &-submit-btn {
+        margin-top: 25px;
+      }
+    }
+  }
 }

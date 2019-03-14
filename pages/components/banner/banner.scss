@@ -5,7 +5,7 @@
   &__form {
     @include absCenter;
     top: 120px;
-    background: rgba(40,40,40,.7);
+    background: rgba(40,40,40,.8);
     width: 310px;
     padding: 15px;
     @include tablet {
@@ -14,19 +14,19 @@
     @include desktopSmall {
       top: 110px;
       display: flex;
-      width: 750px;
+      width: 720px;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 15px 7% 35px;
+      padding: 18px 9% 38px;
     }
     @include desktopMedium {
-      top: 180px;
+      top: 170px;
     }
     @include desktopLarge {
-      top: 200px;
+      top: 190px;
     }
     @include desktopMega {
-      top: 290px;
+      top: 260px;
     }
     h2 {
       @include showTextShadow;
@@ -48,27 +48,32 @@
       border: 1px solid $color-green;
       color: #585858;
       font-size: $font-size-medium;
-      text-indent: 5px;
+      text-indent: 14px;
       width: 80%;
       margin-left: 10%;
       @include desktopSmall {
         padding-left: 20px;
         height: 50px;
         margin-left: 0;
-        width: 30%;
-        @include backgroundIcon('location.svg', 22px, 5px center)
+        width: 40%;
+        @include backgroundIcon('location.svg', 22px, 10px center)
       }
     }
     &-radios {
-      width: 80%;
-      margin:7px 10% 20px;
+      width: 50%;
+      margin:17px 10% 17px;
       display: flex;
       justify-content: space-between;
       @include desktopSmall {
         margin-top: 0;
-        width: 29%;
+        width: 20%;
         margin-left: 0;
         margin-right: 0;
+      }
+      &-radio {
+        * {
+          display: block;
+        }
       }
       input {
         -webkit-appearance: none;
@@ -78,10 +83,11 @@
         position: relative;
         background-color: white;
         color: $color-green;
-        top: 10px;
+        top: 0;
         height: 30px;
         width: 30px;
         border: 0;
+        left: 22%;
         border-radius: 6px;
         cursor: pointer;     
         margin-right: 5px;
@@ -89,7 +95,7 @@
       }
       input:checked::before {
         position: absolute;
-        left: 10px;
+        left: 7px;
         top: 3px;
         font-size: $font-size-xxlarge;
         content: '\02143';
@@ -106,7 +112,7 @@
         font-weight: 900;
         cursor: pointer;
         color: white;
-        font-size: $font-size-medium;
+        font-size: calculateRem(13px);
       }
     }
     button { 
@@ -124,7 +130,6 @@
       padding-top: 3px;
       text-transform: uppercase;
       @include desktopSmall {
-        @include backgroundIcon('right-arrow-white.svg', 14px, 91% 17px);
         height: 48px;
         width: 25%;
         margin-left: 0;

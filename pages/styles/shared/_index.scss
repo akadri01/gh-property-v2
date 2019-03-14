@@ -48,7 +48,8 @@
   input[type="text"],
   input[type="password"],
   input[type="phone"],
-  input[type="email"] {
+  input[type="email"],
+  input[type="number"] {
     text-indent: 10px;
     height: 42px;
     font-size: $font-size-medium;
@@ -57,7 +58,7 @@
   }
   select {
     font-size: $font-size-medium;
-    padding-left: 31px;
+    padding-left: 28px;
     @include backgroundIcon('list.svg', 13px, 12px center);
     border: 1px solid #c6cece;
     height: 42px;
@@ -73,6 +74,37 @@
   }
   .redux-input-container {
     height: 57px;
+  }
+  .redux-form-file-input-container {
+    margin-bottom: 16px;
+  }
+  .redux-textarea-container {
+    height: 130px;
+    textarea {
+      text-indent: 10px;
+      padding-top: 10px;
+      height: 110px;
+      font-size: $font-size-medium;
+      border: 1px solid #c6cece;
+      width: 100%;
+    }
+  }
+  .redux-checkbox-container {
+    margin-bottom: 11px;
+    @include desktopSmall {
+      margin-bottom: 18px;
+    }
+    input {
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+    }
+    label {
+      display: inline-block;
+      margin-left: 3px;
+      transform: translateY(-5px);
+      cursor: pointer;
+    }
   }
   .form-error {
     color: red;
@@ -91,7 +123,9 @@
     color: white;
     font-family: $font-family-title;
     margin-bottom: 35px;
-    @include desktopSmall {
-    }
   }
+}
+
+.section-main-title { 
+  font-size: $font-size-mega;
 }

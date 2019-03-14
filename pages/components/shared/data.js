@@ -229,3 +229,30 @@ export const yesNoSelectField = [
   {value:'no',text:'No'},
   {value:'yes',text:'Yes'}
 ];
+
+export const featuresCheckboxFieldList = [
+  {idAndName: 'features1', labelAndValue: 'Air conditioning'},
+  {idAndName: 'features2', labelAndValue: 'Private parking'},
+  {idAndName: 'features3', labelAndValue: 'Private terrace'},
+  {idAndName: 'features4', labelAndValue: 'Swimming Pool'},
+  {idAndName: 'features5', labelAndValue: 'Built in Barbeque'},
+  {idAndName: 'features6', labelAndValue: 'Private Garden'},
+  {idAndName: 'features7', labelAndValue: 'Jacuzzi'},
+  {idAndName: 'features9', labelAndValue: 'Fire Alarm'},
+  {idAndName: 'features10', labelAndValue: 'American Kitchen'},
+  {idAndName: 'features11', labelAndValue: 'Bath Tub'},
+  {idAndName: 'features12', labelAndValue: 'Built-In Oven'},
+  {idAndName: 'features13', labelAndValue: 'Built-in Closet'},
+  {idAndName: 'features14', labelAndValue: 'Cellar'},
+  {idAndName: 'features15', labelAndValue: 'Double Glazing'},
+  {idAndName: 'features16', labelAndValue: 'Elevators'},
+  {idAndName: 'features17', labelAndValue: 'Furniture'},
+  {idAndName: 'features18', labelAndValue: 'Built-in Kitchen'},
+  {idAndName: 'features19', labelAndValue: 'Laminated Flooring'},
+  {idAndName: 'features20', labelAndValue: 'PVC Framing'},
+  {idAndName: 'features21', labelAndValue: 'Parquet Floor'},
+  {idAndName: 'features22', labelAndValue: 'Steel Door'},
+  {idAndName: 'features23', labelAndValue: 'Fire Escape'},
+  {idAndName: 'features24', labelAndValue: 'Generator'},
+  {idAndName: 'features25', labelAndValue: 'Water Tank'}
+]
