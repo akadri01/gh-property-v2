@@ -88,7 +88,7 @@ const utils = {
   },
 
   createImageDirectory: (req, res, next) => {
-    utils.createDirectory(`./static/images/property-uploads/by-user/`, directory => {
+    utils.createDirectory(`./static/images/property-uploads/`, directory => {
       req.session.directory = directory;
       next();
     });

@@ -75,13 +75,14 @@ export const postAdvert = formValues => async dispatch => {
   // // if any image uploaded
   if (formValues.mainImage || formValues.images.length) {
     /// append images
-    const allImages = [formValues.mainImg, ...formValues.images];
+    const allImages = formValues.images && formValues.images.length ? [formValues.mainImg, ...formValues.images] : [formValues.mainImg];
     allImages.forEach((singleImg, i) => {
       const imgName = "img" + i;
       formData.append(imgName, singleImg);
     });
   }
-  // post form data
+  console.log(formValues)
+  // // post form data
   const {data} = await axios.post("/api/user/create/advert", formData, {
     headers: {
       "Content-Type": "multipart/form-data"

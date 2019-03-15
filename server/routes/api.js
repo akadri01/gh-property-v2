@@ -39,6 +39,8 @@ class ApiRouter {
   userCreateAdvert(req, res) {
     const body = JSON.parse(req.body.inputValues);
 
+    console.log(body)
+
     // if any files uploaded
     if (req.files && req.files.length) {
       body.uniqueDirectory = req.session.directory
