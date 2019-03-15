@@ -12,16 +12,14 @@ class PostAdvert extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.mainImg = [];
-    this.images = [];
   }
 
   render() {
     return(
       <Fragment>
         <h1 className="section-main-title">Create new advert</h1>
-        <form onSubmit={this.props.handleSubmit(this.userRegister)} id="postAdverForm" className="console__post-advert-form default-redux-form">
-          <h3 className="console__post-advert-form-section-title">Premises information</h3>
+        <form onSubmit={this.props.handleSubmit(this.postAd)} id="postAdverForm" className="console__post-advert-form default-redux-form">
+          <h3 className="console__post-advert-form-section-title">General information</h3>
           <section className="desktop-flex-container">
             <div className="desktop-flex">
               <Field name="premises_type" component={renderSelectField} label="Type of the premises" validate={required()}>
@@ -34,7 +32,7 @@ class PostAdvert extends Component {
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="posted_by" component={renderSelectField} label="Advert posted by" validate={required()}>
+              <Field name="posted_by" component={renderSelectField} label="Advert posted by">
                 { postedBySelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
@@ -54,37 +52,37 @@ class PostAdvert extends Component {
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="age" component={renderSelectField} label="Age of the premises" validate={required()}>
-                { premisesAgeSelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
+              <Field name="age" component={renderSelectField} label="Age of the premises">
+                { premisesAgeSelectField.map((option, i) => <option value={option.value} key={option.value+i}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="located_floor" component={renderSelectField} label=" Located floor of the premises" validate={required()}>
+              <Field name="located_floor" component={renderSelectField} label="Located floor of the premises" validate={required()}>
                 { floorQtySelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="total_floor" component={renderSelectField} label=" Total floor of the building" validate={required()}>
+              <Field name="total_floor" component={renderSelectField} label="Total floor of the building" validate={required()}>
                 { floorQtySelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="total_bathroom" component={renderSelectField} label=" Bathroom quantity" validate={required()}>
+              <Field name="total_bathroom" component={renderSelectField} label="Bathroom quantity" validate={required()}>
                 { bathroomQtySelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="total_balcony" component={renderSelectField} label=" Balcony quantity" validate={required()}>
+              <Field name="total_balcony" component={renderSelectField} label="Balcony quantity" validate={required()}>
                 { balconyQtySelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="garden" component={renderSelectField} label=" Garden" validate={required()}>
+              <Field name="garden" component={renderSelectField} label="Garden">
                 { yesNoSelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="furniture" component={renderSelectField} label=" Furnished" validate={required()}>
+              <Field name="furniture" component={renderSelectField} label="Furnished">
                 { yesNoSelectField.map(option => <option value={option.value} key={option.value}>{option.text}</option>) }
               </Field>
             </div>
@@ -98,6 +96,7 @@ class PostAdvert extends Component {
               <Field name="area" label=" Area of the premises (m2)" placeholder=" e.g. 130" type="number" component={renderFormInput} validate={[required(), length({min: 1, max: 9})]}/>
             </div>
           </section>
+          <h3 className="console__post-advert-form-section-title">Description</h3>
           <Field name="title" label=" Advert title" placeholder=" e.g. Spacious modern flat in Accra" type="text" component={renderFormInput} validate={[required(), length({min: 10, max: 110})]}/>
           <Field name="detail" label=" Tell more about the premises" placeholder=" ..." type="textarea" component={renderTextarea} validate={[required(), length({min: 10, max: 3000})]}/>
           <h3 className="console__post-advert-form-section-title">Features</h3>
@@ -116,11 +115,12 @@ class PostAdvert extends Component {
       </Fragment>
     )
   }
-  userRegister = async formValues => {
+  postAd = async formValues => {
     displayLoader("#postAdvertSubmit");
     const {payload} = await this.props.dispatch(postAdvert(formValues));
-    removeLoader("#registerSubmitBtn");
+    removeLoader("#postAdvertSubmit");
     // carry on with payload data
+    console.log(payload)
   }
 
   componentDidMount() {

@@ -20,7 +20,6 @@ const userSchema = new schema({
   phone: String,
   posts: Array, // {id, url, title}
   posts_allowed: {
-    // can post one free advert each month
     type: Number,
     default: 1
   },
@@ -125,7 +124,7 @@ userSchema.statics.confirmEmail = function(userId, cb) {
 };
 
 // Save and update car adverts
-userSchema.statics.updateCarAdverts = function(
+userSchema.statics.updatePropertyAdverts = function(
   id,
   url,
   title,
@@ -136,7 +135,7 @@ userSchema.statics.updateCarAdverts = function(
     if (e || !user) {
       return cb(e, null);
     }
-    // add new car advert to recently posted records
+    // add new property advert to recently posted records
     user.posts.unshift([url, title, thumbnailImgPath]);
     user.posts_allowed = user.posts_allowed - 1;
     user
@@ -147,7 +146,7 @@ userSchema.statics.updateCarAdverts = function(
       .catch(e => {
         console.log(e);
         logger.log(
-          "Error: can NOT save new cart advert! updateCarAdverts()",
+          "Error: can NOT save new property advert! updatePropertyAdverts()",
           e
         );
         return cb(e, false);

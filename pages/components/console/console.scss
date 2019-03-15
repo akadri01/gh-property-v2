@@ -43,7 +43,6 @@
       padding-top: 32px;
       text-align: center;
       @include backgroundIcon('paper-plane.svg', 37px, center -1px);
-      
     }
     &-form {
       &-section-title {
@@ -53,9 +52,7 @@
         color: $color-green;
         @include desktopSmall {
           margin-top: 50px;
-
         }
-
       }
       .desktop-flex-container {
         @include tablet {

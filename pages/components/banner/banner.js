@@ -25,11 +25,11 @@ export default () => (
       <div className="banner__form-radios">
         <div className="banner__form-radios-radio">
           <input id="forRent" type="radio" name="status" value="SALE"/> 
-          <label for="forRent">For sale</label>
+          <label htmlFor="forRent">For sale</label>
         </div>
         <div className="banner__form-radios-radio">
           <input id="forSale" type="radio" name="status" value="RENT"/>
-          <label for="forSale">To rent</label>
+          <label htmlFor="forSale">To rent</label>
         </div>
       </div>
       <button>search</button>

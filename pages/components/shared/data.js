@@ -25,6 +25,7 @@ export const postedBySelectField = [
 
 export const roomsSelectField = [
   {value:'', text:'Select room quanity'},
+  {value:'0', text:'No rooms'},
   {value:'1+0', text:'Studio 1+0'},
   {value:'1+1', text:'1+1'},
   {value:'2+0', text:'2+0'},
@@ -156,6 +157,7 @@ export const locationTownSelectField = [
 
 export const premisesAgeSelectField = [
   {value:"0", text:'New'},
+  {value:"0", text:'No age (for land)'},
   {value:"1", text:'1 year'},
   {value:"2", text:'2 years'},
   {value:"3", text:'3 years'},
@@ -173,6 +175,7 @@ export const premisesAgeSelectField = [
 
 export const floorQtySelectField = [
   {value:'',text:'Select floor'},  
+  {value:'0',text:'No floors'},  
   {value:'1',text:'1'},  
   {value:'2',text:'2'},  
   {value:'3',text:'3'},  
@@ -209,6 +212,7 @@ export const floorQtySelectField = [
 
 export const bathroomQtySelectField = [
   {value:'',text:'Select bathroom quantity'},  
+  {value:'0',text:'No bathrooms'},  
   {value:'1',text:'1'},  
   {value:'2',text:'2'},  
   {value:'3',text:'3'},  

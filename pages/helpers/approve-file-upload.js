@@ -13,8 +13,8 @@ export default files => {
         msg: "Maximum picture size is 750KB! Please reduce image size."
       }
     }
-    return {
-      status: true
-    }
+  }
+  return {
+    status: true
   }
 }
