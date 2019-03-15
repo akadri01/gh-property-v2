@@ -1,10 +1,8 @@
 /**
  * Custom popup window
  *
- * @param {string} - id selector inside current component popup being used.
- * @param {string} - Popup message.
  */
-export function popupWindow(idSelector, message) {
+export const popupWindow = (idSelector, message) => {
   // Add script to make the popup removable
   const script =
     "function removePopup(){var elm = document.querySelector('.popup-window');elm.parentNode.removeChild(elm);}";
@@ -13,13 +11,6 @@ export function popupWindow(idSelector, message) {
   scriptTag.className = "popup-script-tag";
   scriptTag.appendChild(document.createTextNode(script));
   document.body.appendChild(scriptTag);
-
-  // remove if any existing active popups
-  // document.querySelectorAll(".popup-window").forEach(parent => {
-  //   while (parent.firstChild) {
-  //     parent.removeChild(parent.firstChild);
-  //   }
-  // });
 
   // remove if any existing popup scripts
   document.querySelectorAll(".popup-script-tag").forEach(elm => {
@@ -42,7 +33,7 @@ export function popupWindow(idSelector, message) {
 }
 
 // Check query whether page requires popup
-export function checkForPopup() {
+export const checkForPopup = () => {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has("popup")) {
     const popupMessage = urlParams.get("popup");

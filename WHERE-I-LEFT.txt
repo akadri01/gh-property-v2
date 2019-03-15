@@ -1,0 +1,13 @@
+Location i left:   pages/helpers/generate-advert-formdata.js
+Duty:   Lastly if user upload other images but not upload main image, i was trying to fix it but utils.logger gave error;
+
+[Error: Input file is missing]
+Unhandled Rejection: Promise: Promise {
+  <rejected> TypeError: utils.logger.log is not a function
+      at sharp.resize.toBuffer.then.catch.e (/home/ci/Documents/projects/ACTIVE-PROJECTS/WeGhana-property/server/helpers/index.js:66:22) } Reason: TypeError: utils.logger.log is not a function
+    at sharp.resize.toBuffer.then.catch.e (/home/ci/Documents/projects/ACTIVE-PROJECTS/WeGhana-property/server/helpers/index.js:66:22)
+
+
+
+* UTILS.LOGGER IS NOT FUNCTION
+* SHARP INPUT FILE IS MISSING

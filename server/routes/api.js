@@ -2,7 +2,6 @@
  *      /api/...
  */
 
-
 "use strict";
 
 const express = require("express");
@@ -38,9 +37,6 @@ class ApiRouter {
 
   userCreateAdvert(req, res) {
     const body = JSON.parse(req.body.inputValues);
-
-    console.log(body)
-
     // if any files uploaded
     if (req.files && req.files.length) {
       body.uniqueDirectory = req.session.directory
@@ -57,7 +53,6 @@ class ApiRouter {
         );
       }
     }
-
     // check if user has enough credit
     User.findById(body.userId).then(user => {
       if (user.posts_allowed < 1) {
@@ -73,7 +68,7 @@ class ApiRouter {
           req.session.filename = [];
           req.session.directory = null;
           
-          // update user posts
+          // // update user posts
           const thumbnailImgPath = property.img_directory + "/" + property.images[0];
           User.updatePropertyAdverts(
             property.user_id,

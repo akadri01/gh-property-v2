@@ -64,7 +64,7 @@ const utils = {
       .catch(e => {
         console.log(e);
         utils.logger.log("Error: helpers cropImage() ", e);
-        return cb(false);
+        return cb(false);  
       });
   },
 
@@ -131,7 +131,6 @@ const utils = {
     if (!req.files || !req.files.length) {
       return next();
     }
-
     // thumbnail data
     const newThumbnailName =
       "thumbnail-" +
@@ -141,7 +140,6 @@ const utils = {
       req.session.directory,
       newThumbnailName
     );
-
     // monitor image process errors
     let errorWithSharpMsg = false;
     // loop all images to crop and resize
@@ -155,7 +153,6 @@ const utils = {
         req.session.directory,
         req.session.filename[i]
       );
-
       // index 0  main img and thumbnail
       if (i === 0) {
         // crop main img
@@ -211,7 +208,7 @@ const utils = {
         break;
       }
     } /*for loop ends*/
-
+    
     // save croped img name to session
     req.session.filename.unshift(newThumbnailName);
     return next();

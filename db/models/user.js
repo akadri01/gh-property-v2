@@ -128,7 +128,7 @@ userSchema.statics.updatePropertyAdverts = function(
   id,
   url,
   title,
-  thumbnailImgPath,
+  thumbnailImg,
   cb
 ) {
   this.findById(id, function(e, user) {
@@ -136,7 +136,7 @@ userSchema.statics.updatePropertyAdverts = function(
       return cb(e, null);
     }
     // add new property advert to recently posted records
-    user.posts.unshift([url, title, thumbnailImgPath]);
+    user.posts.unshift({url, title, thumbnailImg});
     user.posts_allowed = user.posts_allowed - 1;
     user
       .save()

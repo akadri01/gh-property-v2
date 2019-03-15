@@ -48,11 +48,11 @@ export class RenderFileInput  extends Component{
       e.target.value = "";
       return popupWindow('postAdverForm', isApproved.msg)
     }
-    const { input: { onChange } } = this.props;
+    const { input: { onChange } } = this.props; 
     onChange(e.target.files)
   }
   render() {
-    const { input: { value }, isMultiple, label, meta: { touched, error }} = this.props
+    const { input, isMultiple, label, meta: { touched, error }} = this.props
     const single =  <input type='file' accept='.jpg, .png, .jpeg' onChange={this.onChange} />
     const multiple =   <input type='file' accept='.jpg, .png, .jpeg' onChange={this.onChange} multiple="multiple" />
     return(

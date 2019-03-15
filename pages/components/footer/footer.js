@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {Fragment} from 'react';
-import createFooterLink from '../../helpers/createFooterLink';
+import createFooterLink from '../../helpers/create-footer-links';
 import {towns, seoLinks, typeLinks} from '../shared/data';
 
 export default () => (

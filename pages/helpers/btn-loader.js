@@ -1,23 +1,23 @@
-export function displayLoader(targetBtnSelector) {
+export const displayLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
   if (!targetBtn.classList.contains("button-loader")) {
     targetBtn.classList.add("button-loader");
   }
 }
 
-export function removeLoader(targetBtnSelector) {
+export const removeLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
   if (targetBtn.classList.contains("button-loader")) {
     targetBtn.classList.remove("button-loader");
   }
 }
 
-export function hideLoader(targetBtnSelector) {
+export const hideLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
   targetBtn.style.visibility = "hidden";
 }
 
-export function revealLoader(targetBtnSelector) {
+export const revealLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
   targetBtn.style.visibility = "visible";
 }

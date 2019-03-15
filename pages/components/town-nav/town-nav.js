@@ -1,4 +1,4 @@
-import insertImageFrame from '../../helpers/insertImageFrame';
+import insertImageFrame from '../../helpers/insert-img-frames';
 
 export default () => (
   <section className="town-nav mobile-desktop-frame">
