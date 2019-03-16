@@ -123,6 +123,7 @@ userSchema.statics.confirmEmail = function(userId, cb) {
   );
 };
 
+
 // Save and update car adverts
 userSchema.statics.updatePropertyAdverts = function(
   id,

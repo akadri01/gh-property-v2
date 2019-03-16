@@ -7,6 +7,7 @@ export const displayLoader = targetBtnSelector => {
 
 export const removeLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
+  console.log(targetBtn)
   if (targetBtn.classList.contains("button-loader")) {
     targetBtn.classList.remove("button-loader");
   }

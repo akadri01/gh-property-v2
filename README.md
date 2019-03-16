@@ -2,11 +2,13 @@
 
 About the technologies used;
 
-- [x] Next.js
+- [x] React.js
 - [x] Express.js
+- [x] Next.js
 - [x] Mongodb
 - [x] ES6 linting
 - [x] SASS support
+- [x] Redux state management
 - [x] Pug & Hbs template engines
 
 ## Starting the dev server

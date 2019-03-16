@@ -29,13 +29,13 @@ export default formValues => {
       town: formValues.town,
       userName: name,
       userId: _id,
-      userEmail: email
+      userEmail: email 
     }) 
   );
-  // if any image uploaded
-  if (formValues.mainImage || formValues.images.length) {
+  // append if any image uploaded
+  if (formValues.mainImage || formValues.images) {
     formValues.mainImage = !formValues.mainImage || !formValues.mainImage.length ? [formValues.images[0]] : formValues.mainImage;
-    const allImages = formValues.images && formValues.images.length ? [formValues.mainImage[0], ...formValues.images] : formValues.mainImage[0];
+    const allImages = formValues.images && formValues.images.length ? [formValues.mainImage[0], ...formValues.images] : [formValues.mainImage[0]];
     allImages.forEach((singleImg, i) => {
       const imgName = "img" + i;
       formData.append(imgName, singleImg);

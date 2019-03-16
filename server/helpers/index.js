@@ -2,20 +2,26 @@
 
 const crypto = require("crypto");
 const fs = require("fs");
-const sudoFs = require("sudo-fs-promise");
+const rimraf = require('rimraf');
 const path = require("path");
 const util = require("util");
+const randomstring = require("randomstring");
 const hogan = require("hogan.js");
 const sharp = require("sharp");
 const randomString = require("randomstring");
 const multer = require("multer");
-const { Logger, transports } = require("winston");
 const sendGrid = require("@sendgrid/mail");
 const config = require("../../config/");
 const FsCreateDirectory = util.promisify(fs.mkdir);
+const logger = require('./logger');
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
-const utils = {
+var utils = {
+  generateUrl: ({area, price, premises_type, town}) => {
+    const url =`${premises_type}${area}m2${town}${price}cedis${randomstring.generate(15)}`;
+    return url.replace(/[^A-Z0-9]/gi, "").toLowerCase();
+  },
+
   createDirectory: (absolutePath, cb) => {
     const uniqueDirectory =
       new Date().toISOString().split("T")[0] +
@@ -28,7 +34,7 @@ const utils = {
       })
       .catch(e => {
         console.log(e);
-        utils.logger.log(
+        logger.log(
           "Error: Fs can NOT create directory. helpers.createDirectory ",
           e
         );
@@ -63,28 +69,9 @@ const utils = {
       })
       .catch(e => {
         console.log(e);
-        utils.logger.log("Error: helpers cropImage() ", e);
+        logger.log("Error: helpers cropImage() ", e);
         return cb(false);  
       });
-  },
-
-  logger: () => {
-    const logger = new Logger({
-      transports: [
-        new transports.File({
-          level: "debug",
-          filename: "./appDebug.log",
-          handleExceptions: true
-        }),
-        new transports.Console({
-          level: "debug",
-          json: true,
-          handleExceptions: true
-        })
-      ],
-      exitOneError: false
-    });
-    return logger;
   },
 
   createImageDirectory: (req, res, next) => {
@@ -94,7 +81,7 @@ const utils = {
     });
   },
 
-  handleImages: (req, res, next) => {
+  handleImages: () => {
     const storage = multer.diskStorage({
       destination: function(req, file, cb) {
         cb(null, req.session.directory);
@@ -127,7 +114,6 @@ const utils = {
   },
 
   cropImagesMiddleware: (req, res, next) => {
-    // if no image skip
     if (!req.files || !req.files.length) {
       return next();
     }
@@ -140,8 +126,7 @@ const utils = {
       req.session.directory,
       newThumbnailName
     );
-    // monitor image process errors
-    let errorWithSharpMsg = false;
+
     // loop all images to crop and resize
     for (let i = 0; i < req.session.filename.length; i++) {
       // large img data
@@ -162,12 +147,7 @@ const utils = {
           480,
           croppedImgNameAndLocation,
           done => {
-            if (!done) {
-              sudoFs.remove(req.session.directory).catch(e => console.error(e));
-              errorWithSharpMsg(
-                "Error, /server/helpers >> Croping main image error >> cropImages()"
-              );
-            }
+            utils.handleCropFailure(done, req.session.directory);
           }
         );
         // crop thumbnail
@@ -177,12 +157,7 @@ const utils = {
           160,
           croppedThumbnailNameAndLocation,
           done => {
-            if (!done) {
-              sudoFs.remove(req.session.directory).catch(e => console.error(e));
-              errorWithSharpMsg(
-                "Error /server/helpers >> Croping thumbnail image error >> cropImages()"
-              );
-            }
+            utils.handleCropFailure(done, req.session.directory);
           }
         );
       } else {
@@ -192,26 +167,23 @@ const utils = {
           480,
           croppedImgNameAndLocation,
           done => {
-            if (!done) {
-              sudoFs.remove(req.session.directory).catch(e => console.error(e));
-              errorWithSharpMsg(
-                "Error, /server/helpers >> Croping further images error >> cropImages()"
-              );
-            }
+            utils.handleCropFailure(done, req.session.directory);
           }
         );
-      }
-      if (errorWithSharpMsg) {
-        res.json({ error: true });
-        console.log(errorWithSharpMsg);
-        utils.logger.log(errorWithSharpMsg);
-        break;
       }
     } /*for loop ends*/
     
     // save croped img name to session
     req.session.filename.unshift(newThumbnailName);
     return next();
+  },
+
+  handleCropFailure(done, directory) {
+    if (!done) {
+      if (fs.existsSync(directory)) {
+        rimraf.sync(directory);
+      }
+    }
   }
 };
 

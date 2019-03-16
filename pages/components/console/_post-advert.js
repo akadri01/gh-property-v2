@@ -110,7 +110,7 @@ class PostAdvert extends Component {
           <h3 className="console__post-advert-form-section-title">Upload images</h3>
           <Field name="mainImage" label=" Main image" component={RenderFileInput}/>
           <Field name="images" label=" Other images (maximum 6)" isMultiple={true} component={RenderFileInput}/>
-          <button className="console__post-advert-form-submit-btn" type="submit" disabled={this.props.submitting} id="postAdvertSubmit">Post</button>
+          <button className="console__post-advert-form-submit-btn" id="postAdvertSubmit" type="submit" disabled={this.props.submitting}>Post</button>
         </form>
       </Fragment>
     )
@@ -119,8 +119,29 @@ class PostAdvert extends Component {
     displayLoader("#postAdvertSubmit");
     const {payload} = await this.props.dispatch(postAdvert(formValues));
     removeLoader("#postAdvertSubmit");
-    // carry on with payload data
     console.log(payload)
+
+    // if (payload && payload.posts) {
+    //   saveUserDataToLocalStorage(data);
+    //   popupWindow(
+    //     "postAdverForm",
+    //     "Congratulations, your advert is live!"
+    //   );
+    //   setTimeout(() => {
+    //     // refresh page
+    //     window.location.href = "/user/console";
+    //   }, 3500);
+    // } else if (payload && payload.error) {
+    //   popupWindow(
+    //     "postAdverForm",
+    //     "Due to a technical issue, we are not able to post your ad, please try again later."
+    //   );
+    // } else {
+    //   popupWindow(
+    //     "postAdverForm",
+    //     "Unfortunately we were not able to post your ad."
+    //   );
+    // }
   }
 
   componentDidMount() {

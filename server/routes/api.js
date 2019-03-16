@@ -16,7 +16,8 @@ const crypto = require("crypto");
 const User = require("../../db/models/user");
 const Property = require("../../db/models/property");
 const helpers = require("../helpers");
-const logger = helpers.logger;
+const logger = require('../helpers/logger');
+const dbHelpers = require('../../db/helpers');
 
 class ApiRouter {
   constructor(router) {
@@ -35,60 +36,22 @@ class ApiRouter {
     ]);
   }
 
-  userCreateAdvert(req, res) {
+  async userCreateAdvert(req, res) {
     const body = JSON.parse(req.body.inputValues);
-    // if any files uploaded
+
     if (req.files && req.files.length) {
       body.uniqueDirectory = req.session.directory
         .replace("./static/images/property-uploads/", "")
         .slice(0, -1);
     } else {
-      try {
-        rimraf.sync(req.session.directory);
-      } catch (e) {
-        console.log(e);
-        logger.log(
-          "Error: rimraf can NOT remove images directory! userCreateAdvert()",
-          e
-        );
-      }
+      rimraf.sync(req.session.directory);
     }
-    // check if user has enough credit
-    User.findById(body.userId).then(user => {
-      if (user.posts_allowed < 1) {
-        return res.json(user);
-      }
-      allowedToPost();
+    
+    dbHelpers.createAdUpdateUser(body, req.session, updatedUser => {
+      req.session.filename = [];
+      req.session.directory = null;
+      return res.json(updatedUser);
     });
-
-    function allowedToPost() {
-      Property.createNew(body, req.session)
-        .then(property => {
-          // clear up sessions
-          req.session.filename = [];
-          req.session.directory = null;
-          
-          // // update user posts
-          const thumbnailImgPath = property.img_directory + "/" + property.images[0];
-          User.updatePropertyAdverts(
-            property.user_id,
-            property.url,
-            property.title,
-            thumbnailImgPath,
-            (e, user) => {
-              return e || !user ? res.json({ user: false }) : res.json(user);
-            }
-          );
-        })
-        .catch(e => {
-          console.log(e);
-          logger.log(
-            "Error: can NOT save new cart advert! userCreateAdvert()",
-            e
-          );
-          return res.json({ user: false });
-        });
-    }
   }
 
   // To test this route >>>>  http://127.0.0.1:3000/api/user/email-confirmation?id=5c39bf553a07e22b8cdd4a5b

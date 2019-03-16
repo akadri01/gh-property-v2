@@ -10,7 +10,7 @@ const express = require("express");
 const router = express.Router();
 const enableCors = require("cors");
 const helpers = require("../helpers");
-const logger = helpers.logger;
+const logger = require('../helpers/logger');
 
 
 class IsomorphicRouter {

@@ -3,8 +3,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 const randomstring = require("randomstring");
-const logger = require('../../server/helpers/index.js').logger;
-const helpers = require('../helpers/index.js');
+const helpers = require('../../server/helpers');
 
 const propertySchema = new schema({
   advert_type: String,
@@ -50,7 +49,6 @@ propertySchema.statics.createNew = function(body, session) {
     session.filename && session.filename.length
       ? body.uniqueDirectory
       : "placeholders";
-
   // save
   const newProperty = new Property({
     advert_type: body.advert_type,
@@ -322,6 +320,6 @@ propertySchema.statics.createNew = function(body, session) {
 //     });
 // };
 
-const Property = mongoose.model("Property", propertySchema);
+const Property = mongoose.model("property", propertySchema);
 
 module.exports = Property;

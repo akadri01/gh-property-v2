@@ -32,8 +32,6 @@ export const refreshUserConsole = userData => dispatch => {
 };
 
 export const postAdvert = formValues => async dispatch => {
-  console.log(formValues)
-  alert(JSON.stringify(formValues))
   const formData = generateAdvertFormData(formValues);
   const {data} = await axios.post("/api/user/create/advert", formData, {
     headers: {

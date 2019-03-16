@@ -11,7 +11,7 @@ const router = express.Router();
 const path = require("path");
 const rimraf = require("rimraf");
 const helpers = require("../helpers");
-const logger = helpers.logger;
+const logger = require('../helpers/logger');
 
 class AdminRouter {
   constructor(router) {

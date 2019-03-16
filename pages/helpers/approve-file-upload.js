@@ -10,7 +10,7 @@ export default files => {
     if (files[i].size > 786432) {  // 750KB
       return {
         status: false,
-        msg: "Maximum picture size is 750KB! Please reduce image size."
+        msg: "Maximum picture size is 750KB! Please reduce picture size."
       }
     }
   }
