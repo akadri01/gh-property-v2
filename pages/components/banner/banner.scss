@@ -5,7 +5,7 @@
   &__form {
     @include absCenter;
     top: 120px;
-    background: rgba(40,40,40,.8);
+    background: rgba(40, 40, 40, 0.8);
     width: 310px;
     padding: 15px;
     @include tablet {
@@ -17,7 +17,7 @@
       width: 720px;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 18px 9% 38px;
+      padding: 18px 4% 38px;
     }
     @include desktopMedium {
       top: 170px;
@@ -56,12 +56,12 @@
         height: 50px;
         margin-left: 0;
         width: 40%;
-        @include backgroundIcon('location.svg', 22px, 10px center)
+        @include backgroundIcon("location.svg", 22px, 10px center);
       }
     }
     &-radios {
       width: 50%;
-      margin:17px 10% 17px;
+      margin: 17px 10% 17px;
       display: flex;
       justify-content: space-between;
       @include desktopSmall {
@@ -89,7 +89,7 @@
         border: 0;
         left: 22%;
         border-radius: 6px;
-        cursor: pointer;     
+        cursor: pointer;
         margin-right: 5px;
         outline: none;
       }
@@ -98,7 +98,7 @@
         left: 7px;
         top: 3px;
         font-size: $font-size-xxlarge;
-        content: '\02143';
+        content: "\02143";
         transform: rotate(40deg);
         font-weight: 900;
       }
@@ -115,7 +115,7 @@
         font-size: calculateRem(13px);
       }
     }
-    button { 
+    button {
       font-family: $font-family-title;
       width: 80%;
       height: 42px;
@@ -137,7 +137,3 @@
     }
   }
 }
-
-
-
-

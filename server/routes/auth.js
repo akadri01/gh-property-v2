@@ -11,13 +11,14 @@ const User = require("../../db/models/user");
 class AuthRouter {
   constructor(router) {
     this.router = router;
-    this.registerRoutes(); 
+    this.registerRoutes();
   }
 
   registerRoutes() {
     this.router.post("/user/facebook", this.authFacebook.bind(this));
     this.router.post("/user/register", this.registerUser.bind(this));
     this.router.post("/user/login", this.authUser.bind(this));
+    this.router.get("/user/logout", this.userLogout.bind(this));
   }
 
   authUser(req, res) {
@@ -60,9 +61,14 @@ class AuthRouter {
         res.json({ saved: false });
       });
   }
+
+  userLogout(req) {
+    if (req.session) {
+      req.session.destroy();
+    }
+  }
 }
 
 new AuthRouter(router);
 
 module.exports = router;
-

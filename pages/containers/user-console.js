@@ -1,8 +1,8 @@
-import React,{Component, Fragment} from "react";
-import isAuthorized from '../helpers/auth-on-client.js';
-import { connect } from 'react-redux';
-import { refreshUserConsole } from '../redux/actions';
-import UserConsole from '../components/console/console.js';
+import React, { Component, Fragment } from "react";
+import isAuthorized from "../helpers/auth-on-client.js";
+import { connect } from "react-redux";
+import { refreshUserConsole } from "../redux/actions";
+import UserConsole from "../components/console/console.js";
 
 class UserData extends Component {
   constructor(props) {
@@ -12,27 +12,30 @@ class UserData extends Component {
   render() {
     return (
       <Fragment>
-        {this.props.user ? <UserConsole userData={this.props.user}/> : ''}
+        {this.props.user ? <UserConsole userData={this.props.user} /> : ""}
       </Fragment>
     );
   }
 
   async componentDidMount() {
     const user = await isAuthorized("/user/auth");
-    this.props.refreshUserConsole(user);
-  }
-};
-
-const mapStateToProps = (state) => {
-  return { 
-    user: state.user.userData
+    this.props.updateConsole(user);
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-      refreshUserConsole: (user) => dispatch(refreshUserConsole(user))
+    user: state.user.userData
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserData)
+const mapDispatchToProps = dispatch => {
+  return {
+    updateConsole: user => dispatch(refreshUserConsole(user))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserData);

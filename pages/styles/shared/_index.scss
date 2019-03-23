@@ -59,7 +59,7 @@
   select {
     font-size: $font-size-medium;
     padding-left: 28px;
-    @include backgroundIcon('list.svg', 13px, 12px center);
+    @include backgroundIcon("list.svg", 13px, 12px center);
     border: 1px solid #c6cece;
     height: 42px;
     width: 100%;
@@ -126,6 +126,6 @@
   }
 }
 
-.section-main-title { 
+.section-main-title {
   font-size: $font-size-mega;
 }

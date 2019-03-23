@@ -16,8 +16,8 @@ const crypto = require("crypto");
 const User = require("../../db/models/user");
 const Property = require("../../db/models/property");
 const helpers = require("../helpers");
-const logger = require('../helpers/logger');
-const dbHelpers = require('../../db/helpers');
+const logger = require("../helpers/logger");
+const dbHelpers = require("../../db/helpers");
 
 class ApiRouter {
   constructor(router) {
@@ -26,7 +26,10 @@ class ApiRouter {
   }
 
   registerRoutes() {
-    this.router.get("/user/email-confirmation", [ enableCors(), this.confirmUserEmail.bind(this)]);
+    this.router.get("/user/email-confirmation", [
+      enableCors(),
+      this.confirmUserEmail.bind(this)
+    ]);
     this.router.post("/user/create/advert", [
       enableCors(),
       helpers.createImageDirectory.bind(this),
@@ -46,10 +49,14 @@ class ApiRouter {
     } else {
       rimraf.sync(req.session.directory);
     }
-    
+
     dbHelpers.createAdUpdateUser(body, req.session, updatedUser => {
       req.session.filename = [];
       req.session.directory = null;
+      // remove images if user doesn't have credit
+      if (updatedUser.posts_allowed && updatedUser.posts_allowed < 1) {
+        rimraf.sync(req.session.directory);
+      }
       return res.json(updatedUser);
     });
   }
@@ -69,7 +76,6 @@ class ApiRouter {
       );
     });
   }
-  
 }
 
 new ApiRouter(router);

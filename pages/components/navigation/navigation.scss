@@ -41,10 +41,10 @@
         display: block;
         height: 2px;
         background: white;
-        transition: .3s $transition;
+        transition: 0.3s $transition;
       }
     }
-  }  
+  }
   &__navbar {
     background-color: $color-black;
     padding-top: 20px;
@@ -57,11 +57,13 @@
       display: flex;
       justify-content: space-between;
     }
-    .links, .navigation__navbar-location-title, button {
+    .links,
+    .navigation__navbar-location-title,
+    button {
       display: block;
       text-transform: uppercase;
       font-size: $font-size-small;
-      letter-spacing: .9px;
+      letter-spacing: 0.9px;
       font-weight: 900;
       font-family: $font-family-title;
       padding: 10px 0;
@@ -76,8 +78,8 @@
       cursor: pointer;
       @include desktopSmall {
         display: block;
-        padding-right: 19px!important;
-        @include backgroundIcon('down-arrow-green.svg', 12px, 99% center);
+        padding-right: 19px !important;
+        @include backgroundIcon("down-arrow-green.svg", 12px, 99% center);
       }
       &-menu {
         display: none;
@@ -113,13 +115,15 @@
         }
       }
     }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: 2px solid $color-green;
-      background: transparent;
-      @include desktopSmall {
-        transform: translateY(3px);
+    &-btn {
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        border: 2px solid $color-green;
+        background: transparent;
+        @include desktopSmall {
+          transform: translateY(3px);
+        }
       }
     }
   }
