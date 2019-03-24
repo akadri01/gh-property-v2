@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
+import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
-import { connect } from "react-redux";
 import { required, email, length, confirmation } from "redux-form-validators";
 import { popupWindow, checkForPopup } from "../../helpers/popup.js";
 import { displayLoader, removeLoader } from "../../helpers/btn-loader.js";
@@ -27,7 +27,6 @@ import {
   locationRegionSelectField,
   locationTownSelectField
 } from "../shared/data";
-import BuyCredit from "./_buy-credit";
 
 class PostAdvert extends Component {
   constructor(props) {
@@ -36,9 +35,6 @@ class PostAdvert extends Component {
   }
 
   render() {
-    if (this.props.user.posts_allowed < 1) {
-      return <BuyCredit />;
-    }
     return (
       <Fragment>
         <h1 className="section-main-title">Create new advert</h1>
@@ -318,9 +314,6 @@ class PostAdvert extends Component {
   postAd = async formValues => {
     displayLoader("#postAdvertSubmit");
     const { payload } = await this.props.dispatch(postAdvert(formValues));
-    // WHY REMOVE LOADER & POPUPWINDOW DOESN'T WORK!!
-    // PAYLOAD COMES PEFECTLY SO API HAS NO PROBLEM
-    // THIS ISSUE ONLY HAPPENS WHEN USER HAVE 0 CREDIT
     removeLoader("#postAdvertSubmit");
     if (!payload._id) {
       return popupWindow(
@@ -334,7 +327,7 @@ class PostAdvert extends Component {
       payload.posts_allowed < 1
         ? Router.push("/user/topup")
         : window.location.reload(false);
-    }, 2000);
+    }, 3500);
   };
 
   componentDidMount() {
@@ -346,10 +339,4 @@ PostAdvert = reduxForm({
   form: "PostAdvertForm"
 })(PostAdvert);
 
-function mapStateToProps(state) {
-  return {
-    posts_allowed: state.user.postsAllowed
-  };
-}
-
-export default connect(mapStateToProps)(PostAdvert);
+export default PostAdvert;

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import Router from "next/router";
 import isAuthorized from "../helpers/auth-on-client.js";
 import { connect } from "react-redux";
 import { refreshUserConsole } from "../redux/actions";
@@ -19,7 +20,9 @@ class UserData extends Component {
 
   async componentDidMount() {
     const user = await isAuthorized("/user/auth");
-    this.props.updateConsole(user);
+    user.posts_allowed < 1
+      ? Router.push("/user/topup")
+      : this.props.updateConsole(user);
   }
 }
 
