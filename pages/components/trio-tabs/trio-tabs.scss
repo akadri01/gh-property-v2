@@ -1,0 +1,39 @@
+.trioTabs {
+  display: flex;
+  justify-content: space-between;
+  width: 820px;
+  margin: 0 auto;
+  transform: translateY(-40px);
+  height: 130px;
+  &__tab {
+    cursor: pointer;
+    width: 250px;
+    height: 80px;
+    display: block;
+    padding: 23px 12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    background-color: rgba(40, 40, 40, 0.8);
+    transition: 0.3s $transition;
+    @include backgroundIcon("right-fat-arrow-white.svg", 20px, center 90%);
+    border-top: 1px solid $color-green;
+    &:hover {
+      background-color: $color-green;
+      height: 110px;
+      background-position: 93% 90%;
+    }
+    &:hover > p {
+      display: block;
+    }
+    h2 {
+      margin-bottom: 5px;
+      margin-top: 6px;
+      font-size: $font-size-large;
+    }
+    p {
+      display: none;
+      margin-top: 10px;
+    }
+  }
+}

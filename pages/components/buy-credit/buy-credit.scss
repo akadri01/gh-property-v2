@@ -1,0 +1,31 @@
+.topup {
+  padding: 80px 0;
+  @include desktopSmall {
+    margin-top: 30px;
+    padding: 110px 0 80px;
+  }
+  &__form {
+    @include tablet {
+      max-width: 320px;
+    }
+    * {
+      display: block;
+    }
+    select {
+      border-color: #f7b64f;
+      background-image: url("/static/images/icons/list-orange.svg");
+    }
+    button {
+      background: url("/static/images/icons/pay-button.png") no-repeat center;
+      height: 290px;
+      width: 220px;
+      border: 3px solid white;
+      background-size: 190px;
+      margin: 20px auto;
+      border-radius: 15px;
+      &:hover {
+        border: 3px solid #f7b64f;
+      }
+    }
+  }
+}

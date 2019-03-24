@@ -6,6 +6,7 @@ import Navigation from "./containers/navigation";
 import Banner from "./components/banner/banner";
 import TownNavigation from "./components/town-nav/town-nav";
 import Footer from "./components/footer/footer";
+import BuySellRentTabs from "./components/trio-tabs/trio-tabs";
 
 const Index = () => (
   <Fragment>
@@ -16,6 +17,7 @@ const Index = () => (
     <Navigation />
     <Banner />
     <TownNavigation />
+    <BuySellRentTabs />
     <Footer />
   </Fragment>
 );
