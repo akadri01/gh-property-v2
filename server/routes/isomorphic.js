@@ -10,8 +10,7 @@ const express = require("express");
 const router = express.Router();
 const enableCors = require("cors");
 const helpers = require("../helpers");
-const logger = require('../helpers/logger');
-
+const logger = require("../helpers/logger");
 
 class IsomorphicRouter {
   constructor(router) {
@@ -19,10 +18,7 @@ class IsomorphicRouter {
     this.registerRoutes();
   }
 
-  registerRoutes() {
-    
-  }
-
+  registerRoutes() {}
 }
 
 new IsomorphicRouter(router);

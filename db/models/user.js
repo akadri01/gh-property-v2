@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 const schema = mongoose.Schema;
-const logger = require('../../server/helpers/index.js').logger;
+const logger = require("../../server/helpers/index.js").logger;
 
 const userSchema = new schema({
   name: String,
@@ -123,7 +123,6 @@ userSchema.statics.confirmEmail = function(userId, cb) {
   );
 };
 
-
 // Save and update car adverts
 userSchema.statics.updatePropertyAdverts = function(
   id,
@@ -137,7 +136,7 @@ userSchema.statics.updatePropertyAdverts = function(
       return cb(e, null);
     }
     // add new property advert to recently posted records
-    user.posts.unshift({url, title, thumbnailImg});
+    user.posts.unshift({ url, title, thumbnailImg });
     user.posts_allowed = user.posts_allowed - 1;
     user
       .save()

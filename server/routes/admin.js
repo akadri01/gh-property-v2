@@ -11,7 +11,7 @@ const router = express.Router();
 const path = require("path");
 const rimraf = require("rimraf");
 const helpers = require("../helpers");
-const logger = require('../helpers/logger');
+const logger = require("../helpers/logger");
 
 class AdminRouter {
   constructor(router) {
@@ -19,10 +19,7 @@ class AdminRouter {
     this.registerRoutes();
   }
 
-  registerRoutes() {
-  }
-
-  
+  registerRoutes() {}
 }
 
 new AdminRouter(router);

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import WithFacebook from "./_facebook";
-import RegisterForm from './_register';
+import RegisterForm from "./_register";
 import LoginForm from "./_login.js";
-
-
 
 export default class Auth extends Component {
   constructor(props) {
@@ -20,14 +18,14 @@ export default class Auth extends Component {
         <div className="auth__forms">
           <div className="auth__forms-login">
             <h3>Login with email</h3>
-            <LoginForm/>
+            <LoginForm />
           </div>
           <div className="auth__forms-register">
             <h3>Register with email</h3>
-            <RegisterForm/>
+            <RegisterForm />
           </div>
         </div>
       </section>
-    )
+    );
   }
 }

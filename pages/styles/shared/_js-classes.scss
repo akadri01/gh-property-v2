@@ -1,5 +1,5 @@
 .show-navigation-menu {
-  display: block!important;
+  display: block !important;
 }
 .animate-burger-icon {
   .top {
@@ -9,14 +9,14 @@
     transform: rotate(40deg) translateY(-9px);
   }
   .middle {
-    opacity: 0!important;
+    opacity: 0 !important;
   }
 }
 .show-location-menu {
-  display: block!important;
+  display: block !important;
 }
 .replace-arrow-with-close {
-  background-image: url('/static/images/icons/close-green.svg');
+  background-image: url("/static/images/icons/close-green.svg");
 }
 .button-loader {
   background-image: url("/static/images/icons/button-loader.gif") !important;

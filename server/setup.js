@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const path = require("path");
 const cors = require("cors");
@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const consolidate = require("consolidate");
 const cookieParser = require("cookie-parser");
-const {DB_URI, SESSION_SECRET} = require("../config");
+const { DB_URI, SESSION_SECRET } = require("../config");
 
 // Routes
 const isomorphicRoutes = require("./routes/isomorphic.js");
@@ -17,7 +17,7 @@ const authRoutes = require("./routes/auth.js");
 
 // Sessions
 const session = require("express-session");
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 // Database
 const mongoose = require("mongoose");
@@ -54,7 +54,7 @@ class SetupServer {
     this.server.use("/admin", adminRoutes);
     this.server.use("/api", apiRoutes);
     this.server.use("/iso", isomorphicRoutes);
-    this.server.use('/auth', authRoutes);
+    this.server.use("/auth", authRoutes);
     require("./routes/ssr.js")(this.server, nextApp);
   }
 
@@ -66,7 +66,7 @@ class SetupServer {
       },
       store: new MongoDBStore({
         uri: DB_URI,
-        collection: 's_e_s_s_i_o_n_s'
+        collection: "s_e_s_s_i_o_n_s"
       }),
       resave: true,
       saveUninitialized: true
@@ -81,7 +81,7 @@ class SetupServer {
   }
 
   start() {
-    this.server.listen(process.env.PORT, e => { 
+    this.server.listen(process.env.PORT, e => {
       if (e) throw e;
       console.log(`Server is running on port ${process.env.PORT}`);
     });

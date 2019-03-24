@@ -50,7 +50,7 @@
 
 @mixin hoverGreen {
   color: white;
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
   &:hover {
     color: $color-green;

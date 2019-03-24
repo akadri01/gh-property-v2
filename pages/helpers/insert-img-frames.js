@@ -24,4 +24,4 @@ export default (link, locationName, mobileImg, desktopImg) => (
       />
     </a>
   </Link>
-)
+);

@@ -1,9 +1,9 @@
-import {getUserDataFromLocalStorage} from './localStorage';
-import sortFeatures from './sort-property-features';
+import { getUserDataFromLocalStorage } from "./localStorage";
+import sortFeatures from "./sort-property-features";
 
 export default formValues => {
   const formData = new FormData();
-  const {_id, name, email} = getUserDataFromLocalStorage();
+  const { _id, name, email } = getUserDataFromLocalStorage();
 
   formData.append(
     "inputValues",
@@ -29,17 +29,23 @@ export default formValues => {
       town: formValues.town,
       userName: name,
       userId: _id,
-      userEmail: email 
-    }) 
+      userEmail: email
+    })
   );
   // append if any image uploaded
   if (formValues.mainImage || formValues.images) {
-    formValues.mainImage = !formValues.mainImage || !formValues.mainImage.length ? [formValues.images[0]] : formValues.mainImage;
-    const allImages = formValues.images && formValues.images.length ? [formValues.mainImage[0], ...formValues.images] : [formValues.mainImage[0]];
+    formValues.mainImage =
+      !formValues.mainImage || !formValues.mainImage.length
+        ? [formValues.images[0]]
+        : formValues.mainImage;
+    const allImages =
+      formValues.images && formValues.images.length
+        ? [formValues.mainImage[0], ...formValues.images]
+        : [formValues.mainImage[0]];
     allImages.forEach((singleImg, i) => {
       const imgName = "img" + i;
       formData.append(imgName, singleImg);
     });
   }
   return formData;
-}
+};

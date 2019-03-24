@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 const randomstring = require("randomstring");
-const helpers = require('../../server/helpers');
+const helpers = require("../../server/helpers");
 
 const propertySchema = new schema({
   advert_type: String,
@@ -72,7 +72,7 @@ propertySchema.statics.createNew = function(body, session) {
     town: body.town,
     user_name: body.user_name,
     user_id: body.userId,
-    user_email: body.user_email,   
+    user_email: body.user_email,
     images: images,
     img_directory: directory,
     url: helpers.generateUrl(body),

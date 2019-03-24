@@ -26,7 +26,7 @@ export const popupWindow = (idSelector, message) => {
     </section>
   `;
   parentElm.insertAdjacentHTML("beforeend", popupHtml);
-}
+};
 
 // Check query whether page requires popup
 export const checkForPopup = () => {
@@ -35,4 +35,4 @@ export const checkForPopup = () => {
     const popupMessage = urlParams.get("popup");
     return popupWindow(undefined, popupMessage);
   }
-}
+};

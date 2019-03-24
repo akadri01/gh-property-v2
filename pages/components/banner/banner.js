@@ -1,5 +1,5 @@
 import { Picture } from "react-responsive-picture";
-import {LocationOptions} from '../shared';
+import { LocationOptions } from "../shared";
 
 export default () => (
   <section className="banner">
@@ -19,16 +19,14 @@ export default () => (
     />
     <form className="banner__form">
       <h2>Search for property in Ghana</h2>
-      <select name="location">
-        {LocationOptions}
-      </select>
+      <select name="location">{LocationOptions}</select>
       <div className="banner__form-radios">
         <div className="banner__form-radios-radio">
-          <input id="forRent" type="radio" name="status" value="SALE"/> 
+          <input id="forRent" type="radio" name="status" value="SALE" />
           <label htmlFor="forRent">For sale</label>
         </div>
         <div className="banner__form-radios-radio">
-          <input id="forSale" type="radio" name="status" value="RENT"/>
+          <input id="forSale" type="radio" name="status" value="RENT" />
           <label htmlFor="forSale">To rent</label>
         </div>
       </div>
@@ -36,4 +34,3 @@ export default () => (
     </form>
   </section>
 );
-

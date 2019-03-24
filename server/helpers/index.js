@@ -2,7 +2,7 @@
 
 const crypto = require("crypto");
 const fs = require("fs");
-const rimraf = require('rimraf');
+const rimraf = require("rimraf");
 const path = require("path");
 const util = require("util");
 const randomstring = require("randomstring");
@@ -13,12 +13,14 @@ const multer = require("multer");
 const sendGrid = require("@sendgrid/mail");
 const config = require("../../config/");
 const FsCreateDirectory = util.promisify(fs.mkdir);
-const logger = require('./logger');
+const logger = require("./logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
 var utils = {
-  generateUrl: ({area, price, premises_type, town}) => {
-    const url =`${premises_type}${area}m2${town}${price}cedis${randomstring.generate(15)}`;
+  generateUrl: ({ area, price, premises_type, town }) => {
+    const url = `${premises_type}${area}m2${town}${price}cedis${randomstring.generate(
+      15
+    )}`;
     return url.replace(/[^A-Z0-9]/gi, "").toLowerCase();
   },
 
@@ -70,7 +72,7 @@ var utils = {
       .catch(e => {
         console.log(e);
         logger.log("Error: helpers cropImage() ", e);
-        return cb(false);  
+        return cb(false);
       });
   },
 
@@ -172,7 +174,7 @@ var utils = {
         );
       }
     } /*for loop ends*/
-    
+
     // save croped img name to session
     req.session.filename.unshift(newThumbnailName);
     return next();

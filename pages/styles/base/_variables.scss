@@ -1,11 +1,11 @@
 // Colors
 $color-black: #282828;
-$color-green:  #009da5;
+$color-green: #009da5;
 $color-yellow: #f9b942;
 
 // Typography
 $font-family-body: "Arial", sans-serif;
-$font-family-title: 'Montserrat', sans-serif;
+$font-family-title: "Montserrat", sans-serif;
 
 $font-size-tiny: calculateRem(10.3px);
 $font-size-small: calculateRem(12px);
@@ -17,5 +17,3 @@ $font-size-mega: calculateRem(24px);
 
 // animation
 $transition: cubic-bezier(0.165, 0.84, 0.44, 1);
-
-
