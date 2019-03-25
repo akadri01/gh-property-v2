@@ -6,10 +6,7 @@ import { required, email, length } from "redux-form-validators";
 
 import { loginUser } from "../../redux/actions";
 import { renderFormInput } from "../../helpers/reduxForm";
-import {
-  saveUserDataToLocalStorage,
-  removeUserDataFromLocalStorage
-} from "../../helpers/localStorage.js";
+import { saveUserDataToLocalStorage } from "../../helpers/localStorage.js";
 import { popupWindow, checkForPopup } from "../../helpers/popup.js";
 import { displayLoader, removeLoader } from "../../helpers/btn-loader.js";
 
@@ -63,7 +60,6 @@ class LoginForm extends Component {
 
   componentDidMount() {
     checkForPopup();
-    removeUserDataFromLocalStorage();
   }
 }
 

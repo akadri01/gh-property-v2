@@ -38,7 +38,7 @@ export default () => (
             <form>
               <label>Price</label>
               <input type="number" placeholder=" e.g 25000" />
-              <Link href="/user/register">
+              <Link href="/user/auth">
                 <a>
                   <button type="button">Post ad</button>
                 </a>

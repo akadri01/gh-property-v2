@@ -7,7 +7,6 @@ export default files => {
   }
   for (let i = 0; i < files.length; i++) {
     if (files[i].size > 786432) {
-      // 750KB
       return {
         status: false,
         msg: "Maximum picture size is 750KB! Please reduce picture size."

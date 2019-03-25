@@ -1,5 +1,6 @@
 import Link from "next/link";
 import associateImgPath from "../../helpers/associate-image-path.js";
+import createTitle from "../../helpers/create-title.js";
 
 export default ({
   img_directory,
@@ -8,12 +9,11 @@ export default ({
   advert_type,
   premises_type,
   town,
-  region
+  region,
+  url
 }) => {
-  const titlePartOne = advert_type === "rent" ? "Rental" : "For Sale ";
-  const titlePartTwo = `${premises_type} in ${town}`;
   return (
-    <Link href="#">
+    <Link href={url ? `/property/${url}` : "#"}>
       <a className="simple-thumbnail">
         <img
           src={associateImgPath(img_directory, images[0])}
@@ -25,7 +25,7 @@ export default ({
           src="/static/images/property-uploads/placeholders/thumbnail.jpg"
           className="hidden-placeholder"
         />
-        <h4>{titlePartOne + titlePartTwo}</h4>
+        <h4>{createTitle(advert_type, premises_type, town)}</h4>
         <em>{`${title.substring(0, 140)}...`}</em>
       </a>
     </Link>
