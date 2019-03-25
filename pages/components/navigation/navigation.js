@@ -2,7 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Link from "next/link";
 import Router from "next/router";
-import { Regions, Towns } from "../shared";
+import { Regions } from "./_regions.js";
+import { Towns } from "./_towns.js";
 import { adjustNavForLocalUser } from "../../redux/actions";
 import { removeUserDataFromLocalStorage } from "../../helpers/localStorage.js";
 
@@ -39,10 +40,10 @@ class Navigation extends Component {
             </div>
           </div>
           <nav className="navigation__navbar" id="navMenu">
-            <Link href="#">
+            <Link href="/properties?advert_type=sale">
               <a className="links">buy</a>
             </Link>
-            <Link href="#">
+            <Link href="/properties?advert_type=rent">
               <a className="links">rent</a>
             </Link>
             <div

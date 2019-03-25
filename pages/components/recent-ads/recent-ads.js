@@ -4,7 +4,6 @@ import _before from "lodash.before";
 import { connect } from "react-redux";
 import Link from "next/link";
 import SimpleThumbnail from "../thumbnails/simple-thumbnail.js";
-import fetch from "../../helpers/fetch";
 import { placeholderRecentProperties } from "../shared/data.js";
 import { fetchPropertiesForHomePage } from "../../redux/actions/index.js";
 

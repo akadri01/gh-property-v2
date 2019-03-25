@@ -18,8 +18,8 @@ const Index = ({ recentProperties }) => (
     <Navigation />
     <Banner />
     <TownNavigation />
-    <BuySellRentTabs />
     <RecentAds />
+    <BuySellRentTabs />
     <Footer />
   </Fragment>
 );

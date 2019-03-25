@@ -156,7 +156,7 @@ var utils = {
         utils.cropImage(
           imgToCropPath,
           250,
-          130,
+          160,
           croppedThumbnailNameAndLocation,
           done => {
             utils.handleCropFailure(done, req.session.directory);

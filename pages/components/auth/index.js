@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import WithFacebook from "./_facebook";
 import RegisterForm from "./_register";
 import LoginForm from "./_login.js";
+import Router from "next/router";
+import { getUserDataFromLocalStorage } from "../../helpers/localStorage.js";
 
 export default class Auth extends Component {
   render() {
@@ -22,5 +24,12 @@ export default class Auth extends Component {
         </div>
       </section>
     );
+  }
+
+  componentDidMount() {
+    const currentUser = getUserDataFromLocalStorage();
+    if (currentUser) {
+      Router.push("/user/console");
+    }
   }
 }

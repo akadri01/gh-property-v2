@@ -165,7 +165,7 @@ export const locationTownSelectField = [
   { value: "dormaa_ahenkro", text: "Dormaa Ahenkro" },
   { value: "new_achimota", text: "New Achimota" },
   { value: "new_tafo", text: "New Tafo" },
-  { value: "dunkwa-on-offin", text: "Dunkwa-on-Offin" },
+  { value: "dunkwa_on_offin", text: "Dunkwa-on-Offin" },
   { value: "tema_new_town", text: "Tema New Town" }
 ];
 
