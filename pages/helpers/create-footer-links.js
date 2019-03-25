@@ -1,10 +1,8 @@
 import Link from "next/link";
 
-export default (basePath, link, paramName, paramVal) => (
+export default (base, link, key, val) => (
   <Link
-    href={`/${basePath}${paramName}=${
-      paramVal ? paramVal.toUpperCase() : link.toUpperCase()
-    }`}
+    href={`/${base}${key}=${val ? val.toUpperCase() : link.toUpperCase()}`}
     key={link}
   >
     <a>{link}</a>

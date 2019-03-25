@@ -2,9 +2,11 @@ import insertImageFrame from "../../helpers/insert-img-frames";
 
 export default () => (
   <section className="town-nav mobile-desktop-frame">
-    <h1 className="town-nav-title">Property locations in Ghana</h1>
-    <p className="town-nav-text">Our property collection for Ghana</p>
-    <hr />
+    <div className="default-group">
+      <h1>Property locations in Ghana</h1>
+      <p>Our property collection for Ghana</p>
+      <hr />
+    </div>
     <div className="top">
       {insertImageFrame("#", "Accra", "accra-mobile.jpg", "accra-desktop.jpg")}
       {insertImageFrame(

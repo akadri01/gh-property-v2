@@ -7,8 +7,9 @@ import Banner from "./components/banner/banner";
 import TownNavigation from "./components/town-nav/town-nav";
 import Footer from "./components/footer/footer";
 import BuySellRentTabs from "./components/trio-tabs/trio-tabs";
+import RecentAds from "./components/recent-ads/recent-ads";
 
-const Index = () => (
+const Index = ({ recentProperties }) => (
   <Fragment>
     <Head>
       <title>WeGhana Real Estate</title>
@@ -18,6 +19,7 @@ const Index = () => (
     <Banner />
     <TownNavigation />
     <BuySellRentTabs />
+    <RecentAds />
     <Footer />
   </Fragment>
 );

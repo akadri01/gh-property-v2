@@ -1,0 +1,54 @@
+.simple-thumbnail {
+  font-size: $font-size-medium;
+  border: 1px solid $color-green;
+  margin-bottom: 15px;
+  display: block;
+  padding-bottom: 15px;
+  position: relative;
+  width: 48%;
+  &:hover {
+    border: 1px solid $color-yellow;
+  }
+  @include desktopSmall {
+    width: 24%;
+  }
+  @include desktopMedium {
+    width: 23%;
+  }
+  img {
+    display: block;
+  }
+  img.loader-image {
+    position: absolute;
+    width: 210px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  img.real-image {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  img.hidden-placeholder {
+    width: 100%;
+    visibility: hidden;
+  }
+  h4 {
+    text-transform: capitalize;
+    font-weight: 100;
+    color: #606060;
+    padding: 0 10px;
+    margin-bottom: 5px;
+  }
+  em {
+    display: block;
+    text-transform: uppercase;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+  }
+}

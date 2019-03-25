@@ -1,0 +1,11 @@
+.recentAds {
+  margin-top: 45px;
+  &__frame {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  @include desktopSmall {
+    margin-top: 100px;
+  }
+}

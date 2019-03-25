@@ -1,9 +1,7 @@
 /**
- *  Only handles isomorphic-unfetch initial props
- *
- *      /iso/...
+ *  Routes for isomorphic-unfetch & getInitialProps
+ *  Base path start as;   /iso/...
  */
-
 "use strict";
 
 const express = require("express");
@@ -11,6 +9,7 @@ const router = express.Router();
 const enableCors = require("cors");
 const helpers = require("../helpers");
 const logger = require("../helpers/logger");
+// const Properties = require('../../db/models/property.js');
 
 class IsomorphicRouter {
   constructor(router) {

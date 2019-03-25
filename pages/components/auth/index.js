@@ -4,11 +4,6 @@ import RegisterForm from "./_register";
 import LoginForm from "./_login.js";
 
 export default class Auth extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
   render() {
     return (
       <section className="auth mobile-desktop-frame">

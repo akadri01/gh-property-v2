@@ -1,7 +1,6 @@
 /**
- *      /api/...
+ *   Base path start as;   /api/...
  */
-
 "use strict";
 
 const express = require("express");
@@ -18,6 +17,7 @@ const Property = require("../../db/models/property");
 const helpers = require("../helpers");
 const logger = require("../helpers/logger");
 const dbHelpers = require("../../db/helpers");
+const Properties = require("../../db/models/property.js");
 
 class ApiRouter {
   constructor(router) {
@@ -37,6 +37,28 @@ class ApiRouter {
       helpers.cropImagesMiddleware.bind(this),
       this.userCreateAdvert.bind(this)
     ]);
+    this.router.get("/fetch/properties/recent", [
+      enableCors(),
+      this.fetchRecentProperties.bind(this)
+    ]);
+  }
+
+  fetchRecentProperties(req, res) {
+    if (req.query.page === "home") {
+      Properties.find()
+        .sort({ date: -1 })
+        .limit(8)
+        .then(properties => {
+          return !properties || !properties.length
+            ? res.json({})
+            : res.json(properties);
+        })
+        .catch(e => {
+          console.log(e);
+          logger.log("Error: API > fetchRecentProperties", e);
+          return res.json({});
+        });
+    }
   }
 
   async userCreateAdvert(req, res) {

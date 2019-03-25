@@ -110,7 +110,7 @@ class Navigation extends Component {
   }
 
   componentDidMount() {
-    this.props.adjustNavbar();
+    this.props.dispatch(adjustNavForLocalUser());
   }
 
   logout = () => {
@@ -128,13 +128,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    adjustNavbar: () => dispatch(adjustNavForLocalUser())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps)(Navigation);

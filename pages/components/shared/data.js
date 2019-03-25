@@ -274,3 +274,78 @@ export const featuresCheckboxFieldList = [
   { idAndName: "features24", labelAndValue: "Generator" },
   { idAndName: "features25", labelAndValue: "Water Tank" }
 ];
+
+export const placeholderRecentProperties = [
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title rt matey and everyone comes kind on askbvsdf asdf asdfasdf alsdf ",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  },
+  {
+    advert_type: "sale",
+    premises_type: "flat",
+    town: "kumasi ashanti",
+    img_directory: "icons",
+    title:
+      "Dummy title remove this shit straight after you write all of this shit matey and everyone comes kind on",
+    images: ["loader.gif"]
+  }
+];

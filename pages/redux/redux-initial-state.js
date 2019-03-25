@@ -1,3 +1,4 @@
 export const reduxInitialState = {
-  user: []
+  user: [],
+  property: []
 };
