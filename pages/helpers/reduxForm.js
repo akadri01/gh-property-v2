@@ -33,6 +33,24 @@ export const renderSelectField = ({
   </Fragment>
 );
 
+export const renderDefaultSelectField = ({
+  input,
+  label,
+  meta: { touched, error },
+  children,
+  defaultValue
+}) => (
+  <Fragment>
+    <label>{label}</label>
+    <div className="redux-input-container">
+      <select defaultValue={defaultValue} {...input}>
+        {children}
+      </select>
+      {error && touched && <span className="form-error">{error}</span>}
+    </div>
+  </Fragment>
+);
+
 export const renderTextarea = ({
   input,
   label,
@@ -57,10 +75,10 @@ export const renderCheckbox = ({ input, labelAndValue, id }) => (
 
 export class RenderFileInput extends Component {
   onChange = e => {
-    const isApproved = approveFileUpload(e.target.files);
-    if (!isApproved.status) {
+    const { status, msg } = approveFileUpload(e.target.files);
+    if (!status) {
       e.target.value = "";
-      return popupWindow("postAdverForm", isApproved.msg);
+      return popupWindow(undefined, msg);
     }
     const {
       input: { onChange }

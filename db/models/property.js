@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 const randomstring = require("randomstring");
 const helpers = require("../../server/helpers");
 
-const propertySchema = new schema({
+const PropertySchema = new schema({
   advert_type: String,
   age: Number,
   area: Number,
@@ -38,7 +38,7 @@ const propertySchema = new schema({
   user_email: String
 });
 
-propertySchema.statics.createNew = function(body, session) {
+PropertySchema.statics.createNew = function(body, session) {
   // set images
   const placeholders = ["thumbnail.jpg", "main.jpg"];
   const images =
@@ -70,9 +70,9 @@ propertySchema.statics.createNew = function(body, session) {
     total_bathroom: body.total_bathroom,
     total_floor: body.total_floor,
     town: body.town,
-    user_name: body.user_name,
+    user_name: body.userName,
     user_id: body.userId,
-    user_email: body.user_email,
+    user_email: body.userEmail,
     images: images,
     img_directory: directory,
     url: helpers.generateUrl(body),
@@ -81,8 +81,60 @@ propertySchema.statics.createNew = function(body, session) {
   return newProperty.save();
 };
 
+// Property search
+PropertySchema.statics.searchSortWithTotalRecordQty = function(
+  queryObj,
+  sortObj,
+  limitQty,
+  cb
+) {
+  const { advert_type, region, town } = queryObj;
+  const queryOptions = {};
+
+  if (advert_type) {
+    queryOptions.advert_type = advert_type;
+  }
+  if (region) {
+    queryOptions.region = region;
+  }
+  if (town) {
+    queryOptions.town = town;
+  }
+
+  // first find record count to display
+  this.find(queryOptions).count((e, totalRecordQty) => {
+    if (e) {
+      console.log(e);
+      logger.log(
+        "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
+        e
+      );
+      return cb(false);
+    }
+    if (!totalRecordQty) {
+      return cb(false);
+    }
+
+    // Search Properties
+    this.find(queryOptions)
+      .sort(sortObj)
+      .limit(limitQty)
+      .then(properties => {
+        return cb(properties, totalRecordQty);
+      })
+      .catch(e => {
+        console.log(e);
+        logger.log(
+          "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
+          e
+        );
+        return cb(false);
+      });
+  });
+};
+
 // // Edit Property
-// propertySchema.statics.editContent = function(id, body, cb) {
+// PropertySchema.statics.editContent = function(id, body, cb) {
 //   const updateObj = {
 //     type: body.PropertyType,
 //     make: body.make,
@@ -113,88 +165,8 @@ propertySchema.statics.createNew = function(body, session) {
 //     });
 // };
 
-// // Property search
-// propertySchema.statics.searchSortWithTotalRecordQty = function(
-//   queryObj,
-//   sortObj,
-//   limitQty,
-//   cb
-// ) {
-//   const {
-//     color,
-//     make,
-//     transmission,
-//     location,
-//     maxKm,
-//     maxPrice,
-//     minPrice,
-//     yearFrom
-//   } = queryObj;
-//   const queryOptions = {};
-
-//   if (color) {
-//     queryOptions.color = color;
-//   }
-//   if (make) {
-//     queryOptions.make = make;
-//   }
-//   if (queryObj.PropertyType || queryObj.type) {
-//     queryOptions.type = queryObj.PropertyType ? queryObj.PropertyType : queryObj.type;
-//   }
-//   if (transmission) {
-//     queryOptions.transmission = transmission;
-//   }
-//   if (location) {
-//     queryOptions.location = location;
-//   }
-//   if (maxKm) {
-//     queryOptions.km = { $lt: parseInt(maxKm) };
-//   }
-//   if (yearFrom) {
-//     queryOptions.year = { $gt: parseInt(yearFrom) };
-//   }
-//   if (maxPrice && minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice), $lt: parseInt(maxPrice) };
-//   } else if (maxPrice) {
-//     queryOptions.price = { $lt: parseInt(maxPrice) };
-//   } else if (minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice) };
-//   }
-
-//   // first find record count to display
-//   this.find(queryOptions).count((e, totalRecordQty) => {
-//     if (e) {
-//       console.log(e);
-//       logger.log(
-//         "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
-//         e
-//       );
-//       return cb(false);
-//     }
-//     if (!totalRecordQty) {
-//       return cb(false);
-//     }
-
-//     // search Propertys
-//     this.find(queryOptions)
-//       .sort(sortObj)
-//       .limit(limitQty)
-//       .then(Propertys => {
-//         return cb(Propertys, totalRecordQty);
-//       })
-//       .catch(e => {
-//         console.log(e);
-//         logger.log(
-//           "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
-//           e
-//         );
-//         return cb(false);
-//       });
-//   });
-// };
-
 // // search and sort
-// propertySchema.statics.searchAndSort = function(queryObj, sortObj, limitQty, cb) {
+// PropertySchema.statics.searchAndSort = function(queryObj, sortObj, limitQty, cb) {
 //   const {
 //     color,
 //     make,
@@ -236,12 +208,12 @@ propertySchema.statics.createNew = function(body, session) {
 //     queryOptions.price = { $gt: parseInt(minPrice) };
 //   }
 
-//   // search Propertys
+//   // search Properties
 //   this.find(queryOptions)
 //     .sort(sortObj)
 //     .limit(limitQty)
-//     .then(Propertys => {
-//       return cb(Propertys);
+//     .then(Properties => {
+//       return cb(Properties);
 //     })
 //     .catch(e => {
 //       console.log(e);
@@ -253,8 +225,8 @@ propertySchema.statics.createNew = function(body, session) {
 //     });
 // };
 
-// // Fetch more Propertys
-// propertySchema.statics.fetchMorePropertys = function(
+// // Fetch more Properties
+// PropertySchema.statics.fetchMoreProperties = function(
 //   queryObj,
 //   sortObj,
 //   limitQty,
@@ -302,24 +274,24 @@ propertySchema.statics.createNew = function(body, session) {
 //     queryOptions.price = { $gt: parseInt(minPrice) };
 //   }
 
-//   // search Propertys
+//   // search Properties
 //   this.find(queryOptions)
 //     .sort(sortObj)
 //     .limit(limitQty)
 //     .skip(skipQty)
-//     .then(Propertys => {
-//       return cb(Propertys);
+//     .then(Properties => {
+//       return cb(Properties);
 //     })
 //     .catch(e => {
 //       console.log(e);
 //       logger.log(
-//         "Error: can NOT do detailed Property search! db/models/Property/ fetchMorePropertys()",
+//         "Error: can NOT do detailed Property search! db/models/Property/ fetchMoreProperties()",
 //         e
 //       );
 //       return cb(false);
 //     });
 // };
 
-const Property = mongoose.model("property", propertySchema);
+const Property = mongoose.model("property", PropertySchema);
 
 module.exports = Property;

@@ -9,17 +9,22 @@ import { fetchPropertiesForHomePage } from "../../redux/actions/index.js";
 
 class RecentAds extends Component {
   render() {
+    const { recentProperties } = this.props;
     return (
       <Fragment>
         <Waypoint onEnter={_before(2, this.fetchRecentProperties)} />
         <section className="recentAds mobile-desktop-frame">
           <div className="default-group">
             <h1>Recently added properties in Ghana</h1>
-            <p>We have listed most recent properties for you</p>
+            <p>
+              {!recentProperties || !recentProperties.length
+                ? "No recent properties to view"
+                : "We have listed most recent properties for you"}
+            </p>
           </div>
           <div className="recentAds__frame">
-            {this.props.recentProperties
-              ? this.insertProperties(this.props.recentProperties)
+            {recentProperties
+              ? this.insertProperties(recentProperties)
               : this.insertProperties(placeholderRecentProperties)}
           </div>
         </section>
@@ -28,9 +33,11 @@ class RecentAds extends Component {
   }
 
   insertProperties = properties => {
-    return properties.map(property => {
-      return <SimpleThumbnail {...property} />;
-    });
+    return !properties || !properties.length
+      ? ""
+      : properties.map(property => {
+          return <SimpleThumbnail {...property} />;
+        });
   };
 
   fetchRecentProperties = async () => {

@@ -9,6 +9,7 @@ import {
   RenderFileInput,
   renderFormInput,
   renderSelectField,
+  renderDefaultSelectField,
   renderTextarea,
   renderCheckbox
 } from "../../helpers/reduxForm";
@@ -64,8 +65,9 @@ class PostAdvert extends Component {
             <div className="desktop-flex">
               <Field
                 name="advert_type"
-                component={renderSelectField}
+                component={renderDefaultSelectField}
                 label="Advert type"
+                defaultValue="sale"
               >
                 {purposeSelectField.map(option => (
                   <option value={option.value} key={option.value}>
@@ -77,8 +79,9 @@ class PostAdvert extends Component {
             <div className="desktop-flex">
               <Field
                 name="posted_by"
-                component={renderSelectField}
+                component={renderDefaultSelectField}
                 label="Advert posted by"
+                defaultValue="owner"
               >
                 {postedBySelectField.map(option => (
                   <option value={option.value} key={option.value}>
@@ -132,8 +135,9 @@ class PostAdvert extends Component {
             <div className="desktop-flex">
               <Field
                 name="age"
-                component={renderSelectField}
+                component={renderDefaultSelectField}
                 label="Age of the premises"
+                defaultValue="0"
               >
                 {premisesAgeSelectField.map((option, i) => (
                   <option value={option.value} key={option.value + i}>
@@ -199,7 +203,12 @@ class PostAdvert extends Component {
               </Field>
             </div>
             <div className="desktop-flex">
-              <Field name="garden" component={renderSelectField} label="Garden">
+              <Field
+                name="garden"
+                component={renderDefaultSelectField}
+                label="Garden"
+                defaultValue="no"
+              >
                 {yesNoSelectField.map(option => (
                   <option value={option.value} key={option.value}>
                     {option.text}
@@ -210,8 +219,9 @@ class PostAdvert extends Component {
             <div className="desktop-flex">
               <Field
                 name="furniture"
-                component={renderSelectField}
+                component={renderDefaultSelectField}
                 label="Furnished"
+                defaultValue="no"
               >
                 {yesNoSelectField.map(option => (
                   <option value={option.value} key={option.value}>

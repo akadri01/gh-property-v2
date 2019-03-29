@@ -1,0 +1,86 @@
+.property {
+  &__header {
+    &-info {
+      h3 {
+      }
+      p {
+      }
+      h4 {
+      }
+    }
+  }
+  &__icons {
+    span {
+    }
+    h5 {
+    }
+    &-rooms {
+    }
+    &-area {
+    }
+    &-floor {
+    }
+  }
+  &__info {
+    h2 {
+    }
+    &-list {
+      ul {
+        li {
+          span {
+          }
+          b {
+          }
+        }
+      }
+    }
+  }
+  &__features {
+    h2 {
+    }
+    &-list {
+      div {
+      }
+      .selected-feature {
+      }
+      .non-selected-feature {
+      }
+    }
+  }
+  &__details {
+    h2 {
+    }
+    h5 {
+    }
+    pre {
+    }
+  }
+}
+
+.property-default-title {
+}
+
+.prop-sidebar {
+  &-print-btn {
+  }
+  &__share {
+    &-btn {
+    }
+  }
+  &__contact {
+    &-name {
+    }
+    &-email {
+      &-btn {
+      }
+      &-hidden {
+      }
+    }
+    &-phone {
+      &-btn {
+      }
+      &-hidden {
+      }
+    }
+  }
+}

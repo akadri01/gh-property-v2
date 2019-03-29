@@ -14,14 +14,14 @@ export const popupWindow = (idSelector, message) => {
   });
 
   // create new pop up
-  const parentElm = idSelector
+  const parentElm = document.getElementById(idSelector)
     ? document.getElementById(idSelector)
     : document.body;
   const popupHtml = `
     <section class="popup-window" onclick="removePopup()">
       <div>
           <img src="/static/images/icons/popup-close.svg"/>
-          <h3>${message}</h3>
+          <h3>${message ? message : "Error!"}</h3>
       </div>
     </section>
   `;
