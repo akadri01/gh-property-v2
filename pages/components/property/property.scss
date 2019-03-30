@@ -1,85 +1,325 @@
-.property {
-  &__header {
-    &-info {
-      h3 {
-      }
-      p {
-      }
-      h4 {
-      }
+// Page shared extends
+%button-arrow-icon {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 12px;
+  right: 8px;
+}
+%contact-buttons-shared {
+  color: $color-green;
+  background-color: white;
+  border: none;
+  width: 142px;
+  height: 44px;
+  border-radius: 6px;
+  position: relative;
+  font-size: $font-size-small;
+}
+
+// Page layout
+.single-property-page {
+  @include desktopSmall {
+    display: flex;
+    justify-content: space-between;
+    .property {
+      width: 66%;
+    }
+    .prop-sidebar {
+      width: 32%;
     }
   }
-  &__icons {
-    span {
+  @include desktopMedium {
+    .property {
+      width: 67%;
     }
-    h5 {
-    }
-    &-rooms {
-    }
-    &-area {
-    }
-    &-floor {
+    .prop-sidebar {
+      width: 29%;
     }
   }
-  &__info {
-    h2 {
-    }
-    &-list {
-      ul {
-        li {
-          span {
+}
+
+// page general
+.single-property-page {
+  margin-top: 80px;
+  @include desktopSmall {
+    margin-top: 120px;
+  }
+  .property {
+    &__header {
+      @include desktopSmall {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+      }
+      &-info {
+        @include desktopSmall {
+          width: 65%;
+        }
+        h3 {
+          color: $color-green;
+          font-size: $font-size-xlarge;
+          line-height: $font-size-mega;
+          @include desktopSmall {
+            font-size: $font-size-large;
+            margin-top: 15px;
+            margin-bottom: 0;
           }
-          b {
+        }
+        p {
+          font-size: $font-size-medium;
+          padding: 3px 0 3px 19px;
+          text-transform: capitalize;
+          color: #989797;
+          @include backgroundIcon("location.svg", 18px, left center);
+          @include desktopSmall {
+            margin-top: 3px;
+          }
+        }
+      }
+      h2 {
+        color: #e6a732;
+        @include desktopSmall {
+          width: 35%;
+          font-size: $font-size-mega;
+          text-align: right;
+        }
+        @include desktopMedium {
+          font-size: calculateRem(30px);
+          margin-top: 14px;
+        }
+      }
+    }
+    &__icons {
+      background-color: #f7f7f7;
+      @include desktopSmall {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 6%;
+      }
+      @include desktopMedium {
+        padding: 20px 10%;
+      }
+      span {
+        font-size: $font-size-medium;
+      }
+      h3 {
+        margin-top: 0px;
+        color: $color-green;
+      }
+      .icon-frame {
+        margin-left: 10%;
+        padding-left: 46px;
+        padding-top: 20px;
+        width: 80%;
+        @include desktopSmall {
+          margin-left: 0;
+          border-bottom: none;
+          width: 180px;
+        }
+      }
+      &-rooms {
+        @include backgroundIcon("rooms-green.svg", 37px, left center);
+        border-bottom: 1px solid #e5e5e5;
+      }
+      &-area {
+        @include backgroundIcon("area-green.svg", 36px, left 23px);
+        border-bottom: 1px solid #e5e5e5;
+      }
+      &-floor {
+        @include backgroundIcon("floor-green.svg", 32px, left 21px);
+        padding-bottom: 1px;
+      }
+    }
+    &__info {
+      &-list {
+        @include desktopSmall {
+          display: flex;
+          justify-content: space-between;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          @include desktopSmall {
+            width: 47%;
+          }
+          li {
+            border-top: 1px solid #dee2e6;
+            font-size: $font-size-medium;
+            display: flex;
+            padding: 14px 5%;
+            &:first-child {
+              @include desktopSmall {
+                border-top: none;
+              }
+            }
+            span {
+              color: #7e9296;
+              width: 180px;
+              @include desktopSmall {
+                width: 145px;
+              }
+              @include desktopMedium {
+                width: 180px;
+              }
+            }
+            b {
+              color: $color-black;
+              text-transform: capitalize;
+            }
           }
         }
       }
     }
-  }
-  &__features {
-    h2 {
-    }
-    &-list {
-      div {
+    &__features {
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @include desktopSmall {
+          margin-top: 35px;
+        }
+        div {
+          font-size: 0.8rem;
+          padding: 3px 0 3px 25px;
+          width: 45%;
+          margin-bottom: 35px;
+          @include desktopSmall {
+            width: 25%;
+          }
+        }
+        .selected-feature {
+          @include backgroundIcon("circle-active.svg", 17px, left 1px);
+          color: #686c76;
+        }
+        .non-selected-feature {
+          @include backgroundIcon("circle-non-active.svg", 17px, left 1px);
+          color: #dcdcdc;
+        }
       }
-      .selected-feature {
+    }
+    &__details {
+      h4 {
+        color: $color-yellow;
+        @include desktopSmall {
+          margin-top: 35px;
+        }
       }
-      .non-selected-feature {
+      pre {
+        color: $color-black;
+        font-size: $font-size-medium;
+        line-height: calculateRem(32px);
+        font-family: $font-family-title;
       }
     }
   }
-  &__details {
-    h2 {
-    }
-    h5 {
-    }
-    pre {
-    }
-  }
-}
-
-.property-default-title {
-}
-
-.prop-sidebar {
-  &-print-btn {
-  }
-  &__share {
-    &-btn {
+  .property-default-title {
+    color: $color-green;
+    margin-top: 40px;
+    @include desktopSmall {
+      margin-top: 90px;
     }
   }
-  &__contact {
-    &-name {
+  .prop-sidebar {
+    .sidebar-btns {
+      border: 1px solid #d3d3d3;
+      color: #989797;
+      background-size: 20px;
+      width: 140px;
+      height: 40px;
+      margin-top: 15px;
     }
-    &-email {
+    &-print-btn {
+      background: url("/static/images/icons/printer.svg") no-repeat 10px center;
+      float: left;
+      z-index: 2;
+      position: relative;
+    }
+    &__share {
+      position: relative;
+      z-index: 1;
+      @include clearfix;
       &-btn {
+        background: url("/static/images/icons/share.svg") no-repeat 10px center;
+        float: right;
       }
-      &-hidden {
+      #socialMediaHidder {
+        position: absolute;
+        top: 50px;
+        right: 1px;
+        transition: 0.4s $transition;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
       }
     }
-    &-phone {
-      &-btn {
+    &__contact {
+      background-color: #f5f5f5;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 15px 5% 0;
+      margin-top: 35px;
+      @include desktopSmall {
+        padding: 15px 2% 0;
+        margin-top: 45px;
       }
-      &-hidden {
+      @include desktopMedium {
+        padding: 15px 7% 0;
+      }
+      h4 {
+        width: 100%;
+      }
+      &-name {
+        width: 100%;
+        color: $color-green;
+      }
+      &-email {
+        height: 96px;
+        &-btn {
+          @include backgroundIcon("envelope.svg", 13px, 13px center);
+          @extend %contact-buttons-shared;
+          &:after {
+            @include backgroundIcon("arrow-right.svg", 11px, center);
+            @extend %button-arrow-icon;
+          }
+        }
+        &-hidden {
+          @extend %contact-buttons-shared;
+          margin-top: 7px;
+          @include backgroundIcon("email.svg", 14px, 8px center);
+          padding-left: 10px;
+          padding-top: 16px;
+          text-align: center;
+          transform: translateY(-15px);
+          transition: 0.4s $transition;
+          opacity: 0;
+        }
+      }
+      &-phone {
+        height: 110px;
+        &-btn {
+          @include backgroundIcon("phone.svg", 13px, 13px center);
+          @extend %contact-buttons-shared;
+          &:after {
+            @include backgroundIcon("arrow-right.svg", 11px, center);
+            @extend %button-arrow-icon;
+          }
+        }
+        &-hidden {
+          @extend %contact-buttons-shared;
+          margin-top: 7px;
+          @include backgroundIcon("mobile-phone.svg", 18px, 8px center);
+          padding-left: 10px;
+          padding-top: 16px;
+          text-align: center;
+          transform: translateY(-15px);
+          transition: 0.4s $transition;
+          opacity: 0;
+        }
       }
     }
   }

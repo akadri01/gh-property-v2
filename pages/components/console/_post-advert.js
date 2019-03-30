@@ -137,7 +137,7 @@ class PostAdvert extends Component {
                 name="age"
                 component={renderDefaultSelectField}
                 label="Age of the premises"
-                defaultValue="0"
+                validate={required()}
               >
                 {premisesAgeSelectField.map((option, i) => (
                   <option value={option.value} key={option.value + i}>

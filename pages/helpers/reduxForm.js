@@ -2,6 +2,48 @@ import React, { Component, Fragment } from "react";
 import approveFileUpload from "../helpers/approve-file-upload";
 import { popupWindow } from "../helpers/popup";
 
+export class RenderFileInput extends Component {
+  onChange = e => {
+    const { status, msg } = approveFileUpload(e.target.files);
+    if (!status) {
+      e.target.value = "";
+      return popupWindow(undefined, msg);
+    }
+    const {
+      input: { onChange }
+    } = this.props;
+    onChange(e.target.files);
+  };
+  render() {
+    const {
+      input,
+      isMultiple,
+      label,
+      meta: { touched, error }
+    } = this.props;
+    const single = (
+      <input type="file" accept=".jpg, .png, .jpeg" onChange={this.onChange} />
+    );
+    const multiple = (
+      <input
+        type="file"
+        accept=".jpg, .png, .jpeg"
+        onChange={this.onChange}
+        multiple="multiple"
+      />
+    );
+    return (
+      <div className="redux-form-file-input-container">
+        <label>{label}</label>
+        <div>
+          {isMultiple ? multiple : single}
+          {error && touched && <span className="form-error">{error}</span>}
+        </div>
+      </div>
+    );
+  }
+}
+
 export const renderFormInput = ({
   input,
   meta: { touched, error },
@@ -72,45 +114,3 @@ export const renderCheckbox = ({ input, labelAndValue, id }) => (
     <label htmlFor={id}>{labelAndValue}</label>
   </div>
 );
-
-export class RenderFileInput extends Component {
-  onChange = e => {
-    const { status, msg } = approveFileUpload(e.target.files);
-    if (!status) {
-      e.target.value = "";
-      return popupWindow(undefined, msg);
-    }
-    const {
-      input: { onChange }
-    } = this.props;
-    onChange(e.target.files);
-  };
-  render() {
-    const {
-      input,
-      isMultiple,
-      label,
-      meta: { touched, error }
-    } = this.props;
-    const single = (
-      <input type="file" accept=".jpg, .png, .jpeg" onChange={this.onChange} />
-    );
-    const multiple = (
-      <input
-        type="file"
-        accept=".jpg, .png, .jpeg"
-        onChange={this.onChange}
-        multiple="multiple"
-      />
-    );
-    return (
-      <div className="redux-form-file-input-container">
-        <label>{label}</label>
-        <div>
-          {isMultiple ? multiple : single}
-          {error && touched && <span className="form-error">{error}</span>}
-        </div>
-      </div>
-    );
-  }
-}
