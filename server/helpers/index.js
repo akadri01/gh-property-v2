@@ -12,7 +12,6 @@ const randomString = require("randomstring");
 const multer = require("multer");
 const sendGrid = require("@sendgrid/mail");
 const config = require("../../config/");
-const FsCreateDirectory = util.promisify(fs.mkdir);
 const logger = require("./logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
@@ -30,6 +29,7 @@ var utils = {
       "-" +
       crypto.randomBytes(3).toString("hex");
     const directory = absolutePath + uniqueDirectory + "/";
+    const FsCreateDirectory = util.promisify(fs.mkdir);
     FsCreateDirectory(directory)
       .then(() => {
         return cb(directory);

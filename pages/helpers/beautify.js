@@ -19,5 +19,5 @@ export function beautifyDate(isoDate) {
 
 export function beautifyPrice(price) {
   price = price + " GH₵";
-  return price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }

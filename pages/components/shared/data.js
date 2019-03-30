@@ -170,8 +170,9 @@ export const locationTownSelectField = [
 ];
 
 export const premisesAgeSelectField = [
+  { value: "", text: "Select age" },
   { value: "0", text: "New" },
-  { value: "0", text: "No age (for land)" },
+  { value: "-1", text: "No age (Land)" },
   { value: "1", text: "1 year" },
   { value: "2", text: "2 years" },
   { value: "3", text: "3 years" },
