@@ -13,7 +13,8 @@ export default ({ properties, searchResultsQty }) => {
           "No properties to view"
         ) : (
           <Fragment>
-            {isPlural(searchResultsQty, "Property", "ies")} to view
+            {searchResultsQty} {isPlural(searchResultsQty, "Property", "ies")}{" "}
+            to view
           </Fragment>
         )}
       </h1>

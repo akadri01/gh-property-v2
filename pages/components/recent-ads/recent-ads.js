@@ -4,8 +4,8 @@ import _before from "lodash.before";
 import { connect } from "react-redux";
 import Link from "next/link";
 import SimpleThumbnail from "../thumbnails/simple-thumbnail.js";
-import { placeholderRecentProperties } from "../shared/data.js";
 import { fetchPropertiesForHomePage } from "../../redux/actions/index.js";
+import { placeholderProperties } from "../../helpers/placeholders.js";
 
 class RecentAds extends Component {
   render() {
@@ -25,7 +25,7 @@ class RecentAds extends Component {
           <div className="recentAds__frame">
             {recentProperties
               ? this.insertProperties(recentProperties)
-              : this.insertProperties(placeholderRecentProperties)}
+              : this.insertProperties(placeholderProperties(8))}
           </div>
         </section>
       </Fragment>

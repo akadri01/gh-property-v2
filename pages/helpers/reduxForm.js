@@ -75,24 +75,6 @@ export const renderSelectField = ({
   </Fragment>
 );
 
-export const renderDefaultSelectField = ({
-  input,
-  label,
-  meta: { touched, error },
-  children,
-  defaultValue
-}) => (
-  <Fragment>
-    <label>{label}</label>
-    <div className="redux-input-container">
-      <select defaultValue={defaultValue} {...input}>
-        {children}
-      </select>
-      {error && touched && <span className="form-error">{error}</span>}
-    </div>
-  </Fragment>
-);
-
 export const renderTextarea = ({
   input,
   label,

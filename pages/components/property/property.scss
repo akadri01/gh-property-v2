@@ -59,7 +59,7 @@
           width: 65%;
         }
         h3 {
-          color: $color-green;
+          color: $color-black;
           font-size: $font-size-xlarge;
           line-height: $font-size-mega;
           @include desktopSmall {
@@ -104,6 +104,7 @@
       }
       span {
         font-size: $font-size-medium;
+        color: $color-black;
       }
       h3 {
         margin-top: 0px;
@@ -121,15 +122,15 @@
         }
       }
       &-rooms {
-        @include backgroundIcon("rooms-green.svg", 37px, left center);
+        @include backgroundIcon("rooms-green.svg", 36px, left center);
         border-bottom: 1px solid #e5e5e5;
       }
       &-area {
-        @include backgroundIcon("area-green.svg", 36px, left 23px);
+        @include backgroundIcon("area-green.svg", 35px, left 23px);
         border-bottom: 1px solid #e5e5e5;
       }
       &-floor {
-        @include backgroundIcon("floor-green.svg", 32px, left 21px);
+        @include backgroundIcon("floor-green.svg", 31px, left 21px);
         padding-bottom: 1px;
       }
     }
@@ -319,6 +320,24 @@
           transform: translateY(-15px);
           transition: 0.4s $transition;
           opacity: 0;
+        }
+      }
+    }
+    &__reference {
+      border: 1px solid #d3d3d3;
+      margin-top: 20px;
+      padding: 5px 5%;
+      color: $color-black;
+      div {
+        margin: 15px 0;
+        font-size: $font-size-medium;
+        font-family: $font-family-title;
+        position: relative;
+        b {
+          font-family: $font-family-body;
+          position: absolute;
+          left: 107px;
+          top: 0;
         }
       }
     }

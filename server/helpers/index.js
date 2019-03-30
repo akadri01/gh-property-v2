@@ -146,7 +146,7 @@ var utils = {
         utils.cropImage(
           imgToCropPath,
           680,
-          480,
+          460,
           croppedImgNameAndLocation,
           done => {
             utils.handleCropFailure(done, req.session.directory);
@@ -166,7 +166,7 @@ var utils = {
         utils.cropImage(
           imgToCropPath,
           680,
-          480,
+          460,
           croppedImgNameAndLocation,
           done => {
             utils.handleCropFailure(done, req.session.directory);

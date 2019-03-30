@@ -1,4 +1,4 @@
-export function beautifyDate(isoDate) {
+export function beautifyDate(isoDate, fullLength) {
   const months = [
     "Jan",
     "Feb",
@@ -14,7 +14,10 @@ export function beautifyDate(isoDate) {
     "Dec"
   ];
   const date = new Date(isoDate);
-  return `${date.getDate()} ${months[date.getMonth()]}`;
+  if (!fullLength) {
+    return `${date.getDate()} ${months[date.getMonth()]}`;
+  }
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
 export function beautifyPrice(price) {

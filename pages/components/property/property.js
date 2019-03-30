@@ -67,7 +67,7 @@ export default ({ property }) => {
           </div>
         </div>
         <div className="property__info">
-          <h2 className="property-default-title">Premises Information</h2>
+          <h2 className="property-default-title">General Information</h2>
           <div className="property__info-list">
             <ul>
               <li>
@@ -82,7 +82,7 @@ export default ({ property }) => {
                 <span>Age of Premises</span>
                 <b>
                   {premisesAgeSelectField.map(obj => {
-                    if (obj.value == age) {
+                    if (obj.value === age.toString()) {
                       return obj.text;
                     }
                   })}
@@ -114,7 +114,7 @@ export default ({ property }) => {
           </div>
         </div>
         <div className="property__features">
-          <h2 className="property-default-title">Features of the Premises</h2>
+          <h2 className="property-default-title">Features</h2>
           <div className="property__features-list">
             {featuresList.map(feature => {
               const cssClass = features.includes(feature)
@@ -193,14 +193,15 @@ export default ({ property }) => {
             </div>
           </div>
         </div>
+        <div className="prop-sidebar__reference">
+          <div>
+            Reference <b>{ref}</b>
+          </div>
+          <div>
+            Date Posted <b>{beautifyDate(date, true)}</b>
+          </div>
+        </div>
       </aside>
     </section>
   );
 };
-
-// date: "2019-03-28T09:38:03.807Z"
-// ref: "FLBSIKETNY"
-// url: "flat1m2ho21cedisbc2baxkzqvwnnqs"
-// user_id: "5c9c7099a39a940a94fa62ad"
-// _id: "5c9c95fba39a940a94fa62b0"
-// advert_type: "sale"

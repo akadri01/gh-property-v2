@@ -76,7 +76,7 @@ PropertySchema.statics.createNew = function(body, session) {
     images: images,
     img_directory: directory,
     url: helpers.generateUrl(body),
-    ref: randomstring.generate(10).toUpperCase()
+    ref: randomstring.generate(7).toUpperCase()
   });
   return newProperty.save();
 };
