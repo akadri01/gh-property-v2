@@ -51,9 +51,6 @@
     button.active-page {
       border-color: $color-green;
       @include backgroundIcon("up-arrow.svg", 9px, center 28px);
-      // padding: 0!important;
-      // margin: 0!important;
-      // line-height: 0!important;
     }
   }
 }

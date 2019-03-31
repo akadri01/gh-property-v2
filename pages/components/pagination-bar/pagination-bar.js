@@ -1,7 +1,6 @@
 import _times from "lodash.times";
-import Router from "next/router";
 import { PAGINATION_QUANTITY } from "../../../globals/globals.json";
-import { getPropertySearchQueryFromLocalStorage } from "../../helpers/localStorage";
+import paginate from "../../helpers/paginate.js";
 
 export default ({ searchResultsQty, searchQuery }) => {
   const pageQty = Math.ceil(searchResultsQty / PAGINATION_QUANTITY);
@@ -49,29 +48,19 @@ export default ({ searchResultsQty, searchQuery }) => {
           );
         })}
       </div>
-      <button className="pagination-bar--large-btn next">Next</button>
+      {/*dont show next button if user on last page*/}
+      {pageQty !== currentPageNumber + 1 && (
+        <button
+          className="pagination-bar--large-btn next"
+          onClick={() => {
+            !isNaN(currentPageNumber)
+              ? paginate(currentPageNumber + 1)
+              : paginate(1);
+          }}
+        >
+          Next
+        </button>
+      )}
     </section>
   );
 };
-
-async function paginate(pageNumber) {
-  // new page query
-  const pageQuery = `&page=${pageNumber}`;
-
-  // previous search query
-  let activeQuery = getPropertySearchQueryFromLocalStorage();
-
-  // remove prev page query
-  const previousPageQueryIndex = activeQuery.indexOf("&page=");
-  if (previousPageQueryIndex !== -1) {
-    activeQuery = activeQuery.substring(0, previousPageQueryIndex);
-  }
-
-  // remove base url
-  activeQuery = activeQuery.replace("/properties", "");
-
-  // insert ? if doesn't exist
-  activeQuery = activeQuery.charAt(0) !== "?" ? `?${activeQuery}` : activeQuery;
-
-  Router.push(`/properties${activeQuery}${pageQuery}`);
-}

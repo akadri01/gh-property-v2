@@ -16,6 +16,12 @@ const logger = require("./logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
 var utils = {
+  logError: (e, msg) => {
+    return process.env.NODE_ENV === "development"
+      ? console.log(e)
+      : logger.log(msg, e);
+  },
+
   generateUrl: ({ area, price, premises_type, town }) => {
     const url = `${premises_type}${area}m2${town}${price}cedis${randomstring.generate(
       15
@@ -34,13 +40,12 @@ var utils = {
       .then(() => {
         return cb(directory);
       })
-      .catch(e => {
-        console.log(e);
-        logger.log(
-          "Error: Fs can NOT create directory. helpers.createDirectory ",
-          e
-        );
-      });
+      .catch(e =>
+        utils.logError(
+          e,
+          "Error: Fs can NOT create directory. helpers.createDirectory "
+        )
+      );
   },
 
   sendEmailConfirmation: (userId, email) => {
@@ -70,8 +75,7 @@ var utils = {
         return cb(true);
       })
       .catch(e => {
-        console.log(e);
-        logger.log("Error: helpers cropImage() ", e);
+        utils.logError(e, "Error: helpers cropImage()");
         return cb(false);
       });
   },

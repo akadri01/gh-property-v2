@@ -1,25 +1,17 @@
-/**
- *   Base path start as;   /api/...
- */
 "use strict";
 
 const express = require("express");
 const router = express.Router();
-const sudoFs = require("sudo-fs-promise");
 const enableCors = require("cors");
-const path = require("path");
-const multer = require("multer");
 const rimraf = require("rimraf");
-const randomString = require("randomstring");
-const crypto = require("crypto");
 const User = require("../../db/models/user");
 const Property = require("../../db/models/property");
 const helpers = require("../helpers");
-const logger = require("../helpers/logger");
 const dbHelpers = require("../../db/helpers");
 const Properties = require("../../db/models/property.js");
 const PAGINATION_QUANTITY = require("../../globals/globals.json")
   .PAGINATION_QUANTITY;
+const logError = helpers.logError;
 
 class ApiRouter {
   constructor(router) {
@@ -59,9 +51,8 @@ class ApiRouter {
         res.json(property);
       })
       .catch(e => {
-        console.log(e);
-        logger.log("Error: Iso > fetchProperty() ", e);
-        res.json({});
+        logError(e, "Error: Api > fetchProperty()");
+        return res.json({});
       });
   }
 
@@ -96,8 +87,7 @@ class ApiRouter {
           : res.json(properties);
       })
       .catch(e => {
-        console.log(e);
-        logger.log("Error: API > fetchHomepageRecentProperties", e);
+        logError(e, "Error: API > fetchHomepageRecentProperties");
         return res.json({});
       });
   }

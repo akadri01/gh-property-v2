@@ -1,3 +1,8 @@
+export function beautifyPrice(price) {
+  price = price + " GH₵";
+  return price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 export function beautifyDate(isoDate, fullLength) {
   const months = [
     "Jan",
@@ -18,9 +23,4 @@ export function beautifyDate(isoDate, fullLength) {
     return `${date.getDate()} ${months[date.getMonth()]}`;
   }
   return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-export function beautifyPrice(price) {
-  price = price + " GH₵";
-  return price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
