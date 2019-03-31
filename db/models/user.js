@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 const schema = mongoose.Schema;
-const logger = require("../../server/helpers/index.js").logger;
+const logError = require("../../server/helpers/index.js").logError;
 
 const userSchema = new schema({
   name: String,
@@ -144,10 +144,9 @@ userSchema.statics.updatePropertyAdverts = function(
         return cb(false, updatedUser);
       })
       .catch(e => {
-        console.log(e);
-        logger.log(
-          "Error: can NOT save new property advert! updatePropertyAdverts()",
-          e
+        logError(
+          e,
+          "Error: can NOT save new property advert! updatePropertyAdverts()"
         );
         return cb(e, false);
       });
