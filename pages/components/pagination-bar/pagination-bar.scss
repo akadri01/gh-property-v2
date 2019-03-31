@@ -1,0 +1,59 @@
+.pagination-bar {
+  display: flex;
+  display: inline-block;
+  margin-left: calc(50% - 166px);
+  margin-top: 30px;
+  @include desktopSmall {
+    margin-top: 50px;
+  }
+  button {
+    height: 42px;
+    border: 1px solid #cdd6de;
+    font-size: $font-size-small;
+    font-family: $font-family-body;
+    background-color: #fff;
+    color: $color-black;
+    &:hover {
+      border-color: $color-green;
+      color: $color-green;
+    }
+  }
+  &--large-btn {
+    width: 61px;
+    float: left;
+  }
+  .previous {
+    @include backgroundIcon("left-arrow-gray.svg", 17px, 4px center);
+    text-indent: 18px;
+    padding-top: 4px;
+    margin-right: 10px;
+    &:hover {
+      background-image: url("/static/images/icons/left-arrow-green.svg");
+    }
+  }
+  .next {
+    @include backgroundIcon("right-arrow-gray.svg", 17px, 39px center);
+    text-indent: 2px;
+    text-align: left;
+    padding-top: 3px;
+    margin-left: 10px;
+    &:hover {
+      background-image: url("/static/images/icons/right-arrow-green.svg");
+    }
+  }
+  &__pages {
+    float: left;
+    &-btn {
+      font-weight: 900;
+      width: 33px;
+      padding-top: 3px;
+    }
+    button.active-page {
+      border-color: $color-green;
+      @include backgroundIcon("up-arrow.svg", 9px, center 28px);
+      // padding: 0!important;
+      // margin: 0!important;
+      // line-height: 0!important;
+    }
+  }
+}

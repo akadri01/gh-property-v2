@@ -13,3 +13,7 @@ export const removeUserDataFromLocalStorage = () => {
 export function savePropertySearchQueryToLocalStorage(queryString) {
   localStorage.setItem("searchQuery", queryString);
 }
+
+export function getPropertySearchQueryFromLocalStorage() {
+  return localStorage.getItem("searchQuery");
+}

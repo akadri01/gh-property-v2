@@ -18,7 +18,7 @@ class Doc extends Document {
             href="/static/images/icons/favicon-icon.png"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Montserrat"
+            href="https://fonts.googleapis.com/css?family=Lato"
             rel="stylesheet"
           />
           <script

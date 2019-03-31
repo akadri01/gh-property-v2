@@ -10,7 +10,6 @@ const cookieParser = require("cookie-parser");
 const { DB_URI, SESSION_SECRET } = require("../config");
 
 // Routes
-const isomorphicRoutes = require("./routes/isomorphic.js");
 const apiRoutes = require("./routes/api.js");
 const adminRoutes = require("./routes/admin.js");
 const authRoutes = require("./routes/auth.js");
@@ -53,7 +52,6 @@ class SetupServer {
   routes(nextApp) {
     this.server.use("/admin", adminRoutes);
     this.server.use("/api", apiRoutes);
-    this.server.use("/iso", isomorphicRoutes);
     this.server.use("/auth", authRoutes);
     require("./routes/ssr.js")(this.server, nextApp);
   }

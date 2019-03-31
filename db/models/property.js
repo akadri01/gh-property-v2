@@ -86,6 +86,7 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   queryObj,
   sortObj,
   limitQty,
+  skipQty,
   cb
 ) {
   const { advert_type, region, town } = queryObj;
@@ -103,31 +104,21 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
 
   // first find record count to display
   this.find(queryOptions).count((e, totalRecordQty) => {
-    if (e) {
+    if (e || !totalRecordQty) {
       console.log(e);
-      logger.log(
-        "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
-        e
-      );
+      logger.log("Error: db/models/Property/ searchDetailed()", e);
       return cb(false);
     }
-    if (!totalRecordQty) {
-      return cb(false);
-    }
-
-    // Search Properties
     this.find(queryOptions)
       .sort(sortObj)
       .limit(limitQty)
+      .skip(skipQty)
       .then(properties => {
         return cb(properties, totalRecordQty);
       })
       .catch(e => {
         console.log(e);
-        logger.log(
-          "Error: can NOT do detailed Property search! db/models/Property/ searchDetailed()",
-          e
-        );
+        logger.log("Error: db/models/Property/ searchDetailed()", e);
         return cb(false);
       });
   });

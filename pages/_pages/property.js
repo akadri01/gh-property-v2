@@ -21,7 +21,7 @@ const PropertyPage = ({ property }) => {
 };
 
 PropertyPage.getInitialProps = async ({ query }) => {
-  const property = await fetch(`/iso/fetch/property/${query.id}`);
+  const property = await fetch(`/api/fetch/property/${query.id}`);
   return {
     property
   };

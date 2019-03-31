@@ -9,11 +9,8 @@ import { savePropertySearchQueryToLocalStorage } from "../helpers/localStorage.j
 
 class Properties extends Component {
   static async getInitialProps({ req }) {
-    if (req && req.session) {
-      req.session.propertySkip = 10; // ******** change 25 on production
-    }
     // req.url format --->  /properties?advert_type=rent&type=flat&...
-    const data = await fetch(`/iso/fetch/main${req.url}`);
+    const data = await fetch(`/api/fetch${req.url}`);
     if (!data || !data.length || !Array.isArray(data)) {
       return {
         properties: [],
@@ -44,7 +41,6 @@ class Properties extends Component {
   }
 
   componentDidMount() {
-    // save search query to local storage (to use for load more property ajax request)
     savePropertySearchQueryToLocalStorage(this.props.searchQuery);
   }
 }

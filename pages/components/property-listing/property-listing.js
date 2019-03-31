@@ -4,22 +4,23 @@ import associateImgPath from "../../helpers/associate-image-path.js";
 import isPlural from "../../helpers/isPlural.js";
 import { beautifyPrice, beautifyDate } from "../../helpers/beautify.js";
 import createTitle from "../../helpers/create-title.js";
+import PaginationBar from "../pagination-bar/pagination-bar.js";
 
-export default ({ properties, searchResultsQty }) => {
+export default props => {
   return (
     <section className="listing mobile-desktop-frame">
       <h1 className="listing-title">
-        {searchResultsQty == 0 ? (
+        {props.searchResultsQty == 0 ? (
           "No properties to view"
         ) : (
           <Fragment>
-            {searchResultsQty} {isPlural(searchResultsQty, "Property", "ies")}{" "}
-            to view
+            {props.searchResultsQty}{" "}
+            {isPlural(props.searchResultsQty, "Property", "ies")} to view
           </Fragment>
         )}
       </h1>
       <div className="listing__container">
-        {properties.map(
+        {props.properties.map(
           ({
             url,
             images,
@@ -82,6 +83,7 @@ export default ({ properties, searchResultsQty }) => {
           }
         )}
       </div>
+      <PaginationBar {...props} />
     </section>
   );
 };

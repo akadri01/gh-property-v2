@@ -18,6 +18,8 @@ const helpers = require("../helpers");
 const logger = require("../helpers/logger");
 const dbHelpers = require("../../db/helpers");
 const Properties = require("../../db/models/property.js");
+const PAGINATION_QUANTITY = require("../../globals/globals.json")
+  .PAGINATION_QUANTITY;
 
 class ApiRouter {
   constructor(router) {
@@ -37,28 +39,67 @@ class ApiRouter {
       helpers.cropImagesMiddleware.bind(this),
       this.userCreateAdvert.bind(this)
     ]);
-    this.router.get("/fetch/properties/recent", [
+    this.router.get("/fetch/homepage/properties/recent", [
       enableCors(),
-      this.fetchRecentProperties.bind(this)
+      this.fetchHomepageRecentProperties.bind(this)
+    ]);
+    this.router.get("/fetch/properties", [
+      enableCors(),
+      this.searchSortPaginate.bind(this)
+    ]);
+    this.router.get("/fetch/property/:url", [
+      enableCors(),
+      this.fetchProperty.bind(this)
     ]);
   }
 
-  fetchRecentProperties(req, res) {
-    if (req.query.page === "home") {
-      Properties.find()
-        .sort({ date: -1 })
-        .limit(8)
-        .then(properties => {
-          return !properties || !properties.length
-            ? res.json({})
-            : res.json(properties);
-        })
-        .catch(e => {
-          console.log(e);
-          logger.log("Error: API > fetchRecentProperties", e);
+  fetchProperty(req, res) {
+    Property.findOne({ url: req.params.url })
+      .then(property => {
+        res.json(property);
+      })
+      .catch(e => {
+        console.log(e);
+        logger.log("Error: Iso > fetchProperty() ", e);
+        res.json({});
+      });
+  }
+
+  searchSortPaginate(req, res) {
+    const sortQuery = { date: -1 }; // ******** make sort this dynamic
+    const searchQueryObj = req.query;
+    const limitQty = PAGINATION_QUANTITY;
+    const skipQty = req.query.page
+      ? parseInt(req.query.page) * PAGINATION_QUANTITY
+      : 0;
+    Property.searchSortWithTotalRecordQty(
+      searchQueryObj,
+      sortQuery,
+      limitQty,
+      skipQty,
+      (properties, totalRecordQty) => {
+        if (!properties || !totalRecordQty) {
           return res.json({});
-        });
-    }
+        }
+        return res.json([properties, totalRecordQty]);
+      }
+    );
+  }
+
+  fetchHomepageRecentProperties(req, res) {
+    Properties.find()
+      .sort({ date: -1 })
+      .limit(8)
+      .then(properties => {
+        return !properties || !properties.length
+          ? res.json({})
+          : res.json(properties);
+      })
+      .catch(e => {
+        console.log(e);
+        logger.log("Error: API > fetchHomepageRecentProperties", e);
+        return res.json({});
+      });
   }
 
   async userCreateAdvert(req, res) {

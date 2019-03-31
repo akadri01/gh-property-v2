@@ -69,7 +69,7 @@ export const postAdvert = formValues => async dispatch => {
 // PROPERTY ACTIONS
 export const fetchPropertiesForHomePage = () => async dispatch => {
   try {
-    const { data } = await axios.get("/api/fetch/properties/recent?page=home");
+    const { data } = await axios.get("/api/fetch/homepage/properties/recent");
     return dispatch({
       type: "FETCH_RECENT_PROPERTIES_FOR_HOMEPAGE",
       payload: data
