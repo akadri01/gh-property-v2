@@ -3,7 +3,8 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 const randomstring = require("randomstring");
-const helpers = require("../../server/helpers");
+const logError = require("../../server/helpers").logError;
+const generateUrl = require("../../server/helpers").generateUrl;
 
 const PropertySchema = new schema({
   advert_type: String,
@@ -75,7 +76,7 @@ PropertySchema.statics.createNew = function(body, session) {
     user_email: body.userEmail,
     images: images,
     img_directory: directory,
-    url: helpers.generateUrl(body),
+    url: generateUrl(body),
     ref: randomstring.generate(7).toUpperCase()
   });
   return newProperty.save();
@@ -105,8 +106,7 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   // first find record count to display
   this.find(queryOptions).count((e, totalRecordQty) => {
     if (e || !totalRecordQty) {
-      console.log(e);
-      logger.log("Error: db/models/Property/ searchDetailed()", e);
+      logError(e, "Error: db/models/Property/ searchDetailed()");
       return cb(false);
     }
     this.find(queryOptions)
@@ -117,8 +117,7 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
         return cb(properties, totalRecordQty);
       })
       .catch(e => {
-        console.log(e);
-        logger.log("Error: db/models/Property/ searchDetailed()", e);
+        logError(e, "Error: db/models/Property/ searchDetailed()");
         return cb(false);
       });
   });

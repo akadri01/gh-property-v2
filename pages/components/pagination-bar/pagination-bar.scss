@@ -19,38 +19,58 @@
     }
   }
   &--large-btn {
-    width: 61px;
     float: left;
+    width: 43px;
+    @include tablet {
+      width: 76px;
+    }
   }
   .previous {
-    @include backgroundIcon("left-arrow-gray.svg", 17px, 4px center);
-    text-indent: 18px;
     padding-top: 4px;
     margin-right: 10px;
-    &:hover {
-      background-image: url("/static/images/icons/left-arrow-green.svg");
+    @include tablet {
+      @include backgroundIcon("left-arrow-gray.svg", 22px, 8px center);
+      text-indent: 24px;
+      &:hover {
+        background-image: url("/static/images/icons/left-arrow-green.svg");
+      }
     }
   }
   .next {
-    @include backgroundIcon("right-arrow-gray.svg", 17px, 39px center);
-    text-indent: 2px;
-    text-align: left;
     padding-top: 3px;
     margin-left: 10px;
-    &:hover {
-      background-image: url("/static/images/icons/right-arrow-green.svg");
+    @include tablet {
+      text-align: left;
+      text-indent: 5px;
+      @include backgroundIcon("right-arrow-gray.svg", 22px, 45px center);
+      &:hover {
+        background-image: url("/static/images/icons/right-arrow-green.svg");
+      }
     }
   }
   &__pages {
     float: left;
     &-btn {
       font-weight: 900;
-      width: 33px;
+      width: 29px;
       padding-top: 3px;
+      @include tablet {
+        width: 45px;
+      }
     }
     button.active-page {
       border-color: $color-green;
       @include backgroundIcon("up-arrow.svg", 9px, center 28px);
+    }
+  }
+  &--results {
+    font-family: $font-family-title;
+    color: $color-black;
+    font-size: $font-size-medium;
+    text-align: center;
+    padding-top: 40px;
+    b {
+      border-bottom: 1px solid;
     }
   }
 }
