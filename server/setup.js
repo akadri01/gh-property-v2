@@ -13,6 +13,7 @@ const { DB_URI, SESSION_SECRET } = require("../config");
 const apiRoutes = require("./routes/api.js");
 const adminRoutes = require("./routes/admin.js");
 const authRoutes = require("./routes/auth.js");
+const ssrRoutes = require("./routes/ssr.js");
 
 // Sessions
 const session = require("express-session");
@@ -53,7 +54,7 @@ class SetupServer {
     this.server.use("/admin", adminRoutes);
     this.server.use("/api", apiRoutes);
     this.server.use("/auth", authRoutes);
-    require("./routes/ssr.js")(this.server, nextApp);
+    this.server.use(ssrRoutes.getRequestHandler(nextApp));
   }
 
   get determineSession() {
