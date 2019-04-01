@@ -25,6 +25,7 @@ export default ({ property }) => {
     price,
     ref,
     region,
+    posted_by,
     rooms_qty,
     title,
     total_balcony,
@@ -48,6 +49,12 @@ export default ({ property }) => {
             </p>
           </div>
           <h2>{beautifyPrice(price)}</h2>
+        </div>
+        <div className="property__label">
+          <span>{advert_type == "sale" ? "For Sale" : "Rental"}</span>
+          <span className="property__label-postedby">
+            Posted by {posted_by == "agency" ? "owner" : "agent"}
+          </span>
         </div>
         <Carousel images={images} directory={img_directory} />
         <div className="property__icons">
