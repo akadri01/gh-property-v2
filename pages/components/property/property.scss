@@ -19,6 +19,24 @@
   font-size: $font-size-small;
 }
 
+.go-to-previous-page {
+  margin-top: 20px;
+  button {
+    width: 190px;
+    text-indent: 34px;
+    height: 45px;
+    background: white;
+    font-size: $font-size-large;
+    border: 2px solid $color-green;
+    text-transform: uppercase;
+    transition: 0.3s $transition;
+    @include backgroundIcon("previous-page.svg", 28px, 13px center);
+    &:hover {
+      background-position: 6px center;
+    }
+  }
+}
+
 // Page layout
 .single-property-page {
   @include desktopSmall {
