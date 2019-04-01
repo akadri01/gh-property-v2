@@ -5,7 +5,10 @@ import fetch from "../helpers/fetch";
 import Navigation from "../components/navigation/navigation";
 import Footer from "../components/footer/footer";
 import PropertyListing from "../components/property-listing/property-listing.js";
-import { savePropertySearchQueryToLocalStorage } from "../helpers/localStorage.js";
+import {
+  savePropertySearchQueryToLocalStorage,
+  setInitialSortQueryToLocalStorage
+} from "../helpers/localStorage.js";
 
 class Properties extends Component {
   static async getInitialProps({ req }) {
@@ -42,6 +45,7 @@ class Properties extends Component {
 
   componentDidMount() {
     savePropertySearchQueryToLocalStorage(this.props.searchQuery);
+    setInitialSortQueryToLocalStorage(); // default filter: latest
   }
 }
 

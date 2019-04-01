@@ -5,10 +5,8 @@ import isPlural from "../../helpers/isPlural.js";
 
 export default ({ searchResultsQty, searchQuery }) => {
   const totalPageQty = Math.ceil(searchResultsQty / PAGINATION_QUANTITY);
-  const indexOfPageNum = searchQuery.indexOf("&page=") + 6;
-  const currentPageNumber = parseInt(
-    searchQuery.substring(indexOfPageNum, searchQuery.length)
-  );
+  const url = new URL("https://" + searchQuery);
+  const currentPageNumber = url.searchParams.get("page");
   const paginated = searchQuery.includes("&page=");
 
   // max 7 page numbers (suitable for mobile)

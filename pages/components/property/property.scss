@@ -18,8 +18,6 @@
   position: relative;
   font-size: $font-size-small;
 }
-$gray-border: 1px solid #e5e5e5;
-$light-gray: #7e9296;
 
 // Page layout
 .single-property-page {
@@ -189,7 +187,7 @@ $light-gray: #7e9296;
               }
             }
             span {
-              color: $light-gray;
+              color: $color-light-gray;
               width: 180px;
               @include desktopSmall {
                 width: 145px;

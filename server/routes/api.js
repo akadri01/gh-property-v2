@@ -57,12 +57,21 @@ class ApiRouter {
   }
 
   searchSortPaginate(req, res) {
-    const sortQuery = { date: -1 }; // ******** make sort this dynamic
+    const sortParam = req.query.sort;
+    // default sort is by date
+    const sortQuery =
+      sortParam === "highest"
+        ? { price: -1 }
+        : sortParam === "lowest"
+        ? { price: 1 }
+        : { date: -1 };
+
     const searchQueryObj = req.query;
     const limitQty = PAGINATION_QUANTITY;
     const skipQty = req.query.page
       ? parseInt(req.query.page) * PAGINATION_QUANTITY
       : 0;
+
     Property.searchSortWithTotalRecordQty(
       searchQueryObj,
       sortQuery,

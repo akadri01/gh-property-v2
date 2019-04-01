@@ -1,6 +1,5 @@
 import Link from "next/link";
 import associateImgPath from "../../helpers/associate-image-path.js";
-import createTitle from "../../helpers/create-title.js";
 
 export default ({
   img_directory,
@@ -12,6 +11,9 @@ export default ({
   region,
   url
 }) => {
+  const heading =
+    (advert_type === "rent" ? "Rental " : "For Sale ") +
+    `${premises_type} in ${town}`;
   return (
     <Link href={url ? `/property/${url}` : "#"}>
       <a className="simple-thumbnail">
@@ -25,7 +27,7 @@ export default ({
           src="/static/images/property-uploads/placeholders/thumbnail.jpg"
           className="hidden-placeholder"
         />
-        <h4>{createTitle(advert_type, premises_type, town)}</h4>
+        <h4>{heading}</h4>
         <em>{`${title.substring(0, 140)}...`}</em>
       </a>
     </Link>
