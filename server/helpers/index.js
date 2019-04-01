@@ -7,6 +7,7 @@ const path = require("path");
 const util = require("util");
 const randomstring = require("randomstring");
 const hogan = require("hogan.js");
+const urlEncode = require("urlencode");
 const sharp = require("sharp");
 const randomString = require("randomstring");
 const multer = require("multer");
@@ -15,7 +16,7 @@ const config = require("../../config/");
 const logger = require("./logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
-var utils = {
+var helperMethods = {
   logError: (e, msg) => {
     return process.env.NODE_ENV === "development"
       ? console.log(e)
@@ -23,10 +24,10 @@ var utils = {
   },
 
   generateUrl: ({ area, price, premises_type, town }) => {
-    const url = `${premises_type}${area}m2${town}${price}cedis${randomstring.generate(
+    const url = `${premises_type}-${area}m2-${town}-${price}cedis-in-ghana-${randomstring.generate(
       15
     )}`;
-    return url.replace(/[^A-Z0-9]/gi, "").toLowerCase();
+    return urlEncode(url.replace(/\s/g, "-").toLowerCase());
   },
 
   createDirectory: (absolutePath, cb) => {
@@ -41,7 +42,7 @@ var utils = {
         return cb(directory);
       })
       .catch(e =>
-        utils.logError(
+        helperMethods.logError(
           e,
           "Error: Fs can NOT create directory. helpers.createDirectory "
         )
@@ -75,16 +76,19 @@ var utils = {
         return cb(true);
       })
       .catch(e => {
-        utils.logError(e, "Error: helpers cropImage()");
+        helperMethods.logError(e, "Error: helpers cropImage()");
         return cb(false);
       });
   },
 
   createImageDirectory: (req, res, next) => {
-    utils.createDirectory(`./static/images/property-uploads/`, directory => {
-      req.session.directory = directory;
-      next();
-    });
+    helperMethods.createDirectory(
+      `./static/images/property-uploads/`,
+      directory => {
+        req.session.directory = directory;
+        next();
+      }
+    );
   },
 
   handleImages: () => {
@@ -147,33 +151,33 @@ var utils = {
       // index 0  main img and thumbnail
       if (i === 0) {
         // crop main img
-        utils.cropImage(
+        helperMethods.cropImage(
           imgToCropPath,
           680,
           460,
           croppedImgNameAndLocation,
           done => {
-            utils.handleCropFailure(done, req.session.directory);
+            helperMethods.handleCropFailure(done, req.session.directory);
           }
         );
         // crop thumbnail
-        utils.cropImage(
+        helperMethods.cropImage(
           imgToCropPath,
           250,
           160,
           croppedThumbnailNameAndLocation,
           done => {
-            utils.handleCropFailure(done, req.session.directory);
+            helperMethods.handleCropFailure(done, req.session.directory);
           }
         );
       } else {
-        utils.cropImage(
+        helperMethods.cropImage(
           imgToCropPath,
           680,
           460,
           croppedImgNameAndLocation,
           done => {
-            utils.handleCropFailure(done, req.session.directory);
+            helperMethods.handleCropFailure(done, req.session.directory);
           }
         );
       }
@@ -193,4 +197,4 @@ var utils = {
   }
 };
 
-module.exports = utils;
+module.exports = helperMethods;
