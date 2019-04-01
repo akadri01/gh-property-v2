@@ -9,10 +9,10 @@ export default () => (
       <div className="mobile-desktop-frame">
         <div className="footer__top">
           <div className="footer__top-locations">
-            <h2>Property location in Ghana</h2>
+            <h2>buy house, flat, land in Ghana</h2>
             <div>
               {towns.map(link => {
-                return createFooterLink("property?", link, "location");
+                return createFooterLink("properties?", link, "town");
               })}
             </div>
           </div>
@@ -21,9 +21,9 @@ export default () => (
             <div>
               {seoLinks.map((link, i) => {
                 return createFooterLink(
-                  "property?location=ACCRA&",
+                  "properties?town=accra&",
                   link,
-                  "type",
+                  "premises_type",
                   typeLinks[i]
                 );
               })}
@@ -50,7 +50,11 @@ export default () => (
     </footer>
     <section className="footer-end">
       <div className="mobile-desktop-frame">
-        <img src="/static/images/icons/logo.png" alt="WeGhana" width="150px" />
+        <img
+          src="/static/images/icons/logo-small.png"
+          alt="WeGhana"
+          width="150px"
+        />
         <div className="footer-end__links">
           <Link href="/about">
             <a>About us</a>

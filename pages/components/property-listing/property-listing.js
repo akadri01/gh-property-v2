@@ -6,14 +6,16 @@ import { beautifyPrice, beautifyDate } from "../../helpers/beautify.js";
 import PaginationBar from "../pagination-bar/pagination-bar.js";
 import sortPropertyListing from "../../helpers/sortPropertyListing.js";
 import { getSortQueryFromLocalStorage } from "../../helpers/localStorage";
+import createFailedSearchInfo from "../../helpers/create-failed-search-info.js";
 
 export default class PropertyListing extends Component {
   render() {
+    const notFoundStr = createFailedSearchInfo(this.props.searchQuery);
     return (
       <section className="listing mobile-desktop-frame">
-        <h1 className="listing-title">
+        <h1 className="listing--title">
           {this.props.searchResultsQty == 0 ? (
-            "No properties to view"
+            `No results to show ( ${notFoundStr} )`
           ) : (
             <Fragment>
               {this.props.searchResultsQty}{" "}
@@ -21,14 +23,24 @@ export default class PropertyListing extends Component {
             </Fragment>
           )}
         </h1>
-        <form className="listing__sort" id="sortForm">
-          <label>Sort by:</label>
-          <select name="sort" onClick={sortPropertyListing}>
-            <option value="latest">Latest adverts</option>
-            <option value="lowest">Price (Lowest)</option>
-            <option value="highest">Price (Highest)</option>
-          </select>
-        </form>
+        {this.props.searchResultsQty > 0 && (
+          <form className="listing__sort" id="sortForm">
+            <label>Sort by:</label>
+            <select name="sort" onClick={sortPropertyListing}>
+              <option value="latest">Latest adverts</option>
+              <option value="lowest">Price (Lowest)</option>
+              <option value="highest">Price (Highest)</option>
+            </select>
+          </form>
+        )}
+        {this.props.searchResultsQty == 0 && (
+          <img
+            className="listing--no-result-img"
+            src={"/static/images/photos/no-result.png"}
+            alt="No results found"
+            title={`No properties found for ${notFoundStr}`}
+          />
+        )}
         <div className="listing__container">
           {this.props.properties.map(
             ({
@@ -102,8 +114,9 @@ export default class PropertyListing extends Component {
   }
 
   componentDidMount() {
-    var url = new URL(window.location.href);
-    var sortPreference = url.searchParams.get("sort");
+    // set sort select menu options order
+    const url = new URL(window.location.href);
+    const sortPreference = url.searchParams.get("sort");
     if (sortPreference) {
       const options = document
         .getElementById("sortForm")

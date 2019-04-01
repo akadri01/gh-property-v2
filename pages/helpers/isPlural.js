@@ -1,8 +1,9 @@
 const addPlural = (str, add) => {
-  if (!add) return str + "s";
+  if (!add) {
+    return str + "s";
+  }
   if (str[str.length - 1].toUpperCase() === "Y") {
     str = str.substring(0, str.length - 1);
-    return str + add;
   }
   return str + add;
 };

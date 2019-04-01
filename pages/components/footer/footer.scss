@@ -12,8 +12,10 @@
     @include desktopSmall {
       display: flex;
       justify-content: space-between;
+      .footer__top-types {
+        width: 20%;
+      }
       .footer__top-location,
-      .footer__top-type,
       .footer__top-advert {
         width: 33.3%;
       }
@@ -54,7 +56,7 @@
         a {
           @include hoverGreen;
           display: block;
-          padding: 6px 0;
+          padding: 4px 0;
           margin-bottom: 7px;
           font-size: $font-size-medium;
         }

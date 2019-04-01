@@ -90,7 +90,7 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   skipQty,
   cb
 ) {
-  const { advert_type, region, town } = queryObj;
+  const { advert_type, region, town, premises_type } = queryObj;
   const queryOptions = {};
 
   if (advert_type) {
@@ -101,6 +101,9 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   }
   if (town) {
     queryOptions.town = town;
+  }
+  if (premises_type) {
+    queryOptions.premises_type = premises_type;
   }
 
   // first find record count to display

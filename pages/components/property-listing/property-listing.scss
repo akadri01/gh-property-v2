@@ -7,8 +7,13 @@
     padding-top: 30px;
     padding-bottom: 50px;
   }
-  &-title {
-    font-size: $font-size-medium;
+  &--title {
+    font-size: $font-size-xlarge;
+  }
+  &--no-result-img {
+    display: block;
+    margin: 12vh auto 20vh;
+    width: 240px;
   }
   &__sort {
     width: 250px;

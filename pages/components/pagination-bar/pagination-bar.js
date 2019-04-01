@@ -36,7 +36,7 @@ export default ({ searchResultsQty, searchQuery }) => {
               : 0;
           // do not create button more than page quantity
           if (i < totalPageQty) {
-            // to style selected page button
+            // style selected page button
             let cssClass = "pagination-bar__pages-btn ";
             // if first time landed to page, style first button (button number 1)
             if (!paginated && i === 0) {
@@ -62,7 +62,7 @@ export default ({ searchResultsQty, searchQuery }) => {
         })}
       </div>
       {/*dont show next button if user on last page*/}
-      {totalPageQty !== currentPageNumber + 1 && (
+      {totalPageQty !== currentPageNumber + 1 && totalPageQty > 1 && (
         <button
           className="pagination-bar--large-btn next"
           onClick={() => {
@@ -74,11 +74,13 @@ export default ({ searchResultsQty, searchQuery }) => {
           Next
         </button>
       )}
-      <p className="pagination-bar--results">
-        <b>{totalPageQty}</b> {isPlural(totalPageQty, "page")} and{" "}
-        <b>{searchResultsQty}</b>{" "}
-        {isPlural(searchResultsQty, "property", "ies")} to view
-      </p>
+      {searchResultsQty > 0 && (
+        <p className="pagination-bar--results">
+          <b>{totalPageQty}</b> {isPlural(totalPageQty, "page")} and{" "}
+          <b>{searchResultsQty}</b>{" "}
+          {isPlural(searchResultsQty, "property", "ies")} to view
+        </p>
+      )}
     </section>
   );
 };

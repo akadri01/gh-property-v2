@@ -2,18 +2,18 @@ import Router from "next/router";
 import { getPropertySearchQueryFromLocalStorage } from "./localStorage";
 
 export default pageNumber => {
-  // previous search query
-  let activeQuery = getPropertySearchQueryFromLocalStorage();
+  let currentQuery = getPropertySearchQueryFromLocalStorage();
 
   // remove prev page query
-  const previousPageQueryIndex = activeQuery.indexOf("&page=");
+  const previousPageQueryIndex = currentQuery.indexOf("&page=");
   if (previousPageQueryIndex !== -1) {
-    activeQuery = activeQuery.substring(0, previousPageQueryIndex);
+    currentQuery = currentQuery.substring(0, previousPageQueryIndex);
   }
   // remove base url
-  activeQuery = activeQuery.replace("/properties", "");
+  currentQuery = currentQuery.replace("/properties", "");
   // insert ? if doesn't exist
-  activeQuery = activeQuery.charAt(0) !== "?" ? `?${activeQuery}` : activeQuery;
+  currentQuery =
+    currentQuery.charAt(0) !== "?" ? `?${currentQuery}` : currentQuery;
 
-  return Router.push(`/properties${activeQuery}&page=${pageNumber}`);
+  return Router.push(`/properties${currentQuery}&page=${pageNumber}`);
 };

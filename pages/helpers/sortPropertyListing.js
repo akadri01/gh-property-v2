@@ -4,9 +4,9 @@ import {
   getPropertySearchQueryFromLocalStorage
 } from "./localStorage.js";
 
-export default sortSelectMenuClickEvent => {
-  // event.target.value, possible values ---> latest | lowest | highest
-  const sortValue = sortSelectMenuClickEvent.target.value;
+export default selectMenuClickEvent => {
+  // event.target.value, available values ---> latest | lowest | highest
+  const sortValue = selectMenuClickEvent.target.value;
   if (sortValue && sortValue.length) {
     // update local storage sort data
     saveNewSortQueryToLocalStorage(sortValue);

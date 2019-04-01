@@ -10,19 +10,30 @@ export const towns = [
   "Ashaiman"
 ];
 
-export const seoLinks = [
-  "Buy house in Accra",
-  "Buy shop in Accra",
-  "Buy office in Accra"
+export const typeLinks = [
+  "house",
+  "flat",
+  "shop",
+  "office",
+  "land",
+  "building"
 ];
 
-export const typeLinks = ["house", "shop", "office", "land"];
+export const seoLinks = [
+  "Buy house in Accra",
+  "Buy flat in Accra",
+  "Buy shop in Accra",
+  "Buy office in Accra",
+  "Buy land in Accra",
+  "Buy building in Accra"
+];
 
 export const premisesTypeSelectField = [
   { value: "", text: "Select premises type" },
   { value: "house", text: "House" },
   { value: "flat", text: "Flat" },
   { value: "shop", text: "Shop" },
+  { value: "office", text: "Office" },
   { value: "land", text: "Land" },
   { value: "building", text: "Building" }
 ];

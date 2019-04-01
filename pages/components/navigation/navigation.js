@@ -16,7 +16,7 @@ class Navigation extends Component {
             <Link href="/">
               <a className="navigation__brand-logo">
                 <img
-                  src="/static/images/icons/logo.png"
+                  src="/static/images/icons/logo-small.png"
                   alt="WeGhana logo"
                   title="Go to home page"
                 />
