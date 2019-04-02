@@ -4,7 +4,7 @@ import "../styles/Main.scss";
 import fetch from "../helpers/fetch";
 import Navigation from "../components/navigation/navigation";
 import Footer from "../components/footer/footer";
-import PropertyListing from "../components/property-listing/property-listing.js";
+import PropertyListing from "../components/property-listing/index.js";
 import {
   savePropertySearchQueryToLocalStorage,
   setInitialSortQueryToLocalStorage

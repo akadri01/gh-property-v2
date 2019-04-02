@@ -1,3 +1,8 @@
+/**
+ **
+ **  Generates placeholder properties
+ **
+ **/
 import _times from "lodash.times";
 
 export const placeholderProperties = (qty = 1, properties = []) => {

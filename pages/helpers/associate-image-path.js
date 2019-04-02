@@ -1,3 +1,8 @@
+/**
+ **
+ **  Determines correct image directory
+ **
+ **/
 export default (directory, img) => {
   const base = "/static/images/";
   const directoryFor =

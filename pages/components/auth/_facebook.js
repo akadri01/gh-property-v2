@@ -3,13 +3,14 @@ import Router from "next/router";
 import { popupWindow } from "../../helpers/popup.js";
 import { saveUserDataToLocalStorage } from "../../helpers/localStorage.js";
 import FacebookLogin from "react-facebook-login";
+import { FACEBOOK_APP_ID } from "../../../config/index.js";
 
 export default class FacebookLoginForm extends Component {
   render() {
     return (
       <section className="auth__forms-facebook" id="facebookRegisterLogin">
         <FacebookLogin
-          appId="306118983364378"
+          appId={FACEBOOK_APP_ID}
           autoLoad={true}
           fields="name,email,picture"
           callback={this.responseFacebook}
