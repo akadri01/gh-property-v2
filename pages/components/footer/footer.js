@@ -12,7 +12,7 @@ export default () => (
             <h2>buy house, flat, land in Ghana</h2>
             <div>
               {towns.map(link => {
-                return createFooterLink("properties?", link, "town");
+                return createFooterLink("properties/latest?", link, "town");
               })}
             </div>
           </div>
@@ -21,7 +21,7 @@ export default () => (
             <div>
               {seoLinks.map((link, i) => {
                 return createFooterLink(
-                  "properties?town=accra&",
+                  "properties/latest?town=accra&",
                   link,
                   "premises_type",
                   typeLinks[i]

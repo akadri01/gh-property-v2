@@ -40,10 +40,10 @@ class Navigation extends Component {
             </div>
           </div>
           <nav className="navigation__navbar" id="navMenu">
-            <Link href="/properties?advert_type=sale">
+            <Link href="/properties/latest?advert_type=sale">
               <a className="links">buy</a>
             </Link>
-            <Link href="/properties?advert_type=rent">
+            <Link href="/properties/latest?advert_type=rent">
               <a className="links">rent</a>
             </Link>
             <div

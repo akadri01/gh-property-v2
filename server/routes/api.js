@@ -35,7 +35,7 @@ class ApiRouter {
       enableCors(),
       this.fetchHomepageRecentProperties.bind(this)
     ]);
-    this.router.get("/fetch/properties", [
+    this.router.get("/fetch/properties/:sort", [
       enableCors(),
       this.searchSortPaginate.bind(this)
     ]);
@@ -57,7 +57,7 @@ class ApiRouter {
   }
 
   searchSortPaginate(req, res) {
-    const sortParam = req.query.sort;
+    const sortParam = req.params.sort;
     // default sort is by date
     const sortQuery =
       sortParam === "highest"

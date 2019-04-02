@@ -1,7 +1,11 @@
 import Router from "next/router";
-import { getPropertySearchQueryFromLocalStorage } from "./localStorage";
+import {
+  getPropertySearchQueryFromLocalStorage,
+  getSortQueryFromLocalStorage
+} from "./localStorage";
 
 export default pageNumber => {
+  const sortValue = getSortQueryFromLocalStorage();
   let currentQuery = getPropertySearchQueryFromLocalStorage();
 
   // remove prev page query
@@ -9,11 +13,14 @@ export default pageNumber => {
   if (previousPageQueryIndex !== -1) {
     currentQuery = currentQuery.substring(0, previousPageQueryIndex);
   }
-  // remove base url
-  currentQuery = currentQuery.replace("/properties", "");
-  // insert ? if doesn't exist
-  currentQuery =
-    currentQuery.charAt(0) !== "?" ? `?${currentQuery}` : currentQuery;
 
-  return Router.push(`/properties${currentQuery}&page=${pageNumber}`);
+  // remove base url
+  currentQuery = currentQuery.replace(window.location.pathname, "");
+  // remove ? if exist
+  currentQuery =
+    currentQuery.charAt(0) === "?" ? currentQuery.substring(1) : currentQuery;
+
+  return Router.push(
+    `/properties/${sortValue}?${currentQuery}&page=${pageNumber}`
+  );
 };

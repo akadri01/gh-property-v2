@@ -114,20 +114,24 @@ export default class PropertyListing extends Component {
   }
 
   componentDidMount() {
-    // set sort select menu options order
-    const url = new URL(window.location.href);
-    const sortPreference = url.searchParams.get("sort");
-    if (sortPreference) {
-      const options = document
-        .getElementById("sortForm")
-        .getElementsByTagName("option");
-      [].forEach.call(options, option => {
-        if (option.value === sortPreference) {
-          option.selected = "selected";
-        } else {
-          option.removeAttribute("selected");
-        }
-      });
+    if (this.props.searchResultsQty > 0) {
+      // set sort select menu options order
+      const sortPreference = window.location.pathname.replace(
+        "/properties/",
+        ""
+      );
+      if (sortPreference) {
+        const options = document
+          .getElementById("sortForm")
+          .getElementsByTagName("option");
+        [].forEach.call(options, option => {
+          if (option.value === sortPreference) {
+            option.selected = "selected";
+          } else {
+            option.removeAttribute("selected");
+          }
+        });
+      }
     }
   }
 }

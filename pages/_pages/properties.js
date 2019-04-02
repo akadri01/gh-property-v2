@@ -12,6 +12,7 @@ import {
 
 class Properties extends Component {
   static async getInitialProps({ req }) {
+    console.log(req.url);
     // req.url format --->  /properties?advert_type=rent&type=flat&...
     const data = await fetch(`/api/fetch${req.url}`);
     if (!data || !data.length || !Array.isArray(data)) {

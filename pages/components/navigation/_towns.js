@@ -4,223 +4,223 @@ import Link from "next/link";
 export const Towns = (
   <Fragment>
     <h2>Towns</h2>
-    <Link href="/properties?town=accra">
+    <Link href="/properties/latest?town=accra">
       <a>Accra</a>
     </Link>
-    <Link href="/properties?town=kumasi">
+    <Link href="/properties/latest?town=kumasi">
       <a>Kumasi</a>
     </Link>
-    <Link href="/properties?town=sekondi">
+    <Link href="/properties/latest?town=sekondi">
       <a>Sekondi</a>
     </Link>
-    <Link href="/properties?town=sunyani">
+    <Link href="/properties/latest?town=sunyani">
       <a>Sunyani</a>
     </Link>
-    <Link href="/properties?town=tamale">
+    <Link href="/properties/latest?town=tamale">
       <a>Tamale</a>
     </Link>
-    <Link href="/properties?town=takoradi">
+    <Link href="/properties/latest?town=takoradi">
       <a>Takoradi</a>
     </Link>
-    <Link href="/properties?town=obuasi">
+    <Link href="/properties/latest?town=obuasi">
       <a>Obuasi</a>
     </Link>
-    <Link href="/properties?town=tema">
+    <Link href="/properties/latest?town=tema">
       <a>Tema</a>
     </Link>
-    <Link href="/properties?town=ashaiman">
+    <Link href="/properties/latest?town=ashaiman">
       <a>Ashaiman</a>
     </Link>
-    <Link href="/properties?town=adenta">
+    <Link href="/properties/latest?town=adenta">
       <a>Adenta</a>
     </Link>
-    <Link href="/properties?town=aflao">
+    <Link href="/properties/latest?town=aflao">
       <a>Aflao</a>
     </Link>
-    <Link href="/properties?town=agogo">
+    <Link href="/properties/latest?town=agogo">
       <a>Agogo</a>
     </Link>
-    <Link href="/properties?town=ahwiaa">
+    <Link href="/properties/latest?town=ahwiaa">
       <a>Ahwiaa</a>
     </Link>
-    <Link href="/properties?town=akatsi">
+    <Link href="/properties/latest?town=akatsi">
       <a>Akatsi</a>
     </Link>
-    <Link href="/properties?town=akwatia">
+    <Link href="/properties/latest?town=akwatia">
       <a>Akwatia</a>
     </Link>
-    <Link href="/properties?town=amanfrom">
+    <Link href="/properties/latest?town=amanfrom">
       <a>Amanfrom</a>
     </Link>
-    <Link href="/properties?town=anloga">
+    <Link href="/properties/latest?town=anloga">
       <a>Anloga</a>
     </Link>
-    <Link href="/properties?town=asamankese">
+    <Link href="/properties/latest?town=asamankese">
       <a>Asamankese</a>
     </Link>
-    <Link href="/properties?town=atebubu">
+    <Link href="/properties/latest?town=atebubu">
       <a>Atebubu</a>
     </Link>
-    <Link href="/properties?town=awoshie">
+    <Link href="/properties/latest?town=awoshie">
       <a>Awoshie</a>
     </Link>
-    <Link href="/properties?town=axim">
+    <Link href="/properties/latest?town=axim">
       <a>Axim</a>
     </Link>
-    <Link href="/properties?town=bawku">
+    <Link href="/properties/latest?town=bawku">
       <a>Bawku</a>
     </Link>
-    <Link href="/properties?town=bekwai">
+    <Link href="/properties/latest?town=bekwai">
       <a>Bekwai</a>
     </Link>
-    <Link href="/properties?town=berekum">
+    <Link href="/properties/latest?town=berekum">
       <a>Berekum</a>
     </Link>
-    <Link href="/properties?town=bibiani">
+    <Link href="/properties/latest?town=bibiani">
       <a>Bibiani</a>
     </Link>
-    <Link href="/properties?town=bimbilla">
+    <Link href="/properties/latest?town=bimbilla">
       <a>Bimbilla</a>
     </Link>
-    <Link href="/properties?town=bolgatanga">
+    <Link href="/properties/latest?town=bolgatanga">
       <a>Bolgatanga</a>
     </Link>
-    <Link href="/properties?town=buduburam">
+    <Link href="/properties/latest?town=buduburam">
       <a>Buduburam</a>
     </Link>
-    <Link href="/properties?town=dome">
+    <Link href="/properties/latest?town=dome">
       <a>Dome</a>
     </Link>
-    <Link href="/properties?town=dzodze">
+    <Link href="/properties/latest?town=dzodze">
       <a>Dzodze</a>
     </Link>
-    <Link href="/properties?town=effiduase">
+    <Link href="/properties/latest?town=effiduase">
       <a>Effiduase</a>
     </Link>
-    <Link href="/properties?town=ejura">
+    <Link href="/properties/latest?town=ejura">
       <a>Ejura</a>
     </Link>
-    <Link href="/properties?town=elmina">
+    <Link href="/properties/latest?town=elmina">
       <a>Elmina</a>
     </Link>
-    <Link href="/properties?town=gbawe">
+    <Link href="/properties/latest?town=gbawe">
       <a>Gbawe</a>
     </Link>
-    <Link href="/properties?town=ho">
+    <Link href="/properties/latest?town=ho">
       <a>Ho</a>
     </Link>
-    <Link href="/properties?town=hohoe">
+    <Link href="/properties/latest?town=hohoe">
       <a>Hohoe</a>
     </Link>
-    <Link href="/properties?town=kade">
+    <Link href="/properties/latest?town=kade">
       <a>Kade</a>
     </Link>
-    <Link href="/properties?town=kintampo">
+    <Link href="/properties/latest?town=kintampo">
       <a>Kintampo</a>
     </Link>
-    <Link href="/properties?town=koforidua">
+    <Link href="/properties/latest?town=koforidua">
       <a>Koforidua</a>
     </Link>
-    <Link href="/properties?town=konongo">
+    <Link href="/properties/latest?town=konongo">
       <a>Konongo</a>
     </Link>
-    <Link href="/properties?town=lashibi">
+    <Link href="/properties/latest?town=lashibi">
       <a>Lashibi</a>
     </Link>
-    <Link href="/properties?town=madina">
+    <Link href="/properties/latest?town=madina">
       <a>Madina</a>
     </Link>
-    <Link href="/properties?town=mampong">
+    <Link href="/properties/latest?town=mampong">
       <a>Mampong</a>
     </Link>
-    <Link href="/properties?town=mandela">
+    <Link href="/properties/latest?town=mandela">
       <a>Mandela</a>
     </Link>
-    <Link href="/properties?town=mankessim">
+    <Link href="/properties/latest?town=mankessim">
       <a>Mankessim</a>
     </Link>
-    <Link href="/properties?town=mim">
+    <Link href="/properties/latest?town=mim">
       <a>Mim</a>
     </Link>
-    <Link href="/properties?town=east">
+    <Link href="/properties/latest?town=east">
       <a>East</a>
     </Link>
-    <Link href="/properties?town=nkawkaw">
+    <Link href="/properties/latest?town=nkawkaw">
       <a>Nkawkaw</a>
     </Link>
-    <Link href="/properties?town=nkoranza">
+    <Link href="/properties/latest?town=nkoranza">
       <a>Nkoranza</a>
     </Link>
-    <Link href="/properties?town=nsawam">
+    <Link href="/properties/latest?town=nsawam">
       <a>Nsawam</a>
     </Link>
-    <Link href="/properties?town=nsuatre">
+    <Link href="/properties/latest?town=nsuatre">
       <a>Nsuatre</a>
     </Link>
-    <Link href="/properties?town=oduponkpehe">
+    <Link href="/properties/latest?town=oduponkpehe">
       <a>Oduponkpehe</a>
     </Link>
-    <Link href="/properties?town=prestea">
+    <Link href="/properties/latest?town=prestea">
       <a>Prestea</a>
     </Link>
-    <Link href="/properties?town=sakumono">
+    <Link href="/properties/latest?town=sakumono">
       <a>Sakumono</a>
     </Link>
-    <Link href="/properties?town=savelugu">
+    <Link href="/properties/latest?town=savelugu">
       <a>Savelugu</a>
     </Link>
-    <Link href="/properties?town=suhum">
+    <Link href="/properties/latest?town=suhum">
       <a>Suhum</a>
     </Link>
-    <Link href="/properties?town=taifa">
+    <Link href="/properties/latest?town=taifa">
       <a>Taifa</a>
     </Link>
-    <Link href="/properties?town=tarkwa">
+    <Link href="/properties/latest?town=tarkwa">
       <a>Tarkwa</a>
     </Link>
-    <Link href="/properties?town=techiman">
+    <Link href="/properties/latest?town=techiman">
       <a>Techiman</a>
     </Link>
-    <Link href="/properties?town=wa">
+    <Link href="/properties/latest?town=wa">
       <a>Wa</a>
     </Link>
-    <Link href="/properties?town=wenchi">
+    <Link href="/properties/latest?town=wenchi">
       <a>Wenchi</a>
     </Link>
-    <Link href="/properties?town=winneba">
+    <Link href="/properties/latest?town=winneba">
       <a>Winneba</a>
     </Link>
-    <Link href="/properties?town=yeji">
+    <Link href="/properties/latest?town=yeji">
       <a>Yeji</a>
     </Link>
-    <Link href="/properties?town=yendi">
+    <Link href="/properties/latest?town=yendi">
       <a>Yendi</a>
     </Link>
-    <Link href="/properties?town=agona_swedru">
+    <Link href="/properties/latest?town=agona_swedru">
       <a>Agona Swedru</a>
     </Link>
-    <Link href="/properties?town=akim_oda">
+    <Link href="/properties/latest?town=akim_oda">
       <a>Akim Oda</a>
     </Link>
-    <Link href="/properties?town=assin_fosu">
+    <Link href="/properties/latest?town=assin_fosu">
       <a>Assin Fosu</a>
     </Link>
-    <Link href="/properties?town=cape_coast">
+    <Link href="/properties/latest?town=cape_coast">
       <a>Cape Coast</a>
     </Link>
-    <Link href="/properties?town=dormaa_ahenkro">
+    <Link href="/properties/latest?town=dormaa_ahenkro">
       <a>Dormaa Ahenkro</a>
     </Link>
-    <Link href="/properties?town=new_achimota">
+    <Link href="/properties/latest?town=new_achimota">
       <a>New Achimota</a>
     </Link>
-    <Link href="/properties?town=new_tafo">
+    <Link href="/properties/latest?town=new_tafo">
       <a>New Tafo</a>
     </Link>
-    <Link href="/properties?town=dunkwa_on_offin">
+    <Link href="/properties/latest?town=dunkwa_on_offin">
       <a>Dunkwa-on-Offin</a>
     </Link>
-    <Link href="/properties?town=tema_new_town">
+    <Link href="/properties/latest?town=tema_new_town">
       <a>Tema New Town</a>
     </Link>
   </Fragment>
