@@ -32,6 +32,10 @@ export default searchFilterFormSubmitEvent => {
         }
       });
       prevQuery = cleanQueryArr.join("&");
+
+      // END OF THE QUERYSTRING STILL HAS &page=33
+      // AND THIS IS CAUSING PROBLEM, LOOKS LIKE PAGE IS EMPTY
+      // BUT ACTUALLY IT SKIPS
       // remove page query if exists
       if (prevQuery.includes("&page=")) {
         prevQuery = prevQuery.slice(0, prevQuery.indexOf("&page="));
