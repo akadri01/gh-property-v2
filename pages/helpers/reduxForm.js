@@ -1,10 +1,35 @@
+/**
+ **
+ **  Redux-form input generators
+ **
+ **/
+
 import React, { Component, Fragment } from "react";
-import approveFileUpload from "../helpers/approve-file-upload";
 import { popupWindow } from "../helpers/popup";
 
+// File input
 export class RenderFileInput extends Component {
+  approveFileUpload = files => {
+    if (files.length > 6) {
+      return {
+        status: false,
+        msg: "Maximum 6 images."
+      };
+    }
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > 786432) {
+        return {
+          status: false,
+          msg: "Maximum image size is 750KB! Please reduce image size."
+        };
+      }
+    }
+    return {
+      status: true
+    };
+  };
   onChange = e => {
-    const { status, msg } = approveFileUpload(e.target.files);
+    const { status, msg } = this.approveFileUpload(e.target.files);
     if (!status) {
       e.target.value = "";
       return popupWindow(undefined, msg);
@@ -44,6 +69,7 @@ export class RenderFileInput extends Component {
   }
 }
 
+// text & password & number input
 export const renderFormInput = ({
   input,
   meta: { touched, error },
@@ -60,6 +86,7 @@ export const renderFormInput = ({
   </Fragment>
 );
 
+// select menu
 export const renderSelectField = ({
   input,
   label,
@@ -75,6 +102,7 @@ export const renderSelectField = ({
   </Fragment>
 );
 
+// Textarea
 export const renderTextarea = ({
   input,
   label,
@@ -90,6 +118,7 @@ export const renderTextarea = ({
   </Fragment>
 );
 
+// Checkbox
 export const renderCheckbox = ({ input, labelAndValue, id }) => (
   <div className="redux-checkbox-container">
     <input {...input} type="checkbox" id={id} value={labelAndValue} />

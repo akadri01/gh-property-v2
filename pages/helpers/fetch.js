@@ -1,3 +1,10 @@
+/**
+ **
+ **  Fetches data from server & converts to json
+ **
+ **  Utility function for getInitialProps method
+ **
+ **/
 import fetch from "isomorphic-unfetch";
 import { basePath } from "./basePath.js";
 

@@ -90,9 +90,17 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   skipQty,
   cb
 ) {
-  const { advert_type, region, town, premises_type } = queryObj;
+  // create search query object
+  const {
+    advert_type,
+    region,
+    town,
+    premises_type,
+    minPrice,
+    maxPrice,
+    posted_by
+  } = queryObj;
   const queryOptions = {};
-
   if (advert_type) {
     queryOptions.advert_type = advert_type;
   }
@@ -104,6 +112,16 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   }
   if (premises_type) {
     queryOptions.premises_type = premises_type;
+  }
+  if (posted_by) {
+    queryOptions.posted_by = posted_by;
+  }
+  if (maxPrice && minPrice) {
+    queryOptions.price = { $gt: parseInt(minPrice), $lt: parseInt(maxPrice) };
+  } else if (maxPrice) {
+    queryOptions.price = { $lt: parseInt(maxPrice) };
+  } else if (minPrice) {
+    queryOptions.price = { $gt: parseInt(minPrice) };
   }
 
   // first find record count to display

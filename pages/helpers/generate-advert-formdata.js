@@ -1,5 +1,23 @@
+/**
+ **
+ **  Organizes form values before being submited
+ **
+ **  Utility function for user advert post. Being used in /pages/redux/action/index.js
+ **
+ **/
+
+import { featuresCheckboxFieldList } from "../components/shared/data";
 import { getUserDataFromLocalStorage } from "./localStorage";
-import sortFeatures from "./sort-property-features";
+
+const sortFeatures = formValues => {
+  const arr = [];
+  featuresCheckboxFieldList.forEach(obj => {
+    if (formValues.hasOwnProperty(obj.idAndName)) {
+      arr.push(obj.labelAndValue);
+    }
+  });
+  return arr;
+};
 
 export default formValues => {
   const formData = new FormData();

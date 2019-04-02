@@ -1,3 +1,9 @@
+/**
+ **
+ **  Pluralizing strings
+ **
+ **/
+
 const addPlural = (str, add) => {
   if (!add) {
     return str + "s";

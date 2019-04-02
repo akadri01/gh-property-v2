@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import createFooterLink from "../../helpers/create-footer-links";
 import { towns, seoLinks, typeLinks } from "../shared/data";
+
+const createLink = (base, link, key, val) => (
+  <Link
+    href={`/${base}${key}=${val ? val.toLowerCase() : link.toLowerCase()}`}
+    key={link}
+  >
+    <a>{link}</a>
+  </Link>
+);
 
 export default () => (
   <Fragment>
@@ -12,7 +20,7 @@ export default () => (
             <h2>buy house, flat, land in Ghana</h2>
             <div>
               {towns.map(link => {
-                return createFooterLink("properties/latest?", link, "town");
+                return createLink("properties/latest?", link, "town");
               })}
             </div>
           </div>
@@ -20,7 +28,7 @@ export default () => (
             <h2>Properties in Accra</h2>
             <div>
               {seoLinks.map((link, i) => {
-                return createFooterLink(
+                return createLink(
                   "properties/latest?town=accra&",
                   link,
                   "premises_type",

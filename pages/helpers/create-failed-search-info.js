@@ -1,3 +1,8 @@
+/**
+ **
+ **  Generatest information for user if search fails
+ **
+ **/
 export default (query, info = "") => {
   // detach failed parameters
   const failedQueryObj = query

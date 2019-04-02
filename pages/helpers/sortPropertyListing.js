@@ -1,3 +1,9 @@
+/**
+ **
+ **  Handles sort filter form submit
+ **
+ **/
+
 import Router from "next/router";
 import {
   saveNewSortQueryToLocalStorage,
