@@ -86,6 +86,9 @@ export default props => {
                       </div>
                     )}
                   </div>
+                  <span className="listing__container-item--type">
+                    {advert_type === "rent" ? "Rental " : "For Sale "}
+                  </span>
                 </a>
               </Link>
             );

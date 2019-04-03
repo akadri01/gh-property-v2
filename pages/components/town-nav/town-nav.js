@@ -35,13 +35,13 @@ export default () => (
     </div>
     <div className="top">
       {insertImageFrame(
-        "/properties?town=accra",
+        "/properties/latest?town=accra",
         "Accra",
         "accra-mobile.jpg",
         "accra-desktop.jpg"
       )}
       {insertImageFrame(
-        "/properties?town=kumasi",
+        "/properties/latest?town=kumasi",
         "Kumasi",
         "kumasi-mobile.jpg",
         "kumasi-desktop.jpg"
@@ -49,19 +49,19 @@ export default () => (
     </div>
     <div className="middle">
       {insertImageFrame(
-        "/properties?town=tamale",
+        "/properties/latest?town=tamale",
         "Tamale",
         "tamale-mobile.jpg",
         "tamale-desktop.jpg"
       )}
       {insertImageFrame(
-        "/properties?town=takoradi",
+        "/properties/latest?town=takoradi",
         "Takoradi",
         "takoradi-mobile.jpg",
         "takoradi-desktop.jpg"
       )}
       {insertImageFrame(
-        "/properties?town=sunyani",
+        "/properties/latest?town=sunyani",
         "Sunyani",
         "sunyani-mobile.jpg",
         "sunyani-desktop.jpg"
@@ -69,7 +69,7 @@ export default () => (
     </div>
     <div className="bottom">
       {insertImageFrame(
-        "/properties?town=obuasi",
+        "/properties/latest?town=obuasi",
         "Obuasi",
         "obuasi-mobile.jpg",
         "obuasi-desktop.jpg"

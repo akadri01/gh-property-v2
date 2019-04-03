@@ -27,6 +27,8 @@ export default ({ property }) => {
     ref,
     region,
     posted_by,
+    furniture,
+    garden,
     rooms_qty,
     title,
     total_balcony,
@@ -101,8 +103,16 @@ export default ({ property }) => {
                   <span>Bathroom Quantity</span>
                   <b>{total_bathroom == 0 ? "No Bathrooms" : total_bathroom}</b>
                 </li>
+                <li>
+                  <span>Garden</span>
+                  <b>{garden}</b>
+                </li>
               </ul>
               <ul>
+                <li>
+                  <span>Furnished</span>
+                  <b>{furniture}</b>
+                </li>
                 <li>
                   <span>Balcony</span>
                   <b>{total_balcony == 0 ? "No Balcony" : total_balcony}</b>

@@ -33,3 +33,11 @@
   transform: translateY(0) !important;
   opacity: 1 !important;
 }
+
+.display-filter-options {
+  height: 180px !important;
+  opacity: 1 !important;
+  @include desktopSmall {
+    height: 80px !important;
+  }
+}

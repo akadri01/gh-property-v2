@@ -8,6 +8,16 @@ import handleFilterFormSubmit from "../../helpers/filter-form-submit";
 export default () => {
   return (
     <section className="listing__filter">
+      <button
+        className="listing__filter--expose-filter-btn"
+        onClick={() => {
+          document
+            .getElementById("filterForm")
+            .classList.toggle("display-filter-options");
+        }}
+      >
+        Filter
+      </button>
       <form
         className="listing__filter-form default-redux-form"
         id="filterForm"
@@ -50,7 +60,7 @@ export default () => {
             })}
           </select>
         </div>
-        <button>Filter</button>
+        <button className="listing__filter-form-btn">Filter</button>
       </form>
     </section>
   );
