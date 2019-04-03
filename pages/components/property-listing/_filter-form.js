@@ -3,7 +3,7 @@ import {
   MinPriceOptionsForSale
 } from "../shared/index.js";
 import { locationTownSelectField } from "../shared/data.js";
-import handleFilterFormSubmit from "../../helpers/filter-form-submit";
+import { filterFormSubmit } from "../../helpers/form-submit-redirects.js";
 
 export default () => {
   return (
@@ -21,7 +21,7 @@ export default () => {
       <form
         className="listing__filter-form default-redux-form"
         id="filterForm"
-        onSubmit={handleFilterFormSubmit}
+        onSubmit={filterFormSubmit}
       >
         <div className="redux-input-container">
           <label>Premises type</label>

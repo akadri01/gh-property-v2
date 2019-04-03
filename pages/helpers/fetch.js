@@ -6,7 +6,10 @@
  **
  **/
 import fetch from "isomorphic-unfetch";
-import { basePath } from "./basePath.js";
+import { DOMAIN_NAME } from "../../globals/globals.json";
+import { HOST_PORT } from "../../globals/globals.json";
+
+const basePath = process.env.NODE_ENV === "development" ? HOST_PORT : HOST_PORT; //: DOMAIN_NAME;
 
 export default async url => {
   let fetched = await fetch(`${basePath}${url}`);
