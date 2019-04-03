@@ -1,19 +1,74 @@
 .listing {
   margin-top: 60px;
   color: $color-black;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
   @include desktopSmall {
-    padding-top: 30px;
     padding-bottom: 50px;
   }
   &--title {
     font-size: $font-size-xlarge;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
   &--no-result-img {
     display: block;
     margin: 12vh auto 20vh;
     width: 240px;
+  }
+  &__filter {
+    &--expose-filter-btn {
+      @include backgroundIcon("controls.svg", 24px, 5px 10px);
+      background-color: transparent;
+      text-align: right;
+      border: $gray-border;
+      display: block;
+      width: 80px;
+      height: 44px;
+      text-transform: uppercase;
+      font-size: $font-size-small;
+      margin-left: calc(100% - 80px);
+      &:hover {
+        border-color: $color-green;
+      }
+    }
+    &-form {
+      height: 0;
+      opacity: 0;
+      transition: height 0.3s $transition, opacity 0.4s $transition 0.1s;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @include desktopSmall {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .redux-input-container {
+        width: 49%;
+        height: 33px;
+        margin-bottom: 22px;
+        @include desktopSmall {
+          margin-bottom: 0;
+          width: 16.5%;
+        }
+        select {
+          height: 33px;
+        }
+      }
+      &-btn {
+        width: 49% !important;
+        margin-top: 26px;
+        background: url("/static/images/icons/right-fat-arrow-white.svg")
+          $color-yellow no-repeat 16% center !important;
+        background-size: 18px !important;
+        font-size: $font-size-medium !important;
+        height: 33px !important;
+        @include desktopSmall {
+          width: 13% !important;
+        }
+      }
+    }
   }
   &__sort {
     width: 250px;
@@ -138,6 +193,20 @@
           color: $color-black;
           font-weight: 900;
         }
+      }
+      &--type {
+        font-weight: 900;
+        display: block;
+        width: 80px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: $color-yellow;
+        color: $color-black;
+        font-size: $font-size-small;
+        padding-top: 4px;
+        text-align: center;
+        padding-bottom: 2px;
       }
     }
   }
