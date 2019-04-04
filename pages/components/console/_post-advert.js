@@ -33,7 +33,28 @@ class PostAdvert extends Component {
     super(props);
     this.props = props;
   }
+  postAd = async formValues => {
+    displayLoader("#postAdvertSubmit");
+    const { payload } = await this.props.dispatch(postAdvert(formValues));
+    removeLoader("#postAdvertSubmit");
+    if (!payload._id) {
+      return popupWindow(
+        "postAdvertForm",
+        "Unfortunately we were not able to post your ad. Please try again later."
+      );
+    }
+    saveUserDataToLocalStorage(payload);
+    popupWindow("postAdvertForm", "Congratulations, your advert is live!");
+    setTimeout(() => {
+      payload.posts_allowed < 1
+        ? Router.push("/user/topup")
+        : window.location.reload(false);
+    }, 3500);
+  };
 
+  componentDidMount() {
+    checkForPopup();
+  }
   render() {
     return (
       <Fragment>
@@ -318,29 +339,6 @@ class PostAdvert extends Component {
         </form>
       </Fragment>
     );
-  }
-
-  postAd = async formValues => {
-    displayLoader("#postAdvertSubmit");
-    const { payload } = await this.props.dispatch(postAdvert(formValues));
-    removeLoader("#postAdvertSubmit");
-    if (!payload._id) {
-      return popupWindow(
-        "postAdvertForm",
-        "Unfortunately we were not able to post your ad. Please try again later."
-      );
-    }
-    saveUserDataToLocalStorage(payload);
-    popupWindow("postAdvertForm", "Congratulations, your advert is live!");
-    setTimeout(() => {
-      payload.posts_allowed < 1
-        ? Router.push("/user/topup")
-        : window.location.reload(false);
-    }, 3500);
-  };
-
-  componentDidMount() {
-    checkForPopup();
   }
 }
 
