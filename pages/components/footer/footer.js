@@ -64,16 +64,19 @@ export default () => (
           width="150px"
         />
         <div className="footer-end__links">
-          <Link href="/about">
-            <a>About us</a>
-          </Link>
-          <Link href="/contact">
+          <Link href="/contact-us">
             <a>Contact us</a>
+          </Link>
+          <Link href="/faq">
+            <a>FAQ</a>
+          </Link>
+          <Link href="/about-us">
+            <a>About us</a>
           </Link>
           <Link href="/terms">
             <a>Terms & conditions</a>
           </Link>
-          <Link href="/policy">
+          <Link href="/privacy-policy">
             <a>Privacy policy</a>
           </Link>
         </div>

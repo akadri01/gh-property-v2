@@ -12,6 +12,7 @@ const Properties = require("../../db/models/property.js");
 const PAGINATION_QUANTITY = require("../../globals/globals.json")
   .PAGINATION_QUANTITY;
 const logError = helpers.logError;
+const Enquire = require("../../db/models/enquire");
 
 class ApiRouter {
   constructor(router) {
@@ -43,6 +44,10 @@ class ApiRouter {
       enableCors(),
       this.fetchProperty.bind(this)
     ]);
+    this.router.post("/enquire", [
+      enableCors(),
+      this.saveCustomerEnquire.bind(this)
+    ]);
   }
 
   fetchProperty(req, res) {
@@ -54,6 +59,17 @@ class ApiRouter {
         logError(e, "Error: Api > fetchProperty()");
         return res.json({});
       });
+  }
+
+  saveCustomerEnquire({ body }) {
+    const enquire = new Enquire({
+      name: body.name,
+      contact: body.contact,
+      text: body.text
+    });
+    enquire.save().catch(e => {
+      logError(e, "Error: Api > saveCustomerEnquire()");
+    });
   }
 
   searchSortPaginate(req, res) {

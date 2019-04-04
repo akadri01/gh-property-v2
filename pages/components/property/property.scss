@@ -22,17 +22,18 @@
 .go-to-previous-page {
   margin-top: 20px;
   button {
-    width: 190px;
-    text-indent: 34px;
+    width: 176px;
+    text-indent: 24px;
     height: 45px;
     background: white;
     font-size: $font-size-large;
     border: 2px solid $color-green;
     text-transform: uppercase;
     transition: 0.3s $transition;
-    @include backgroundIcon("previous-page.svg", 28px, 13px center);
+    @include backgroundIcon("previous-page.svg", 20px, 10px center);
     &:hover {
-      background-position: 6px center;
+      background-position: 7px center;
+      color: $color-green;
     }
   }
 }

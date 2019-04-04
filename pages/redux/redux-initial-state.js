@@ -1,4 +1,5 @@
 export const reduxInitialState = {
   user: [],
-  property: []
+  property: [],
+  enquire: false
 };

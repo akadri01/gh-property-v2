@@ -8,4 +8,9 @@ module.exports = routes()
   .add("/user/auth", "_pages/auth")
   .add("/user/console", "_pages/console")
   .add("/user/topup", "_pages/topup")
-  .add("/property/:id", "_pages/property");
+  .add("/property/:id", "_pages/property")
+  .add("/contact-us", "_pages/contact-us")
+  .add("/about-us", "_pages/static/about-us")
+  .add("/terms", "_pages/static/terms")
+  .add("/faq", "_pages/static/faq")
+  .add("/privacy-policy", "_pages/static/privacy-policy");
