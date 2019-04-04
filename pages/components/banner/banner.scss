@@ -84,14 +84,14 @@
         background-color: white;
         color: $color-green;
         top: 0;
-        height: 30px;
-        width: 30px;
         border: 0;
         left: 22%;
         border-radius: 6px;
         cursor: pointer;
         margin-right: 5px;
         outline: none;
+        height: 31px;
+        width: 25px;
       }
       input:checked::before {
         position: absolute;
@@ -113,6 +113,8 @@
         cursor: pointer;
         color: white;
         font-size: calculateRem(13px);
+        width: 47px;
+        text-align: center;
       }
     }
     button {

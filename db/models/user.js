@@ -17,7 +17,6 @@ const userSchema = new schema({
     type: String,
     required: true
   },
-  phone: String,
   posts: Array, // {id, url, title}
   posts_allowed: {
     type: Number,

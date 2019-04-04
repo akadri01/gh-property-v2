@@ -7,7 +7,13 @@ export default () => (
     <select name="location">{LocationOptions}</select>
     <div className="banner__form-radios">
       <div className="banner__form-radios-radio">
-        <input id="forRent" type="radio" name="advert_type" value="sale" />
+        <input
+          id="forRent"
+          type="radio"
+          name="advert_type"
+          value="sale"
+          checked="true"
+        />
         <label htmlFor="forRent">For sale</label>
       </div>
       <div className="banner__form-radios-radio">
