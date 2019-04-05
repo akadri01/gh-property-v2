@@ -165,3 +165,22 @@
     margin: 0.75rem auto 2.625rem auto;
   }
 }
+
+.go-to-previous-page {
+  margin-top: 20px;
+  button {
+    width: 176px;
+    text-indent: 24px;
+    height: 45px;
+    background: white;
+    font-size: $font-size-large;
+    border: 2px solid $color-green;
+    text-transform: uppercase;
+    transition: 0.3s $transition;
+    @include backgroundIcon("previous-page.svg", 20px, 10px center);
+    &:hover {
+      background-position: 7px center;
+      color: $color-green;
+    }
+  }
+}
