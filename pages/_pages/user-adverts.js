@@ -3,7 +3,7 @@ import Head from "next/head";
 import "../styles/Main.scss";
 import Navigation from "../components/navigation/navigation";
 import Footer from "../components/footer/footer";
-import UserAdverts from "../components/user/user-adverts/user-adverts";
+import UserAdverts from "../containers/user-adverts.js";
 
 export default () => (
   <Fragment>

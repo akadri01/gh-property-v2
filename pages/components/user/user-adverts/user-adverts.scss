@@ -1,0 +1,10 @@
+.posted {
+  h1 {
+    margin-top: 90px;
+  }
+  .console__profile-frame-property {
+    @include desktopSmall {
+      width: 600px;
+    }
+  }
+}
