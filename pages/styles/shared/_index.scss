@@ -1,8 +1,15 @@
+%redux-form-borders {
+  border: $gray-border;
+  &:hover {
+    border-color: $color-yellow;
+  }
+}
+
 .mobile-desktop-frame {
   width: 92%;
   margin: 0 auto;
-  @include desktopSmall {
-    max-width: 1200px;
+  @include desktopMedium {
+    max-width: 1300px;
   }
 }
 .popup-window {
@@ -51,17 +58,17 @@
   input[type="email"],
   input[type="number"] {
     text-indent: 10px;
-    height: 42px;
+    height: 33px;
     font-size: $font-size-medium;
-    border: 1px solid #c6cece;
+    @extend %redux-form-borders;
     width: 100%;
   }
   select {
     font-size: $font-size-medium;
     padding-left: 28px;
     @include backgroundIcon("list.svg", 13px, 12px center);
-    border: 1px solid #c6cece;
-    height: 42px;
+    @extend %redux-form-borders;
+    height: 33px;
     width: 100%;
     background-color: transparent;
   }
@@ -73,7 +80,7 @@
     margin: 7px 0 2px;
   }
   .redux-input-container {
-    height: 57px;
+    height: 45px;
   }
   .redux-form-file-input-container {
     margin-bottom: 16px;
@@ -85,7 +92,7 @@
       padding-top: 10px;
       height: 110px;
       font-size: $font-size-medium;
-      border: 1px solid #c6cece;
+      @extend %redux-form-borders;
       width: 100%;
     }
   }

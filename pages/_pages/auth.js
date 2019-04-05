@@ -3,7 +3,7 @@ import Head from "next/head";
 import "../styles/Main.scss";
 import Navigation from "../containers/navigation";
 import Footer from "../components/footer/footer";
-import Auth from "../components/auth/index.js";
+import Auth from "../components/user/auth/index.js";
 
 export default () => (
   <Fragment>

@@ -3,7 +3,7 @@ import Router from "next/router";
 import isAuthorized from "../helpers/auth-on-client.js";
 import { connect } from "react-redux";
 import { refreshUserConsole } from "../redux/actions";
-import UserConsole from "../components/console/console.js";
+import UserConsole from "../components/user/console/console.js";
 
 class UserData extends Component {
   constructor(props) {

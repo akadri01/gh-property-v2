@@ -4,11 +4,11 @@ import { reduxForm, Field } from "redux-form";
 import isValidEmail from "sane-email-validation";
 import { required, email, length, confirmation } from "redux-form-validators";
 
-import { registerUser } from "../../redux/actions";
-import { renderFormInput } from "../../helpers/reduxForm";
-import { saveUserDataToLocalStorage } from "../../helpers/localStorage.js";
-import { popupWindow, checkForPopup } from "../../helpers/popup.js";
-import { displayLoader, removeLoader } from "../../helpers/btn-loader.js";
+import { registerUser } from "../../../redux/actions";
+import { renderFormInput } from "../../../helpers/reduxForm";
+import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
+import { popupWindow, checkForPopup } from "../../../helpers/popup.js";
+import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 
 class registerForm extends Component {
   render() {

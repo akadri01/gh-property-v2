@@ -46,14 +46,9 @@
       }
       .redux-input-container {
         width: 49%;
-        height: 33px;
-        margin-bottom: 22px;
         @include desktopSmall {
           margin-bottom: 0;
           width: 16.5%;
-        }
-        select {
-          height: 33px;
         }
       }
       &-btn {

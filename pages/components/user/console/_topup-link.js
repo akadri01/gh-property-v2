@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
-import isPlural from "../../helpers/isPlural.js";
+import isPlural from "../../../helpers/isPlural.js";
 
 export default ({ name, posts_allowed }) => (
   <Fragment>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Router from "next/router";
-import { popupWindow } from "../../helpers/popup.js";
-import { saveUserDataToLocalStorage } from "../../helpers/localStorage.js";
+import { popupWindow } from "../../../helpers/popup.js";
+import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
 import FacebookLogin from "react-facebook-login";
-import { FACEBOOK_APP_ID } from "../../../config/index.js";
+import { FACEBOOK_APP_ID } from "../../../../config/index.js";
 
 export default class FacebookLoginForm extends Component {
   render() {

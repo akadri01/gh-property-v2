@@ -1,0 +1,215 @@
+// extends
+%small-icons-container {
+  position: relative;
+  height: 35px;
+  display: inline-block;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// layout
+.console {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  @include desktopSmall {
+    display: flex;
+    justify-content: space-between;
+    &__topup {
+      width: 100%;
+    }
+    &__profile {
+      width: 30%;
+    }
+    &__post-advert {
+      width: 68%;
+    }
+  }
+  @include desktopMedium {
+    display: flex;
+    justify-content: space-between;
+    &__profile {
+      width: 23%;
+    }
+    &__post-advert {
+      width: 73%;
+    }
+  }
+}
+
+.console {
+  @include navbarGap;
+  position: relative;
+  .section-main-title {
+    padding-top: 40px;
+    text-align: center;
+  }
+  &__profile {
+    .section-main-title {
+      @include backgroundIcon("history.svg", 37px, center 0px);
+    }
+    &-frame {
+      margin-top: 54px;
+      &-adverts-anchor {
+        color: $color-black;
+        display: block;
+        margin-top: 25px;
+        width: 216px;
+        border-bottom: 2px solid $color-black;
+        font-weight: 900;
+        transition: 0.3s $transition;
+        @include backgroundIcon("right-arrow-black.svg", 18px, 188px center);
+        &:hover {
+          background-position: 196px center;
+        }
+      }
+      &-property {
+        margin-bottom: 10px;
+        border: $gray-border;
+        padding: 16px 4px 14px;
+        position: relative;
+        &:hover {
+          border-color: $color-yellow;
+        }
+        &-content {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          &-img-wrapper {
+            width: 28%;
+            img {
+              width: 100%;
+            }
+          }
+          h4 {
+            width: 68%;
+            font-size: $font-size-medium;
+            margin-top: 0;
+            margin-bottom: 0;
+            @include desktopSmall {
+              font-size: $font-size-small;
+              line-height: $font-size-medium;
+            }
+          }
+        }
+        &-controls {
+          width: 90px;
+          display: flex;
+          justify-content: space-between;
+          position: absolute;
+          right: 4px;
+          bottom: 4px;
+          img {
+            display: block;
+            width: 22px;
+            margin: 0 auto;
+          }
+          span {
+            text-align: center;
+            font-size: $font-size-tiny;
+            line-height: 0;
+            margin-top: 7px;
+            display: block;
+            font-family: $font-family-title;
+            text-transform: uppercase;
+          }
+          &-edit {
+            @extend %small-icons-container;
+            span {
+              color: $color-green;
+            }
+          }
+          &-remove {
+            @extend %small-icons-container;
+            margin-left: 20px;
+            span {
+              color: #ff2800;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__topup {
+    z-index: 2;
+    position: fixed;
+    top: 65px;
+    background: white;
+    width: 92%;
+    height: 58px;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    &-text-container {
+      margin-top: 6px;
+      &-text {
+        font-size: $font-size-small;
+        margin-top: 9px;
+        display: block;
+        b {
+          color: red;
+          text-decoration: underline;
+        }
+      }
+      &-btn {
+        background: $color-yellow;
+        display: inline-block;
+        margin-top: 10px;
+        padding-top: 12px;
+        padding-left: 38px;
+        width: 100px;
+        height: 40px;
+        font-weight: 900;
+        text-decoration: underline;
+        @include backgroundIcon("cedis.svg", 23px, 10px center);
+      }
+    }
+  }
+  &__post-advert {
+    .section-main-title {
+      @include backgroundIcon("paper-plane.svg", 37px, center 0);
+    }
+    &-form {
+      &-section-title {
+        margin-top: 18px;
+        padding-left: 30px;
+        @include backgroundIcon("down-tick.svg", 27px, 0 center);
+        color: $color-green;
+        @include desktopSmall {
+          margin-top: 40px;
+        }
+      }
+      .desktop-flex-container {
+        @include tablet {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          .desktop-flex {
+            width: 46%;
+            @include desktopSmall {
+              width: 32%;
+              margin-bottom: 5px;
+            }
+            @include desktopMedium {
+              width: 24%;
+            }
+          }
+        }
+      }
+      &-features-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .redux-checkbox-container {
+          width: 50%;
+          @include desktopSmall {
+            width: 190px;
+          }
+        }
+      }
+      &-submit-btn {
+        margin-top: 25px;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import WithFacebook from "./_facebook";
 import RegisterForm from "./_register";
 import LoginForm from "./_login.js";
 import Router from "next/router";
-import { getUserDataFromLocalStorage } from "../../helpers/localStorage.js";
+import { getUserDataFromLocalStorage } from "../../../helpers/localStorage.js";
 
 export default class Auth extends Component {
   render() {

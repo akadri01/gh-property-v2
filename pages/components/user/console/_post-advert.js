@@ -2,17 +2,17 @@ import React, { Component, Fragment } from "react";
 import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
 import { required, email, length, confirmation } from "redux-form-validators";
-import { popupWindow, checkForPopup } from "../../helpers/popup.js";
-import { displayLoader, removeLoader } from "../../helpers/btn-loader.js";
-import { saveUserDataToLocalStorage } from "../../helpers/localStorage.js";
+import { popupWindow, checkForPopup } from "../../../helpers/popup.js";
+import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
+import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
 import {
   RenderFileInput,
   renderFormInput,
   renderSelectField,
   renderTextarea,
   renderCheckbox
-} from "../../helpers/reduxForm";
-import { postAdvert } from "../../redux/actions";
+} from "../../../helpers/reduxForm";
+import { postAdvert } from "../../../redux/actions";
 import {
   premisesTypeSelectField,
   featuresCheckboxFieldList,
@@ -26,7 +26,7 @@ import {
   roomsSelectField,
   locationRegionSelectField,
   locationTownSelectField
-} from "../shared/data";
+} from "../../shared/data";
 
 class PostAdvert extends Component {
   constructor(props) {
