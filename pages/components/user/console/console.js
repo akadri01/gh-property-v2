@@ -5,7 +5,6 @@ import PostAdvert from "./_post-advert";
 import UserProfile from "./_user-profile";
 
 export default ({ userData }) => {
-  console.log(userData);
   return (
     <section className="console mobile-desktop-frame">
       <div className="console__topup">

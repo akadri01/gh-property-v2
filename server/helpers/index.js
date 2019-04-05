@@ -13,7 +13,7 @@ const randomString = require("randomstring");
 const multer = require("multer");
 const sendGrid = require("@sendgrid/mail");
 const config = require("../../config/");
-const logger = require("./logger");
+const logger = require("./_logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 
 var helperMethods = {
@@ -182,18 +182,14 @@ var helperMethods = {
         );
       }
     } /*for loop ends*/
-
-    // save croped img name to session
     req.session.filename.unshift(newThumbnailName);
     return next();
   },
 
   handleCropFailure(done, directory) {
-    if (!done) {
-      if (fs.existsSync(directory)) {
-        rimraf.sync(directory);
-      }
-    }
+    return !done && fs.existsSync(directory)
+      ? rimraf.sync(directory)
+      : undefined;
   }
 };
 

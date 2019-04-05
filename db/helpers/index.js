@@ -1,25 +1,28 @@
 "use strict";
 
 const User = require("../models/user");
-const logger = require("../../server/helpers/logger");
 const Property = require("../models/property");
+const logError = require("../../server/helpers/index.js").logError;
 
 const databaseHelpers = {
   createAdUpdateUser: async (body, session, cb) => {
     try {
-      // verify user credit
       const user = await User.findById(body.userId);
       if (user.posts_allowed < 1) {
         return cb(user);
       }
-      // create new add
-      const property = await Property.createNew(body, session);
-      // update user
-      const thumbnailPath = property.img_directory + "/" + property.images[0];
+      const {
+        img_directory,
+        images,
+        user_id,
+        url,
+        title
+      } = await Property.createNew(body, session);
+      const thumbnailPath = img_directory + "/" + images[0];
       User.updatePropertyAdverts(
-        property.user_id,
-        property.url,
-        property.title,
+        user_id,
+        url,
+        title,
         thumbnailPath,
         (e, user) => {
           if (e || !user) {
@@ -29,13 +32,26 @@ const databaseHelpers = {
         }
       );
     } catch (e) {
-      console.log(e);
-      logger.log(
-        "Error: can NOT save new advert! dbHelpers =>> createAdUpdateUser()",
-        e
-      );
+      logError(e, "Error: > createAdUpdateUser()");
       return cb({});
     }
+  },
+
+  removeAdvert: (userId, propertyUrl, cb) => {
+    Property.findOneAndRemove({ url: propertyUrl }).catch(e => {
+      logError(e, "Error > removeAdvert() findOneAndRemove()");
+      return cb(false);
+    });
+    User.findById(userId)
+      .then(user => {
+        user.posts = user.posts.filter(({ url }) => url !== propertyUrl);
+        user.save();
+        return cb(user);
+      })
+      .catch(e => {
+        logError(e, "Error > removeAdvert() findById()");
+        return cb(false);
+      });
   }
 };
 

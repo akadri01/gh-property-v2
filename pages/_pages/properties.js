@@ -12,8 +12,6 @@ import {
 
 class Properties extends Component {
   static async getInitialProps({ req }) {
-    console.log(req.url);
-    // req.url format --->  /properties?advert_type=rent&type=flat&...
     const data = await fetch(`/api/fetch${req.url}`);
     if (!data || !data.length || !Array.isArray(data)) {
       return {
@@ -21,13 +19,12 @@ class Properties extends Component {
         searchQuery: req.url,
         searchResultsQty: 0
       };
-    } else {
-      return {
-        properties: data[0],
-        searchResultsQty: parseInt(data[1]),
-        searchQuery: req.url
-      };
     }
+    return {
+      properties: data[0],
+      searchResultsQty: parseInt(data[1]),
+      searchQuery: req.url
+    };
   }
 
   render() {
@@ -46,7 +43,7 @@ class Properties extends Component {
 
   componentDidMount() {
     savePropertySearchQueryToLocalStorage(this.props.searchQuery);
-    setInitialSortQueryToLocalStorage(); // default filter: latest
+    setInitialSortQueryToLocalStorage();
   }
 }
 

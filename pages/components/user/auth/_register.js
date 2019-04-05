@@ -79,7 +79,7 @@ class registerForm extends Component {
     const { payload } = await this.props.dispatch(registerUser(formValues));
     removeLoader("#registerSubmitBtn");
     if (payload._id) {
-      saveUserDataToLocalStorage(data);
+      saveUserDataToLocalStorage(payload);
       return Router.push("/user/console");
     }
     if (payload.dublicate) {
