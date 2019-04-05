@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Router from "next/router";
 import Head from "next/head";
 import "../styles/Main.scss";
 import BuyCredit from "../components/user/buy-credit/buy-credit";
@@ -13,6 +14,15 @@ export default () => (
     </Head>
     <Navigation />
     <BuyCredit />
+    <div className="go-to-previous-page mobile-desktop-frame">
+      <button
+        onClick={() => {
+          Router.push("/user/adverts");
+        }}
+      >
+        Posted ads
+      </button>
+    </div>
     <Footer />
   </Fragment>
 );

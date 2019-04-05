@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const enableCors = require("cors");
 const rimraf = require("rimraf");
+const _isEmpty = require("lodash.isempty");
+const path = require("path");
 const User = require("../../db/models/user");
 const Property = require("../../db/models/property");
 const helpers = require("../helpers");
@@ -48,13 +50,36 @@ class ApiRouter {
       enableCors(),
       this.saveCustomerEnquire.bind(this)
     ]);
+    this.router.delete("/user/remove/advert", [
+      enableCors(),
+      this.userRemoveAdvert.bind(this)
+    ]);
+  }
+
+  userRemoveAdvert(req, res) {
+    if (_isEmpty(req.body)) {
+      return res.json({});
+    }
+    const { url, userId, imgDirectory } = req.body;
+    // removeAdvert returns updated user
+    dbHelpers.removeAdvert(userId, url, user => {
+      if (_isEmpty(user)) {
+        return res.json({});
+      }
+      if (imgDirectory !== "placeholders") {
+        const directory = path.join(
+          "./static/images/property-uploads/",
+          imgDirectory
+        );
+        rimraf.sync(directory);
+      }
+      return res.json(user);
+    });
   }
 
   fetchProperty(req, res) {
     Property.findOne({ url: req.params.url })
-      .then(property => {
-        res.json(property);
-      })
+      .then(property => res.json(property))
       .catch(e => {
         logError(e, "Error: Api > fetchProperty()");
         return res.json({});
@@ -67,38 +92,33 @@ class ApiRouter {
       contact: body.contact,
       text: body.text
     });
-    enquire.save().catch(e => {
-      logError(e, "Error: Api > saveCustomerEnquire()");
-    });
+    enquire
+      .save()
+      .catch(e => logError(e, "Error: Api > saveCustomerEnquire()"));
   }
 
   searchSortPaginate(req, res) {
-    const sortParam = req.params.sort;
-    // default sort is by date
+    const { sort } = req.params;
     const sortQuery =
-      sortParam === "highest"
+      sort === "highest"
         ? { price: -1 }
-        : sortParam === "lowest"
+        : sort === "lowest"
         ? { price: 1 }
         : { date: -1 };
-
     const searchQueryObj = req.query;
     const limitQty = PAGINATION_QUANTITY;
     const skipQty = req.query.page
       ? parseInt(req.query.page) * PAGINATION_QUANTITY
       : 0;
-
     Property.searchSortWithTotalRecordQty(
       searchQueryObj,
       sortQuery,
       limitQty,
       skipQty,
-      (properties, totalRecordQty) => {
-        if (!properties || !totalRecordQty) {
-          return res.json({});
-        }
-        return res.json([properties, totalRecordQty]);
-      }
+      (properties, totalRecordQty) =>
+        !properties || !totalRecordQty
+          ? res.json({})
+          : res.json([properties, totalRecordQty])
     );
   }
 
@@ -131,7 +151,6 @@ class ApiRouter {
     dbHelpers.createAdUpdateUser(body, req.session, updatedUser => {
       req.session.filename = [];
       req.session.directory = null;
-      // remove images if user doesn't have credit
       if (updatedUser.posts_allowed && updatedUser.posts_allowed < 1) {
         rimraf.sync(req.session.directory);
       }
@@ -142,13 +161,11 @@ class ApiRouter {
   // To test this route >>>>  http://127.0.0.1:3000/api/user/email-confirmation?id=5c39bf553a07e22b8cdd4a5b
   confirmUserEmail(req, res) {
     User.confirmEmail(req.query.id, user => {
-      if (!user || user === null) {
-        // user email confirm internal error
+      if (_isEmpty(user)) {
         return res.redirect(
           "/user/auth?popup=Email%20confirmation%20failed%2C%20Please%20contact%20us!"
         );
       }
-      // user email confirmed and redirected to user login
       return res.redirect(
         "/user/auth?popup=Congragulation%2C%20now%20please%20log%20into%20your%20account."
       );

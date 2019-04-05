@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
+import Router from "next/router";
 import Link from "next/link";
 import isPlural from "../../../helpers/isPlural.js";
+import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
+import { popupWindow } from "../../../helpers/popup.js";
 const trashImg = "/static/images/icons/bin.svg";
 const editImg = "/static/images/icons/edit.svg";
 
-export default ({ name, email, posts, posts_allowed, joined_date }) => {
+export default ({ name, email, posts, posts_allowed, joined_date, _id }) => {
   return (
     <Fragment>
       <h1 className="section-main-title">Posted Adverts</h1>
@@ -33,16 +36,17 @@ export default ({ name, email, posts, posts_allowed, joined_date }) => {
                     <span>Edit</span>
                   </a>
                 </Link>
-                <Link href={`/api/user/advert/remove/${url}`}>
-                  <a className="console__profile-frame-property-controls-remove">
-                    <img
-                      src={trashImg}
-                      title="Remove this advert"
-                      alt="Remove this advert"
-                    />
-                    <span>Remove</span>
-                  </a>
-                </Link>
+                <div className="console__profile-frame-property-controls-remove">
+                  <img
+                    src={trashImg}
+                    title="Remove this advert"
+                    alt="Remove this advert"
+                    onClick={() => {
+                      removeAdvert(url, _id, thumbnailImg);
+                    }}
+                  />
+                  <span>Remove</span>
+                </div>
               </div>
             </div>
           );
@@ -58,3 +62,36 @@ export default ({ name, email, posts, posts_allowed, joined_date }) => {
     </Fragment>
   );
 };
+
+function removeAdvert(url, userId, fullPath) {
+  const imgDirectory = fullPath.split("/")[0];
+  axios
+    .delete("/api/user/remove/advert", {
+      data: {
+        url,
+        userId,
+        imgDirectory
+      }
+    })
+    .then(({ data }) => {
+      if (data && data.name) {
+        saveUserDataToLocalStorage(data);
+        popupWindow(undefined, "Post is removed!");
+        setTimeout(() => {
+          Router.push(window.location.pathname);
+        }, 3500);
+      } else {
+        popupWindow(
+          undefined,
+          "Due to a technical issue, we are not able to remove your post, please try again later."
+        );
+      }
+    })
+    .catch(thrown => {
+      console.log(thrown.message);
+      popupWindow(
+        undefined,
+        "Due to a technical issue, we are not able to remove your post, please try again later."
+      );
+    });
+}

@@ -12,7 +12,7 @@ export default () => (
           type="radio"
           name="advert_type"
           value="sale"
-          checked="true"
+          defaultChecked={true}
         />
         <label htmlFor="forRent">For sale</label>
       </div>
