@@ -1,8 +1,10 @@
 import Router from "next/router";
 import {
   saveNewSortQueryToLocalStorage,
-  getPropertySearchQueryFromLocalStorage
+  getPropertySearchQueryFromLocalStorage,
+  saveUserDataToLocalStorage
 } from "./localStorage.js";
+import { popupWindow } from "./popup.js";
 
 export const filterFormSubmit = (filterFormSubmitEvent, query = "") => {
   filterFormSubmitEvent.preventDefault();
@@ -60,4 +62,38 @@ export const searchFormSubmit = (searchFormSubmitEvent, query = "") => {
     query += `${key}=${values[key]}&`;
   });
   return Router.push(`/properties/latest?${query.replace(/\&$/, "")}`);
+};
+
+export const removeAdvert = (event, url, userId, fullPath) => {
+  event.preventDefault();
+  const imgDirectory = fullPath.split("/")[0];
+  axios
+    .delete("/api/user/remove/advert", {
+      data: {
+        url,
+        userId,
+        imgDirectory
+      }
+    })
+    .then(({ data }) => {
+      if (data && data.name) {
+        saveUserDataToLocalStorage(data);
+        popupWindow(undefined, "Post is removed!");
+        setTimeout(() => {
+          Router.push(window.location.pathname);
+        }, 3500);
+      } else {
+        popupWindow(
+          undefined,
+          "Due to a technical issue, we are not able to remove your post, please try again later."
+        );
+      }
+    })
+    .catch(thrown => {
+      console.log(thrown.message);
+      popupWindow(
+        undefined,
+        "Due to a technical issue, we are not able to remove your post, please try again later."
+      );
+    });
 };

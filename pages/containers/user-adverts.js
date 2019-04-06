@@ -1,26 +1,27 @@
 import { Component, Fragment } from "react";
+import _isEmpty from "lodash.isempty";
 import isAuthorized from "../helpers/auth-on-client.js";
 import UserAdvertsComponent from "../components/user/user-adverts/user-adverts";
 
 export default class UserAdverts extends Component {
   state = {
-    posts: []
+    user: {}
   };
   render() {
     return (
       <Fragment>
-        {this.state.posts.length ? (
-          <UserAdvertsComponent posts={this.state.posts} />
-        ) : (
+        {_isEmpty(this.state.user) ? (
           ""
+        ) : (
+          <UserAdvertsComponent {...this.state.user} />
         )}
       </Fragment>
     );
   }
   componentDidMount() {
-    const { posts } = isAuthorized("/user/auth");
-    return !Array.isArray(posts)
+    const user = isAuthorized("/user/auth");
+    return !Array.isArray(user.posts)
       ? Router.push("/user/auth")
-      : this.setState({ posts });
+      : this.setState({ user });
   }
 }

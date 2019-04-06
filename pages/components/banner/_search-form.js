@@ -1,5 +1,5 @@
 import { LocationOptions } from "../shared";
-import { searchFormSubmit } from "../../helpers/form-submit-redirects.js";
+import { searchFormSubmit } from "../../helpers/form-handles.js";
 
 export default () => (
   <form className="banner__form" id="searchForm" onSubmit={searchFormSubmit}>

@@ -3,7 +3,7 @@ import {
   MinPriceOptionsForSale
 } from "../shared/index.js";
 import { locationTownSelectField } from "../shared/data.js";
-import { filterFormSubmit } from "../../helpers/form-submit-redirects.js";
+import { filterFormSubmit } from "../../helpers/form-handles.js";
 
 export default () => {
   return (

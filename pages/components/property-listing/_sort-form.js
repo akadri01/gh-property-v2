@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { sortPropertyListing } from "../../helpers/form-submit-redirects.js";
+import { sortPropertyListing } from "../../helpers/form-handles.js";
 
 export default class SortForm extends Component {
   render() {

@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import Router from "next/router";
 import Link from "next/link";
 import isPlural from "../../../helpers/isPlural.js";
-import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
-import { popupWindow } from "../../../helpers/popup.js";
+import { removeAdvert } from "../../../helpers/form-handles.js";
 const trashImg = "/static/images/icons/bin.svg";
 const editImg = "/static/images/icons/edit.svg";
 
@@ -62,36 +61,3 @@ export default ({ name, email, posts, posts_allowed, joined_date, _id }) => {
     </Fragment>
   );
 };
-
-function removeAdvert(url, userId, fullPath) {
-  const imgDirectory = fullPath.split("/")[0];
-  axios
-    .delete("/api/user/remove/advert", {
-      data: {
-        url,
-        userId,
-        imgDirectory
-      }
-    })
-    .then(({ data }) => {
-      if (data && data.name) {
-        saveUserDataToLocalStorage(data);
-        popupWindow(undefined, "Post is removed!");
-        setTimeout(() => {
-          Router.push(window.location.pathname);
-        }, 3500);
-      } else {
-        popupWindow(
-          undefined,
-          "Due to a technical issue, we are not able to remove your post, please try again later."
-        );
-      }
-    })
-    .catch(thrown => {
-      console.log(thrown.message);
-      popupWindow(
-        undefined,
-        "Due to a technical issue, we are not able to remove your post, please try again later."
-      );
-    });
-}

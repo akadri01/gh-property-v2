@@ -3,6 +3,7 @@
   position: relative;
   height: 35px;
   display: inline-block;
+  cursor: pointer;
   &:hover {
     transform: scale(1.1);
   }
