@@ -1,8 +1,4 @@
-import {
-  MaxPriceOptionsForSale,
-  MinPriceOptionsForSale
-} from "../shared/index.js";
-import { locationTownSelectField } from "../shared/data.js";
+import { locationTownSelectField, minPrice, maxPrice } from "../shared/data.js";
 import { filterFormSubmit } from "../../helpers/form-handles.js";
 
 export default () => {
@@ -46,11 +42,19 @@ export default () => {
         </div>
         <div className="redux-input-container">
           <label>Min price</label>
-          <select name="minPrice">{MinPriceOptionsForSale}</select>
+          <select name="minPrice">
+            {minPrice.map(({ value, text }) => (
+              <option value={value}>{text}</option>
+            ))}
+          </select>
         </div>
         <div className="redux-input-container">
           <label>Max price</label>
-          <select name="maxPrice">{MaxPriceOptionsForSale}</select>
+          <select name="maxPrice">
+            {maxPrice.map(({ value, text }) => (
+              <option value={value}>{text}</option>
+            ))}
+          </select>
         </div>
         <div className="redux-input-container">
           <label>Town</label>

@@ -289,3 +289,34 @@ export const featuresCheckboxFieldList = [
   { idAndName: "features24", labelAndValue: "Generator" },
   { idAndName: "features25", labelAndValue: "Water Tank" }
 ];
+
+export const minPrice = [
+  { value: "", text: "Min Price (any)" },
+  { value: "0", text: "From 0" },
+  { value: "10000", text: "From ₵ 10.000" },
+  { value: "20000", text: "From ₵ 20.000" },
+  { value: "30000", text: "From ₵ 35.000" },
+  { value: "50000", text: "From ₵ 50.000" },
+  { value: "75000", text: "From ₵ 75.000" },
+  { value: "100000", text: "From ₵ 100.000" },
+  { value: "250000", text: "From ₵ 250.000" },
+  { value: "500000", text: "From ₵ 500.000" },
+  { value: "750000", text: "From ₵ 750.000" },
+  { value: "1000000", text: "From ₵ 1.000.000" }
+];
+
+export const maxPrice = [
+  { value: "", text: "Max Price (any)" },
+  { value: "20000", text: "To ₵ 20.000" },
+  { value: "30000", text: "To ₵ 35.000" },
+  { value: "50000", text: "To ₵ 50.000" },
+  { value: "75000", text: "To ₵ 75.000" },
+  { value: "100000", text: "To ₵ 100.000" },
+  { value: "250000", text: "To ₵ 250.000" },
+  { value: "500000", text: "To ₵ 500.000" },
+  { value: "750000", text: "To ₵ 750.000" },
+  { value: "1000000", text: "To ₵ 1.000.000" },
+  { value: "5000000", text: "To ₵ 5.000.000" },
+  { value: "10000000", text: "To ₵ 10.000.000" },
+  { value: "20000000", text: "To ₵ 20.000.000" }
+];

@@ -3,6 +3,7 @@ import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
 import { required, email, length, confirmation } from "redux-form-validators";
 import { popupWindow, checkForPopup } from "../../../helpers/popup.js";
+import { delay } from "../../../helpers/delay.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
 import {
@@ -45,11 +46,10 @@ class PostAdvert extends Component {
     }
     saveUserDataToLocalStorage(payload);
     popupWindow("postAdvertForm", "Congratulations, your advert is live!");
-    setTimeout(() => {
-      payload.posts_allowed < 1
-        ? Router.push("/user/topup")
-        : window.location.reload(false);
-    }, 3500);
+    await delay(3500);
+    // payload.posts_allowed < 1
+    //   ? Router.push("/user/topup")
+    //   : window.location.reload(false);
   };
 
   componentDidMount() {

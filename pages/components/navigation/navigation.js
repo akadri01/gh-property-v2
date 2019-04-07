@@ -2,10 +2,12 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Link from "next/link";
 import Router from "next/router";
-import { Regions } from "./_regions.js";
-import { Towns } from "./_towns.js";
 import { adjustNavForLocalUser } from "../../redux/actions";
 import { removeUserDataFromLocalStorage } from "../../helpers/localStorage.js";
+import {
+  locationRegionSelectField,
+  locationTownSelectField
+} from "../shared/data.js";
 
 class Navigation extends Component {
   render() {
@@ -67,10 +69,28 @@ class Navigation extends Component {
               >
                 <div className="mobile-desktop-frame">
                   <div className="navigation__navbar-location-menu-items">
-                    {Regions}
+                    <h2>Regions</h2>
+                    {locationRegionSelectField.map(({ value, text }, i) => {
+                      if (i > 0) {
+                        return (
+                          <Link href={`/properties/latest?region=${value}`}>
+                            <a>{text}</a>
+                          </Link>
+                        );
+                      }
+                    })}
                   </div>
                   <div className="navigation__navbar-location-menu-items">
-                    {Towns}
+                    <h2>Regions</h2>
+                    {locationTownSelectField.map(({ value, text }, i) => {
+                      if (i > 0) {
+                        return (
+                          <Link href={`/properties/latest?town=${value}`}>
+                            <a>{text}</a>
+                          </Link>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
               </div>

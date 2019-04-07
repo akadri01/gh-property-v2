@@ -64,36 +64,21 @@ export const searchFormSubmit = (searchFormSubmitEvent, query = "") => {
   return Router.push(`/properties/latest?${query.replace(/\&$/, "")}`);
 };
 
-export const removeAdvert = (event, url, userId, fullPath) => {
-  event.preventDefault();
+export const removeAdvert = async (url, userId, fullPath) => {
   const imgDirectory = fullPath.split("/")[0];
-  axios
-    .delete("/api/user/remove/advert", {
+  try {
+    const { data } = await axios.delete("/api/user/remove/advert", {
       data: {
         url,
         userId,
         imgDirectory
       }
-    })
-    .then(({ data }) => {
-      if (data && data.name) {
-        saveUserDataToLocalStorage(data);
-        popupWindow(undefined, "Post is removed!");
-        setTimeout(() => {
-          Router.push(window.location.pathname);
-        }, 3500);
-      } else {
-        popupWindow(
-          undefined,
-          "Due to a technical issue, we are not able to remove your post, please try again later."
-        );
-      }
-    })
-    .catch(thrown => {
-      console.log(thrown.message);
-      popupWindow(
-        undefined,
-        "Due to a technical issue, we are not able to remove your post, please try again later."
-      );
     });
+    if (data && data.name) {
+      saveUserDataToLocalStorage(data);
+      return data.posts;
+    }
+  } catch (thrown) {
+    console.log(thrown.message);
+  }
 };

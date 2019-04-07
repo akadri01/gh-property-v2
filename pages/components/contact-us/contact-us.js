@@ -67,16 +67,10 @@ class ContactUsForm extends Component {
   }
   receieveEnquire = async formValues => {
     const { payload } = await this.props.dispatch(postEnquire(formValues));
-    if (!payload) {
-      return popupWindow(
-        "postEnquireForm",
-        "Unfortunately we were not able to receive your enquire. Please try again later."
-      );
-    }
-    popupWindow(
-      "postEnquireForm",
-      "We have received your enquire, please allow us 24 hours to process."
-    );
+    const msg = payload
+      ? "We have received your enquire, please allow us 24 hours to process."
+      : "Unfortunately we were not able to receive your enquire. Please try again later.";
+    return popupWindow("postEnquireForm", msg);
   };
 }
 
