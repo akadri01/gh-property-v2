@@ -7,7 +7,7 @@ import { required, email, length, confirmation } from "redux-form-validators";
 import { registerUser } from "../../../redux/actions";
 import { renderFormInput } from "../../../helpers/reduxForm";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
-import { popupWindow, checkForPopup } from "../../../helpers/popup.js";
+import { popupWindow } from "../../../helpers/popup.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 
 class registerForm extends Component {
@@ -90,10 +90,6 @@ class registerForm extends Component {
       "Due to a technical issue, we are not able to accept new members, please try again later."
     );
   };
-
-  componentDidMount() {
-    checkForPopup();
-  }
 }
 
 registerForm = reduxForm({

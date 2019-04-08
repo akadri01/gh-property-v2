@@ -21,50 +21,50 @@ class AuthRouter {
     this.router.get("/user/logout", this.userLogout.bind(this));
   }
 
-  authUser(req, res) {
-    User.authenticate(req.body.email, req.body.password, user => {
+  authUser({ body }, { json }) {
+    User.authenticate(body.email, body.password, user => {
       if (!user) {
-        return res.json(false);
+        return json(false);
       }
-      req.session.userData = user;
-      res.json(user);
+      session.userData = user;
+      json(user);
     });
   }
 
-  authFacebook(req, res) {
-    User.handleUserWithFacebook(req.body, user => {
+  authFacebook({ session, body }, { json }) {
+    User.handleUserWithFacebook(body, user => {
       if (!user | !user._id) {
-        return res.json({ saved: false });
+        return json({ saved: false });
       }
-      req.session.userData = user;
-      res.json(user);
+      session.userData = user;
+      json(user);
     });
   }
 
-  registerUser(req, res) {
-    User.createNew(req.body)
+  registerUser({ session, body }, { json }) {
+    User.createNew(body)
       .then(user => {
         if (!user) {
-          return res.json({ saved: false });
+          return json({ saved: false });
         }
-        req.session.userData = user;
+        session.userData = user;
         // send user email confirmation
         // helpers.sendEmailConfirmation(user._id, user.email); //   Activate email on production and change sendgrid company url!   ****CHANGE ON PRODUCTION******
-        res.json(user);
+        json(user);
       })
       .catch(e => {
         console.log(e);
         // if dublicate user (same email)
         if (e.code == 11000) {
-          return res.json({ dublicate: true });
+          return json({ dublicate: true });
         }
-        res.json({ saved: false });
+        json({ saved: false });
       });
   }
 
-  userLogout(req) {
-    if (req.session) {
-      req.session.destroy();
+  userLogout({ session }) {
+    if (session) {
+      session.destroy();
     }
   }
 }

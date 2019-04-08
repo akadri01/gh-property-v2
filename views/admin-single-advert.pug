@@ -15,46 +15,40 @@ html(lang="en")
       a.logout(href="/admin/logout") Logout
     .alert=alert
     .advert
-      h1 Vehicle information
+      h1 Property information
       br
-      .advert-data <i><b>#{car.date.toString().slice(0,21)}</b></i>
+      .advert-data <i><b>#{property.date.toString().slice(0,21)}</b></i>
       br
       .advert-data-flex
-        .advert-data <b>Advert Id:</b> #{car._id}
-        .advert-data <b>Ref:</b> #{car.ref}
-        .advert-data <b>Type:</b> #{car.type}
-        .advert-data <b>Make:</b> #{car.make}
-        .advert-data <b>Transmission:</b> #{car.transmission}
-        .advert-data <b>Engine size:</b> #{car.engine_size}
-        .advert-data <b>Color:</b> #{car.color}
-        .advert-data <b>Doors:</b> #{car.doors}
-        .advert-data <b>Seats:</b> #{car.seats}
-        .advert-data <b>Year:</b> #{car.year}
-        .advert-data <b>Km:</b> #{car.km}
-        .advert-data <b>Location:</b> #{car.location}
-        .advert-data <b>Price:</b> #{car.price}
-        .advert-data <b>Email:</b> #{car.email}
-        .advert-data <b>Phone:</b> #{car.phone}
-        .advert-data <b>Url:</b> #{car.url}
+        .advert-data <b>Advert Id:</b> #{property._id}
+        .advert-data <b>Ref:</b> #{property.ref}
+        .advert-data <b>Advert type:</b> #{property.advert_type}
+        .advert-data <b>Age:</b> #{property.age}
+        .advert-data <b>Town:</b> #{property.town}
+        .advert-data <b>Region:</b> #{property.region}
+        .advert-data <b>Price:</b> #{property.price}
+        .advert-data <b>Email:</b> #{property.email}
+        .advert-data <b>Phone:</b> #{property.phone}
+        .advert-data <b>Url:</b> #{property.url}
       br
       br
       br
       .advert-data <b><div> # User Information:</div></b>
-      .advert-data <b>User Name:</b> #{car.user_name}
-      .advert-data <b>User Email:</b> #{car.user_email}
-      .advert-data <b>User Id:</b> #{car.user_id}
+      .advert-data <b>User Name:</b> #{property.user_name}
+      .advert-data <b>User Email:</b> #{property.user_email}
+      .advert-data <b>User Id:</b> #{property.user_id}
       br
       br
       br
       .advert-data <b><div># Details:</div></b>
-        pre #{car.details}
+        pre #{property.detail}
       br
       br
       br
       .advert-data <b><div># Images:</div></b>
       .advert-images
-        each img in car.images
-          img(src=`/static/images/car-uploads/${car.img_directory}/${img}`)
+        each img in property.images
+          img(src=`/static/images/property-uploads/${property.img_directory}/${img}`)
       .advert-img-tags
         div Thumbnail
         div Main
@@ -65,25 +59,27 @@ html(lang="en")
       br
       br
       br
-      h1 Edit vehicle
+      h1 Edit Property
       form.advert-edit(action="/admin/advert/edit" method="post")
-        input(type="hidden" name="advertId" value=`${car._id}`)
+        input(type="hidden" name="advertId" value=`${property._id}`)
         label Change details
-        textarea(name="details") #{car.details}
-        label Change location
-        input(type="text" name="location" value=`${car.location}` placeholder=" Car location")
+        textarea(name="details") #{property.detail}
+        label Change town
+        input(type="text" name="town" value=`${property.town}` placeholder=" Town")
+        label Change region
+        input(type="text" name="region" value=`${property.region}` placeholder=" Region")
         label Change price
-        input(type="number" name="price" value=`${car.price}` placeholder=" 35000")
+        input(type="number" name="price" value=`${property.price}` placeholder=" 35000")
         button(type="submit") Update
       br
       br
       br
       br
-      h1 Remove vehicle
+      h1 Remove Property
       form.advert-edit(action="/admin/advert/remove" method="post")
-        input(type="hidden" name="ref" value=`${car.ref}`)
-        input(type="hidden" name="userId" value=`${car.user_id}`)
-        input(type="hidden" name="carUrl" value=`${car.url}`)
+        input(type="hidden" name="ref" value=`${property.ref}`)
+        input(type="hidden" name="userId" value=`${property.user_id}`)
+        input(type="hidden" name="propertyUrl" value=`${property.url}`)
         button(type="submit") Remove
       br
       br

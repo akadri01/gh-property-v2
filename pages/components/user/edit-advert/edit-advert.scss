@@ -1,0 +1,31 @@
+.edit-advert {
+  margin-top: 100px;
+  &--warning {
+    color: $color-red;
+    font-style: italic;
+    font-size: $font-size-medium;
+  }
+  &__header {
+    position: relative;
+    border: $gray-border;
+    width: 100%;
+    @include desktopSmall {
+      width: 400px;
+      img {
+        width: 76%;
+      }
+      h3 {
+        font-size: $font-size-large;
+      }
+    }
+    &-img {
+      width: 80%;
+      display: block;
+      margin: 15px auto 0;
+    }
+    &-title {
+      font-size: $font-size-medium;
+      text-align: center;
+    }
+  }
+}

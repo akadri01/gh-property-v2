@@ -122,7 +122,7 @@ userSchema.statics.confirmEmail = function(userId, cb) {
   );
 };
 
-// Save and update car adverts
+// Save and update property adverts
 userSchema.statics.updatePropertyAdverts = function(
   id,
   url,
@@ -143,10 +143,7 @@ userSchema.statics.updatePropertyAdverts = function(
         return cb(false, updatedUser);
       })
       .catch(e => {
-        logError(
-          e,
-          "Error: can NOT save new property advert! updatePropertyAdverts()"
-        );
+        logError(e, "Error: updatePropertyAdverts()");
         return cb(e, false);
       });
   });

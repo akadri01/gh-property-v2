@@ -31,6 +31,11 @@ export default (state = reduxInitialState.user, action) => {
         ...state,
         userData: action.payload
       };
+    case "EDIT_ADVERT":
+      return {
+        ...state,
+        userData: action.payload
+      };
     case "ADJUST_NAV_FOR_LOCAL_USER":
       return {
         ...state,

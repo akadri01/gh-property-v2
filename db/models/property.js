@@ -53,23 +53,23 @@ PropertySchema.statics.createNew = function(body, session) {
   // save
   const newProperty = new Property({
     advert_type: body.advert_type,
-    age: body.age,
-    area: body.area,
+    age: parseInt(body.age),
+    area: parseInt(body.area),
     detail: body.detail,
     features: body.features,
     furniture: body.furniture,
     garden: body.garden,
-    located_floor: body.located_floor,
+    located_floor: parseInt(body.located_floor),
     phone: body.phone,
     posted_by: body.posted_by,
     premises_type: body.premises_type,
-    price: body.price,
+    price: parseInt(body.price),
     region: body.region,
     rooms_qty: body.rooms_qty,
     title: body.title,
-    total_balcony: body.total_balcony,
-    total_bathroom: body.total_bathroom,
-    total_floor: body.total_floor,
+    total_balcony: parseInt(body.total_balcony),
+    total_bathroom: parseInt(body.total_bathroom),
+    total_floor: parseInt(body.total_floor),
     town: body.town,
     user_name: body.userName,
     user_id: body.userId,
@@ -144,37 +144,40 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
   });
 };
 
-// // Edit Property
-// PropertySchema.statics.editContent = function(id, body, cb) {
-//   const updateObj = {
-//     type: body.PropertyType,
-//     make: body.make,
-//     transmission: body.transmission,
-//     engine_size: parseFloat(body.engineSize),
-//     color: body.color,
-//     doors: parseInt(body.doors),
-//     seats: parseInt(body.seats),
-//     year: parseInt(body.year),
-//     km: parseInt(body.km),
-//     location: body.location,
-//     price: parseInt(body.price),
-//     email: body.email,
-//     phone: body.phone,
-//     details: body.details
-//   };
-//   this.findByIdAndUpdate(id, updateObj)
-//     .then(doc => {
-//       if (!doc) {
-//         return cb(false);
-//       }
-//       return cb(true);
-//     })
-//     .catch(e => {
-//       if (e) {
-//         return cb(false);
-//       }
-//     });
-// };
+// Edit Property
+PropertySchema.statics.editContent = function(body, cb) {
+  const updateObj = {
+    phone: body.phone,
+    price: parseInt(body.price),
+    detail: body.detail,
+    advert_type: body.advert_type,
+    premises_type: body.premises_type,
+    rooms_qty: body.rooms_qty,
+    posted_by: body.posted_by,
+    region: body.region,
+    town: body.town,
+    age: parseInt(body.age),
+    located_floor: parseInt(body.located_floor),
+    total_floor: parseInt(body.total_floor),
+    total_bathroom: parseInt(body.total_bathroom),
+    total_balcony: parseInt(body.total_balcony),
+    area: body.area,
+    furniture: body.furniture,
+    garden: body.garden
+  };
+  this.findByIdAndUpdate(body._id, updateObj)
+    .then(doc => {
+      if (!doc) {
+        return cb(false);
+      }
+      return cb(true);
+    })
+    .catch(e => {
+      if (e) {
+        return cb(false);
+      }
+    });
+};
 
 // // search and sort
 // PropertySchema.statics.searchAndSort = function(queryObj, sortObj, limitQty, cb) {

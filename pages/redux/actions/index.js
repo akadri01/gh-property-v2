@@ -66,6 +66,22 @@ export const postAdvert = formValues => async dispatch => {
   }
 };
 
+export const editAdvert = formValues => async dispatch => {
+  try {
+    const { data } = await axios.put("/api/user/edit/advert", formValues);
+    return dispatch({
+      type: "EDIT_ADVERT",
+      payload: data
+    });
+  } catch (e) {
+    console.log(e);
+    return dispatch({
+      type: "EDIT_ADVERT",
+      payload: false
+    });
+  }
+};
+
 // ENQUIRE ACTION
 export const postEnquire = formValues => dispatch => {
   try {

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Router from "next/router";
+import PreviousPage from "../shared/previous-page.js";
 import { beautifyDate, beautifyPrice } from "../../helpers/beautify.js";
 import Carousel from "../carousel/carousel.js";
 import SocialMediaShare from "../social-media-share/social-media-share.js";
@@ -220,15 +220,7 @@ export default ({
           </div>
         </aside>
       </section>
-      <div className="go-to-previous-page mobile-desktop-frame">
-        <button
-          onClick={() => {
-            Router.back();
-          }}
-        >
-          Previous page
-        </button>
-      </div>
+      <PreviousPage />
     </Fragment>
   );
 };

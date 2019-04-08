@@ -1,6 +1,7 @@
 import { Fragment, Component } from "react";
 import Router from "next/router";
 import Link from "next/link";
+import PreviousPage from "../../shared/previous-page.js";
 import { popupWindow } from "../../../helpers/popup.js";
 import { removeAdvert } from "../../../helpers/form-handles.js";
 const trashImg = "/static/images/icons/bin.svg";
@@ -65,15 +66,7 @@ export default class UserAdvertsList extends Component {
             )
           )}
         </section>
-        <div className="go-to-previous-page mobile-desktop-frame">
-          <button
-            onClick={() => {
-              Router.back();
-            }}
-          >
-            Previous page
-          </button>
-        </div>
+        <PreviousPage />
       </Fragment>
     );
   }

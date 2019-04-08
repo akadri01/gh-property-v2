@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Router from "next/router";
 import isAuthorized from "../helpers/auth-on-client.js";
-import { checkForPopup } from "../helpers/popup.js";
 import { connect } from "react-redux";
 import { refreshUserConsole } from "../redux/actions";
 import UserConsole from "../components/user/console/console.js";
@@ -24,7 +23,6 @@ class UserData extends Component {
     user.posts_allowed < 1
       ? Router.push("/user/topup")
       : this.props.updateConsole(user);
-    checkForPopup();
   }
 }
 

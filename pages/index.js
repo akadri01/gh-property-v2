@@ -13,7 +13,7 @@ const Index = ({ recentProperties }) => (
   <Fragment>
     <Head>
       <title>WeGhana Real Estate</title>
-      <meta name="description" content="Ghana realt estate web platform" />
+      <meta name="description" content="Buy and sell house, land in Ghana" />
     </Head>
     <Navigation />
     <Banner />

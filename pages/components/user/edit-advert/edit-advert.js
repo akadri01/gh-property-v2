@@ -6,17 +6,15 @@ import { popupWindow } from "../../../helpers/popup.js";
 import { delay } from "../../../helpers/delay.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
+import PreviousPage from "../../shared/previous-page.js";
 import {
-  RenderFileInput,
   renderFormInput,
   renderSelectField,
-  renderTextarea,
-  renderCheckbox
+  renderTextarea
 } from "../../../helpers/reduxForm";
-import { postAdvert } from "../../../redux/actions";
+import { editAdvert } from "../../../redux/actions";
 import {
   premisesTypeSelectField,
-  featuresCheckboxFieldList,
   yesNoSelectField,
   purposeSelectField,
   balconyQtySelectField,
@@ -29,36 +27,88 @@ import {
   locationTownSelectField
 } from "../../shared/data";
 
-class PostAdvert extends Component {
+class EditAdvert extends Component {
   constructor(props) {
     super(props);
     this.props = props;
   }
-  postAd = async formValues => {
-    displayLoader("#postAdvertSubmit");
-    const { payload } = await this.props.dispatch(postAdvert(formValues));
-    removeLoader("#postAdvertSubmit");
-    if (!payload._id) {
-      return popupWindow(
-        "postAdvertForm",
-        "Unfortunately we were not able to post your ad. Please try again later."
+  editAd = async formValues => {
+    displayLoader("#editAdvertSubmit");
+    const { payload } = await this.props.dispatch(editAdvert(formValues));
+    removeLoader("#editAdvertSubmit");
+    if (!payload.success) {
+      return Router.push(
+        "/user/adverts?popup=Unfortunately%20we%20were%20not%20able%20to%20edit%20your%20ad.%20Please%20try%20again%20later."
       );
     }
-    saveUserDataToLocalStorage(payload);
-    popupWindow("postAdvertForm", "Congratulations, your advert is live!");
-    await delay(3500);
-    payload.posts_allowed < 1
-      ? Router.push("/user/topup")
-      : window.location.reload(false);
+    Router.push("/user/adverts?popup=Advert%20is%20updated!");
   };
+  componentWillMount() {
+    // initialize form values
+    const {
+      phone,
+      price,
+      detail,
+      advert_type,
+      premises_type,
+      rooms_qty,
+      posted_by,
+      region,
+      town,
+      age,
+      located_floor,
+      total_floor,
+      total_bathroom,
+      total_balcony,
+      area,
+      furniture,
+      garden,
+      _id
+    } = this.props.property;
+    this.props.initialize({
+      phone,
+      price,
+      detail,
+      advert_type,
+      premises_type,
+      rooms_qty,
+      posted_by,
+      region,
+      town,
+      age,
+      located_floor,
+      total_floor,
+      total_bathroom,
+      total_balcony,
+      area,
+      furniture,
+      garden,
+      _id
+    });
+  }
 
   render() {
-    return (
-      <Fragment>
-        <h1 className="section-main-title">Create new advert</h1>
+    const { img_directory, images, title } = this.props.property;
+    return [
+      <section className="edit-advert mobile-desktop-frame">
+        <h1 className="section-main-title">Edit Advert</h1>
+        <p className="edit-advert--warning">
+          * For security reasons you cannot change images and advert title
+        </p>
+        <div className="edit-advert__header">
+          <img
+            src={`/static/images/property-uploads/${img_directory}/${
+              images[0]
+            }`}
+            alt="Advert main image"
+            title="Advert main image"
+            className="edit-advert__header-img"
+          />
+          <h3 className="edit-advert__header-title">{title}</h3>
+        </div>
         <form
-          onSubmit={this.props.handleSubmit(this.postAd)}
-          id="postAdvertForm"
+          onSubmit={this.props.handleSubmit(this.editAd)}
+          id="editAdvertForm"
           className="console__post-advert-form default-redux-form"
         >
           <h3 className="console__post-advert-form-section-title">
@@ -282,14 +332,6 @@ class PostAdvert extends Component {
             Description
           </h3>
           <Field
-            name="title"
-            label=" Advert title"
-            placeholder=" e.g. Spacious modern flat in Accra"
-            type="text"
-            component={renderFormInput}
-            validate={[required(), length({ min: 10, max: 110 })]}
-          />
-          <Field
             name="detail"
             label=" Tell more about the premises"
             placeholder=" ..."
@@ -297,50 +339,26 @@ class PostAdvert extends Component {
             component={renderTextarea}
             validate={[required(), length({ min: 10, max: 3000 })]}
           />
-          <h3 className="console__post-advert-form-section-title">Features</h3>
-          <div className="console__post-advert-form-features-container">
-            {featuresCheckboxFieldList.map(({ labelAndValue, idAndName }) => {
-              return (
-                <Field
-                  key={idAndName}
-                  name={idAndName}
-                  labelAndValue={labelAndValue}
-                  id={idAndName}
-                  component={renderCheckbox}
-                />
-              );
-            })}
-          </div>
-          <h3 className="console__post-advert-form-section-title">
-            Upload images
-          </h3>
-          <Field
-            name="mainImage"
-            label=" Main image"
-            component={RenderFileInput}
-          />
-          <Field
-            name="images"
-            label=" Other images (maximum 6)"
-            isMultiple={true}
-            component={RenderFileInput}
-          />
           <button
             className="console__post-advert-form-submit-btn"
-            id="postAdvertSubmit"
+            id="editAdvertSubmit"
             type="submit"
             disabled={this.props.submitting}
           >
             Post
           </button>
         </form>
-      </Fragment>
-    );
+        <br />
+        <br />
+        <br />
+      </section>,
+      <PreviousPage />
+    ];
   }
 }
 
-PostAdvert = reduxForm({
-  form: "PostAdvertForm"
-})(PostAdvert);
+EditAdvert = reduxForm({
+  form: "EditAdvertForm"
+})(EditAdvert);
 
-export default PostAdvert;
+export default EditAdvert;
