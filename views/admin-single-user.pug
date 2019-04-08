@@ -23,9 +23,9 @@ html(lang="en")
       .user-data <b>Live Adverts:</b>
       .user-posts
         each post in user.posts
-          a(href=`/admin/adverts/advert-by-url/${post[0]}`)
-            img(src=`/static/images/property-uploads/${post[2]}`)
-            .post-name #{post[1]}
+          a(href=`/admin/adverts/advert-by-url/${post.url}`)
+            img(src=`/static/images/property-uploads/${post.thumbnailImg}`)
+            .post-name #{post.title}
       h1 Edit user information
       form.user-edit(action="/admin/user/edit" method="post")
         input(type="hidden" name="userId" value=`${user._id}`)

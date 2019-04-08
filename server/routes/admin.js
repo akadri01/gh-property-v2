@@ -66,21 +66,21 @@ class AdminRouter {
     this.router.post("/advert/remove", [this.requiresLogin, this.removeAdvert]);
   }
 
-  renderConsole(req, { render }) {
-    render("admin-console.pug");
+  renderConsole(req, res) {
+    return res.render("admin-console.pug");
   }
 
-  renderPayments(req, { render }) {
-    render("admin-payments.pug");
+  renderPayments(req, res) {
+    res.render("admin-payments.pug");
   }
 
-  renderEnquires({ query, session }, { render }) {
-    let skipQty = session.enquireSkip ? session.enquireSkip : 0;
-    if (query && query.pagination) {
-      if (query.pagination === "next") {
+  renderEnquires(req, res) {
+    let skipQty = req.session.enquireSkip ? req.session.enquireSkip : 0;
+    if (req.query && req.query.pagination) {
+      if (req.query.pagination === "next") {
         skipQty = skipQty += 20;
       }
-      if (skipQty !== 0 && query.pagination === "prev") {
+      if (skipQty !== 0 && req.query.pagination === "prev") {
         skipQty = skipQty -= 20;
       }
     } else {
@@ -92,29 +92,30 @@ class AdminRouter {
       .skip(skipQty)
       .then(enquires => {
         if (!enquires) {
-          return render("admin-console", {
+          return res.render("admin-console", {
             alert: "Failed to find vehicles!"
           });
         }
-        session.enquireSkip = skipQty;
-        const alert = query.alert && query.alert.length ? query.alert : "";
-        return render("admin-enquires.pug", { enquires, alert });
+        req.session.enquireSkip = skipQty;
+        const alert =
+          req.query.alert && req.query.alert.length ? req.query.alert : "";
+        return res.render("admin-enquires.pug", { enquires, alert });
       })
       .catch(e => {
         logError(e, "Error > renderEnquires()");
-        render("admin-console", {
+        res.render("admin-console", {
           alert: "Technical problem with finding enquires!"
         });
       });
   }
 
-  renderAdverts({ query, session }, { render }) {
-    let skipQty = session.adminSkip ? session.adminSkip : 0;
-    if (query && query.pagination) {
-      if (query.pagination === "next") {
+  renderAdverts(req, res) {
+    let skipQty = req.session.adminSkip ? req.session.adminSkip : 0;
+    if (req.query && req.query.pagination) {
+      if (req.query.pagination === "next") {
         skipQty = skipQty += 20;
       }
-      if (skipQty !== 0 && query.pagination === "prev") {
+      if (skipQty !== 0 && req.query.pagination === "prev") {
         skipQty = skipQty -= 20;
       }
     } else {
@@ -126,28 +127,29 @@ class AdminRouter {
       .skip(skipQty)
       .then(adverts => {
         if (!adverts) {
-          return render("admin-console", {
+          return res.render("admin-console", {
             alert: "Failed to find properties!"
           });
         }
-        session.adminSkip = skipQty;
-        const alert = query.alert && query.alert.length ? query.alert : "";
-        return render("admin-adverts.pug", { adverts, alert });
+        req.session.adminSkip = skipQty;
+        const alert =
+          req.query.alert && req.query.alert.length ? req.query.alert : "";
+        return res.render("admin-adverts.pug", { adverts, alert });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderAdverts()");
-        return render("admin-console", {
+        return res.render("admin-console", {
           alert: "Technical problem with finding properties!"
         });
       });
   }
-  renderUsers({ query, session }, { render }) {
-    let skipQty = session.userSkip ? session.userSkip : 0;
-    if (query && query.pagination) {
-      if (query.pagination === "next") {
+  renderUsers(req, res) {
+    let skipQty = req.session.userSkip ? req.session.userSkip : 0;
+    if (req.query && req.query.pagination) {
+      if (req.query.pagination === "next") {
         skipQty = skipQty += 20;
       }
-      if (skipQty !== 0 && query.pagination === "prev") {
+      if (skipQty !== 0 && req.query.pagination === "prev") {
         skipQty = skipQty -= 20;
       }
     } else {
@@ -159,242 +161,247 @@ class AdminRouter {
       .limit(20)
       .skip(skipQty)
       .then(users => {
-        session.userSkip = skipQty;
-        const alert = query.alert && query.alert.length ? query.alert : "";
-        return render("admin-users.pug", { users, alert });
+        req.session.userSkip = skipQty;
+        const alert =
+          req.query.alert && req.query.alert.length ? req.query.alert : "";
+        return res.render("admin-users.pug", { users, alert });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderUsers()");
-        render("admin-console.pug", {
+        res.render("admin-console.pug", {
           alert: "Failed to find users"
         });
       });
   }
-  renderSingleUser({ params }, { render, redirect }) {
-    Users.findById(params.id)
+  renderSingleUser(req, res) {
+    Users.findById(req.params.id)
       .then(user => {
         if (!user) {
-          return redirect("/admin/users?alert=User%20does%20not%20exist!");
+          return res.redirect("/admin/users?alert=User%20does%20not%20exist!");
         }
-        return render("admin-single-user", { user });
+        res.render("admin-single-user", { user });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderSingleUser()");
-        return redirect(
+        return res.redirect(
           "/admin/users?alert=technical%20problem%20with%20finding%20user!"
         );
       });
   }
 
-  renderSingleEnquire({ params }, { render, redirect }) {
-    Enquires.findById(params.id)
+  renderSingleEnquire(req, res) {
+    Enquires.findById(req.params.id)
       .then(enquire => {
         if (!enquire) {
-          return redirect(
+          return res.redirect(
             "/admin/enquires?alert=Enquire%20does%20not%20exist!"
           );
         }
-        return render("admin-single-enquire", { enquire });
+        return res.render("admin-single-enquire", { enquire });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderSingleEnquire()");
-        return redirect(
+        return res.redirect(
           "/admin/enquires?alert=technical%20problem%20with%20finding%20enquire!"
         );
       });
   }
 
-  renderSingleAdvert({ params }, { redirect, render }) {
-    Property.findById(params.id)
+  renderSingleAdvert(req, res) {
+    Property.findById(req.params.id)
       .then(property => {
         if (!property) {
-          return redirect(
+          return res.redirect(
             "/admin/properties?alert=Property%20does%20not%20exist!"
           );
         }
-        return render("admin-single-advert", { property });
+        return res.render("admin-single-advert", { property });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderSingleAdvert()");
-        return redirect(
+        return res.redirect(
           "/admin/adverts?alert=technical%20problem%20with%20finding%20property!"
         );
       });
   }
 
-  renderSingleAdvertByUrl({ params }, { redirect, render }) {
-    Property.findOne({ url: params.url })
+  renderSingleAdvertByUrl(req, res) {
+    Property.findOne({ url: req.params.url })
       .then(property => {
         if (!property) {
-          return redirect(
+          return res.redirect(
             "/admin/properties?alert=Property%20does%20not%20exist!"
           );
         }
-        return render("admin-single-advert", { property });
+        return res.render("admin-single-advert", { property });
       })
       .catch(e => {
         logError(e, "Error: Admin > renderSingleAdvert()");
-        return redirect(
+        return res.redirect(
           "/admin/adverts?alert=technical%20problem%20with%20finding%20property!"
         );
       });
   }
 
-  logout({ session }, { redirect }) {
-    if (session) {
-      session.destroy();
+  logout(req, res) {
+    if (req.session) {
+      req.session.destroy();
     }
-    return redirect("/");
+    return res.redirect("/");
   }
 
-  renderLoginPage(req, { render }) {
-    return render("admin-login.pug");
+  renderLoginPage(req, res) {
+    return res.render("admin-login.pug");
   }
 
-  auth({ session, body }, { render, redirect }) {
-    AdminUser.authenticate(body.email, body.password, user => {
+  auth(req, res) {
+    AdminUser.authenticate(req.body.email, req.body.password, user => {
       if (!user) {
-        return render("admin-login.pug", {
+        return res.render("admin-login.pug", {
           alert: "No match!"
         });
       }
-      session.adminUserId = user._id;
-      return redirect("/admin/console");
+      req.session.adminUserId = user._id;
+      return res.redirect("/admin/console");
     });
   }
 
-  requiresLogin({ session }, { redirect }, next) {
-    return session && session.adminUserId ? next() : redirect("/admin/login");
+  requiresLogin(req, res, next) {
+    return req.session && req.session.adminUserId
+      ? next()
+      : res.redirect("/admin/login");
   }
 
-  findUser({ body }, { redirect, render }) {
-    Users.findOne({ email: body.email })
+  findUser(req, res) {
+    Users.findOne({ email: req.body.email })
       .then(user => {
         if (!user) {
-          return redirect("/admin/users?alert=User%20does%20not%20exist!");
+          return res.redirect("/admin/users?alert=User%20does%20not%20exist!");
         }
-        return render("admin-single-user", { user });
+        return res.render("admin-single-user", { user });
       })
       .catch(e => {
         logError(e, "Error: Admin > findUser()");
-        return redirect(
+        return res.redirect(
           "/admin/users?alert=technical%20problem%20with%20finding%20user!"
         );
       });
   }
 
-  findAdvert({ body }, { render, redirect }) {
-    Property.findOne({ ref: body.ref })
+  findAdvert(req, res) {
+    Property.findOne({ ref: req.body.ref.toUpperCase() })
       .then(property => {
         if (!property) {
-          return redirect(
+          return res.redirect(
             "/admin/adverts?alert=Property%20does%20not%20exist!"
           );
         }
-        return render("admin-single-advert", { property });
+        return res.render("admin-single-advert", { property });
       })
       .catch(e => {
         logError(e, "Error: Admin > findAdvert()");
-        return redirect(
+        return res.redirect(
           "/admin/adverts?alert=technical%20problem%20with%20finding%20property!"
         );
       });
   }
 
-  editUser({ body }, { redirect, render }) {
+  editUser(req, res) {
     const updateObj = {
-      name: body.name,
-      email: body.email,
-      posts_allowed: parseInt(body.credit)
+      name: req.body.name,
+      email: req.body.email,
+      posts_allowed: parseInt(req.body.credit)
     };
-    if (body.password) {
-      updateObj.password = Users.hashPassword(body.password);
+    if (req.body.password) {
+      updateObj.password = Users.hashPassword(req.body.password);
     }
-    if (body.confirm) {
+    if (req.body.confirm) {
       updateObj.email_confirmed = true;
     }
 
-    Users.findByIdAndUpdate(body.userId, updateObj, { new: true })
+    Users.findByIdAndUpdate(req.body.userId, updateObj, { new: true })
       .then(user => {
         if (!user) {
-          return redirect("/admin/users?alert=User%20does%20not%20exist!");
+          return res.redirect("/admin/users?alert=User%20does%20not%20exist!");
         }
-        return render("admin-single-user", { user, alert: "User updated" });
+        return res.render("admin-single-user", { user, alert: "User updated" });
       })
       .catch(e => {
         logError(e, "Error: Admin > editUser()");
-        return redirect(
+        return res.redirect(
           "/admin/users?alert=technical%20problem%20with%20editing%20user!"
         );
       });
   }
 
-  editAdvert({ body }, { redirect, render }) {
+  editAdvert(req, res) {
     const updateObj = {
-      location: body.location,
-      details: body.details,
-      price: parseInt(body.price)
+      town: req.body.town,
+      region: req.body.region,
+      detail: req.body.detail,
+      price: parseInt(req.body.price)
     };
 
-    Property.findByIdAndUpdate(body.advertId, updateObj, { new: true })
+    Property.findByIdAndUpdate(req.body.advertId, updateObj, { new: true })
       .then(property => {
         if (!property) {
-          return redirect(
+          return res.redirect(
             "/admin/adverts?alert=Property%20does%20not%20exist!"
           );
         }
-        return render("admin-single-advert", {
+        return res.render("admin-single-advert", {
           property,
           alert: "Advert updated"
         });
       })
       .catch(e => {
         logError(e, "Error: Admin > editAdvert()");
-        return redirect(
+        return res.redirect(
           "/admin/adverts?alert=technical%20problem%20with%20editing%20property!"
         );
       });
   }
 
-  removeUser({ body }, { redirect }) {
-    Users.remove({ email: body.email })
+  removeUser(req, res) {
+    Users.remove({ email: req.body.email })
       .then(({ n }) => {
-        if (!n) {
-          return redirect("/admin/users?alert=User%20does%20not%20exist!");
-        }
-        return redirect("/admin/users?alert=User%20has%20removed!");
+        return !n
+          ? res.redirect("/admin/users?alert=User%20does%20not%20exist!")
+          : res.redirect("/admin/users?alert=User%20has%20removed!");
       })
       .catch(e => {
         logError(e, "Error: Admin > removeUser()");
-        return redirect(
+        return res.redirect(
           "/admin/users?alert=technical%20problem%20with%20removing%20user!"
         );
       });
   }
 
-  removeEnquire({ body }, { redirect }) {
-    Enquires.remove({ _id: body.id })
+  removeEnquire(req, res) {
+    Enquires.remove({ _id: req.body.id })
       .then(({ n }) => {
         if (!n) {
-          return redirect(
+          return res.redirect(
             "/admin/enquires?alert=Enquire%20does%20not%20exist!"
           );
         }
-        return redirect("/admin/enquires?alert=Enquire%20has%20removed!");
+        return res.redirect("/admin/enquires?alert=Enquire%20has%20removed!");
       })
       .catch(e => {
         logError(e, "Error: Admin > removeEnquire()");
-        return redirect(
+        return res.redirect(
           "/admin/enquires?alert=technical%20problem%20with%20removing%20enquire!"
         );
       });
   }
 
-  removeAdvert({ body }, { redirect }) {
-    Property.findOne({ ref: body.ref })
+  removeAdvert(req, res) {
+    Property.findOne({ ref: req.body.ref })
       .then(property => {
         if (!property) {
-          return redirect("/admin/adverts?alert=Advert%20does%20not%20exist!");
+          return res.redirect(
+            "/admin/adverts?alert=Advert%20does%20not%20exist!"
+          );
         }
         if (property.img_directory !== "placeholders") {
           const directoryPath = path.join(
@@ -408,25 +415,25 @@ class AdminRouter {
           property.remove();
         }
         // remove advert from user record
-        Users.findById(body.userId)
+        Users.findById(req.body.userId)
           .then(user => {
             user.posts = user.posts.filter(property => {
               const url = property[0];
               return url !== body.propertyUrl;
             });
             user.save();
-            return redirect("/admin/adverts?alert=Advert%20has%20removed!");
+            return res.redirect("/admin/adverts?alert=Advert%20has%20removed!");
           })
           .catch(e => {
             logError(e, "Error: Admin > removeAdvertFromUser()");
-            return redirect(
+            return res.redirect(
               "/admin/adverts?alert=technical%20problem%20with%20removing%20advert!"
             );
           });
       })
       .catch(e => {
         logError(e, "Error: Admin > removeAdvert()");
-        return redirect(
+        return res.redirect(
           "/admin/adverts?alert=technical%20problem%20with%20removing%20advert!"
         );
       });
