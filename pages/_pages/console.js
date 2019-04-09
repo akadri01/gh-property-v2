@@ -11,7 +11,7 @@ export default () => (
       <title>WeGhana Real Estate</title>
       <meta name="description" content="Ghana real estate web platform" />
     </Head>
-    <Navigation />
+    <Navigation consolePage={true} />
     <UserConsole />
     <Footer />
   </Fragment>

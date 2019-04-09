@@ -1,7 +1,3 @@
-/**
- *      /auth/...
- */
-
 "use strict";
 
 const express = require("express");
@@ -21,50 +17,50 @@ class AuthRouter {
     this.router.get("/user/logout", this.userLogout.bind(this));
   }
 
-  authUser({ body }, { json }) {
-    User.authenticate(body.email, body.password, user => {
+  authUser(req, res) {
+    User.authenticate(req.body.email, req.body.password, user => {
       if (!user) {
-        return json(false);
+        return res.json(false);
       }
-      session.userData = user;
-      json(user);
+      req.session.userData = user;
+      res.json(user);
     });
   }
 
-  authFacebook({ session, body }, { json }) {
-    User.handleUserWithFacebook(body, user => {
+  authFacebook(req, res) {
+    User.handleUserWithFacebook(req.body, user => {
       if (!user | !user._id) {
-        return json({ saved: false });
+        return res.json({ saved: false });
       }
-      session.userData = user;
-      json(user);
+      req.session.userData = user;
+      res.json(user);
     });
   }
 
-  registerUser({ session, body }, { json }) {
-    User.createNew(body)
+  registerUser(req, res) {
+    User.createNew(req.body)
       .then(user => {
         if (!user) {
-          return json({ saved: false });
+          return res.json({ saved: false });
         }
-        session.userData = user;
+        req.session.userData = user;
         // send user email confirmation
         // helpers.sendEmailConfirmation(user._id, user.email); //   Activate email on production and change sendgrid company url!   ****CHANGE ON PRODUCTION******
-        json(user);
+        res.json(user);
       })
       .catch(e => {
         console.log(e);
         // if dublicate user (same email)
         if (e.code == 11000) {
-          return json({ dublicate: true });
+          return res.json({ dublicate: true });
         }
-        json({ saved: false });
+        res.json({ saved: false });
       });
   }
 
-  userLogout({ session }) {
-    if (session) {
-      session.destroy();
+  userLogout(req) {
+    if (req.session) {
+      req.session.destroy();
     }
   }
 }

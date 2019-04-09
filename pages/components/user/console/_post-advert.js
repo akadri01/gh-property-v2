@@ -46,10 +46,10 @@ class PostAdvert extends Component {
     }
     saveUserDataToLocalStorage(payload);
     popupWindow("postAdvertForm", "Congratulations, your advert is live!");
-    await delay(3500);
-    payload.posts_allowed < 1
-      ? Router.push("/user/topup")
-      : window.location.reload(false);
+    // await delay(3500);
+    // payload.posts_allowed < 1
+    //   ? Router.push("/user/topup")
+    //   : window.location.reload(false);
   };
 
   render() {

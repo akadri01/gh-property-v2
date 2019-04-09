@@ -76,7 +76,7 @@ html(lang="en")
       br
       h1 Remove Property
       form.advert-edit(action="/admin/advert/remove" method="post")
-        input(type="hidden" name="ref" value=`${property.ref}`)
+        input(type="hidden" name="reference" value=`${property.reference}`)
         input(type="hidden" name="userId" value=`${property.user_id}`)
         input(type="hidden" name="propertyUrl" value=`${property.url}`)
         button(type="submit") Remove

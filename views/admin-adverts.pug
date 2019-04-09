@@ -17,14 +17,14 @@ html(lang="en")
       .find
         h3 Find | Edit | Remove
         form(action="/admin/advert/find" method="post")
-          input(type="text" placeholder=" Reference number" name="ref")
+          input(type="text" placeholder=" Reference number" name="reference")
           button(type="submit") Search
       .list
         h1 Adverts
         .adverts 
           each advert in adverts
             a(href=`/admin/adverts/advert/${advert._id}`)
-              .name <b>#{advert.date.toString().slice(4,16)}</b> &nbsp; #{advert.ref} <span>#{advert.age} #{advert.price}GH¢ #{advert.town}</span>
+              .name <b>#{advert.date.toString().slice(4,16)}</b> &nbsp; #{advert.reference} <span>#{advert.age} #{advert.price}GH¢ #{advert.town}</span>
         .buttons
           a(href="/admin/adverts?pagination=prev") prev
           a(href="/admin/adverts?pagination=next") next

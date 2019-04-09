@@ -37,6 +37,25 @@ export const sortPropertyListing = selectMenuClickEvent => {
   }
 };
 
+export const removeAdvert = async (url, userId, fullPath) => {
+  const imgDirectory = fullPath.split("/")[0];
+  try {
+    const { data } = await axios.delete("/api/user/remove/advert", {
+      data: {
+        url,
+        userId,
+        imgDirectory
+      }
+    });
+    if (data && data.name) {
+      saveUserDataToLocalStorage(data);
+      return data.posts;
+    }
+  } catch (thrown) {
+    console.log(thrown.message);
+  }
+};
+
 export const searchFormSubmit = (searchFormSubmitEvent, query = "") => {
   searchFormSubmitEvent.preventDefault();
   // get form values
@@ -62,23 +81,4 @@ export const searchFormSubmit = (searchFormSubmitEvent, query = "") => {
     query += `${key}=${values[key]}&`;
   });
   return Router.push(`/properties/latest?${query.replace(/\&$/, "")}`);
-};
-
-export const removeAdvert = async (url, userId, fullPath) => {
-  const imgDirectory = fullPath.split("/")[0];
-  try {
-    const { data } = await axios.delete("/api/user/remove/advert", {
-      data: {
-        url,
-        userId,
-        imgDirectory
-      }
-    });
-    if (data && data.name) {
-      saveUserDataToLocalStorage(data);
-      return data.posts;
-    }
-  } catch (thrown) {
-    console.log(thrown.message);
-  }
 };

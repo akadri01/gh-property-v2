@@ -32,7 +32,7 @@ const PropertySchema = new schema({
     type: Date,
     default: Date.now
   },
-  ref: String,
+  reference: String,
   url: String,
   user_name: String,
   user_id: String,
@@ -77,7 +77,7 @@ PropertySchema.statics.createNew = function(body, session) {
     images: images,
     img_directory: directory,
     url: generateUrl(body),
-    ref: randomstring.generate(7).toUpperCase()
+    reference: randomstring.generate(7).toUpperCase()
   });
   return newProperty.save();
 };
@@ -178,133 +178,6 @@ PropertySchema.statics.editContent = function(body, cb) {
       }
     });
 };
-
-// // search and sort
-// PropertySchema.statics.searchAndSort = function(queryObj, sortObj, limitQty, cb) {
-//   const {
-//     color,
-//     make,
-//     transmission,
-//     location,
-//     maxKm,
-//     maxPrice,
-//     minPrice,
-//     yearFrom
-//   } = queryObj;
-//   const queryOptions = {};
-
-//   if (color) {
-//     queryOptions.color = color;
-//   }
-//   if (make) {
-//     queryOptions.make = make;
-//   }
-//   if (queryObj.PropertyType || queryObj.type) {
-//     queryOptions.type = queryObj.PropertyType ? queryObj.PropertyType : queryObj.type;
-//   }
-//   if (transmission) {
-//     queryOptions.transmission = transmission;
-//   }
-//   if (location) {
-//     queryOptions.location = location;
-//   }
-//   if (maxKm) {
-//     queryOptions.km = { $lt: parseInt(maxKm) };
-//   }
-//   if (yearFrom) {
-//     queryOptions.year = { $gt: parseInt(yearFrom) };
-//   }
-//   if (maxPrice && minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice), $lt: parseInt(maxPrice) };
-//   } else if (maxPrice) {
-//     queryOptions.price = { $lt: parseInt(maxPrice) };
-//   } else if (minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice) };
-//   }
-
-//   // search Properties
-//   this.find(queryOptions)
-//     .sort(sortObj)
-//     .limit(limitQty)
-//     .then(Properties => {
-//       return cb(Properties);
-//     })
-//     .catch(e => {
-//       console.log(e);
-//       logger.log(
-//         "Error: can NOT do detailed Property search! db/models/Property/ searchAndSort()",
-//         e
-//       );
-//       return cb(false);
-//     });
-// };
-
-// // Fetch more Properties
-// PropertySchema.statics.fetchMoreProperties = function(
-//   queryObj,
-//   sortObj,
-//   limitQty,
-//   skipQty,
-//   cb
-// ) {
-//   const {
-//     color,
-//     make,
-//     transmission,
-//     location,
-//     maxKm,
-//     maxPrice,
-//     minPrice,
-//     yearFrom
-//   } = queryObj;
-//   const queryOptions = {};
-
-//   if (color) {
-//     queryOptions.color = color;
-//   }
-//   if (make) {
-//     queryOptions.make = make;
-//   }
-//   if (queryObj.PropertyType || queryObj.type) {
-//     queryOptions.type = queryObj.PropertyType ? queryObj.PropertyType : queryObj.type;
-//   }
-//   if (transmission) {
-//     queryOptions.transmission = transmission;
-//   }
-//   if (location) {
-//     queryOptions.location = location;
-//   }
-//   if (maxKm) {
-//     queryOptions.km = { $lt: parseInt(maxKm) };
-//   }
-//   if (yearFrom) {
-//     queryOptions.year = { $gt: parseInt(yearFrom) };
-//   }
-//   if (maxPrice && minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice), $lt: parseInt(maxPrice) };
-//   } else if (maxPrice) {
-//     queryOptions.price = { $lt: parseInt(maxPrice) };
-//   } else if (minPrice) {
-//     queryOptions.price = { $gt: parseInt(minPrice) };
-//   }
-
-//   // search Properties
-//   this.find(queryOptions)
-//     .sort(sortObj)
-//     .limit(limitQty)
-//     .skip(skipQty)
-//     .then(Properties => {
-//       return cb(Properties);
-//     })
-//     .catch(e => {
-//       console.log(e);
-//       logger.log(
-//         "Error: can NOT do detailed Property search! db/models/Property/ fetchMoreProperties()",
-//         e
-//       );
-//       return cb(false);
-//     });
-// };
 
 const Property = mongoose.model("property", PropertySchema);
 

@@ -27,9 +27,8 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    const currentUser = getUserDataFromLocalStorage();
-    if (currentUser) {
-      Router.push("/user/console");
+    if (getUserDataFromLocalStorage()) {
+      return Router.push("/user/console");
     }
   }
 }

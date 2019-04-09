@@ -9,36 +9,38 @@ import {
 } from "../shared/data.js";
 const featuresList = featuresCheckboxFieldList.map(obj => obj.labelAndValue);
 
-export default ({
-  advert_type,
-  area,
-  age,
-  date,
-  detail,
-  features,
-  images,
-  img_directory,
-  located_floor,
-  phone,
-  premises_type,
-  price,
-  ref,
-  region,
-  posted_by,
-  furniture,
-  garden,
-  rooms_qty,
-  title,
-  total_balcony,
-  total_bathroom,
-  total_floor,
-  town,
-  url,
-  user_id,
-  _id,
-  user_email,
-  user_name
-}) => {
+export default property => {
+  console.log(property);
+  const {
+    advert_type,
+    area,
+    age,
+    date,
+    detail,
+    features,
+    images,
+    img_directory,
+    located_floor,
+    phone,
+    premises_type,
+    price,
+    reference,
+    region,
+    posted_by,
+    furniture,
+    garden,
+    rooms_qty,
+    title,
+    total_balcony,
+    total_bathroom,
+    total_floor,
+    town,
+    url,
+    user_id,
+    _id,
+    user_email,
+    user_name
+  } = property;
   return (
     <Fragment>
       <section className="single-property-page mobile-desktop-frame">
@@ -212,7 +214,7 @@ export default ({
           </div>
           <div className="prop-sidebar__reference">
             <div>
-              Reference <b>{ref}</b>
+              Reference <b>{reference}</b>
             </div>
             <div>
               Date Posted <b>{beautifyDate(date, true)}</b>

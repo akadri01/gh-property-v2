@@ -1,9 +1,3 @@
-/**
- *   Admin routes
- *
- *        /admin/...
- */
-
 "use strict";
 
 const express = require("express");
@@ -289,7 +283,7 @@ class AdminRouter {
   }
 
   findAdvert(req, res) {
-    Property.findOne({ ref: req.body.ref.toUpperCase() })
+    Property.findOne({ reference: req.body.reference.toUpperCase() })
       .then(property => {
         if (!property) {
           return res.redirect(
@@ -396,7 +390,7 @@ class AdminRouter {
   }
 
   removeAdvert(req, res) {
-    Property.findOne({ ref: req.body.ref })
+    Property.findOne({ reference: req.body.reference })
       .then(property => {
         if (!property) {
           return res.redirect(
@@ -419,7 +413,7 @@ class AdminRouter {
           .then(user => {
             user.posts = user.posts.filter(property => {
               const url = property[0];
-              return url !== body.propertyUrl;
+              return url !== req.body.propertyUrl;
             });
             user.save();
             return res.redirect("/admin/adverts?alert=Advert%20has%20removed!");

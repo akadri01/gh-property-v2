@@ -4,9 +4,9 @@ import { Picture } from "react-responsive-picture";
 const insertImageFrame = (link, locationName, mobileImg, desktopImg) => (
   <Link href={link}>
     <a className="town-nav__town">
-      <div className="town-nav__town-overlay">
-        <h2 className="town-nav__town-title">{locationName}</h2>
-        <p className="town-nav__town-text">View properties</p>
+      <div className="town-nav__town-content">
+        <h2>{locationName}</h2>
+        <p>View properties</p>
       </div>
       <Picture
         sources={[
@@ -26,6 +26,43 @@ const insertImageFrame = (link, locationName, mobileImg, desktopImg) => (
   </Link>
 );
 
+const _accra = insertImageFrame(
+  "/properties/latest?town=accra",
+  "Accra",
+  "accra-mobile.jpg",
+  "accra-desktop.jpg"
+);
+const _kumasi = insertImageFrame(
+  "/properties/latest?town=kumasi",
+  "Kumasi",
+  "kumasi-mobile.jpg",
+  "kumasi-desktop.jpg"
+);
+const _tamale = insertImageFrame(
+  "/properties/latest?town=tamale",
+  "Tamale",
+  "tamale-mobile.jpg",
+  "tamale-desktop.jpg"
+);
+const _takoradi = insertImageFrame(
+  "/properties/latest?town=takoradi",
+  "Takoradi",
+  "takoradi-mobile.jpg",
+  "takoradi-desktop.jpg"
+);
+const _sunyani = insertImageFrame(
+  "/properties/latest?town=sunyani",
+  "Sunyani",
+  "sunyani-mobile.jpg",
+  "sunyani-desktop.jpg"
+);
+const _obuasi = insertImageFrame(
+  "/properties/latest?town=obuasi",
+  "Obuasi",
+  "obuasi-mobile.jpg",
+  "obuasi-desktop.jpg"
+);
+
 export default () => (
   <section className="town-nav mobile-desktop-frame">
     <div className="default-group">
@@ -34,46 +71,14 @@ export default () => (
       <hr />
     </div>
     <div className="top">
-      {insertImageFrame(
-        "/properties/latest?town=accra",
-        "Accra",
-        "accra-mobile.jpg",
-        "accra-desktop.jpg"
-      )}
-      {insertImageFrame(
-        "/properties/latest?town=kumasi",
-        "Kumasi",
-        "kumasi-mobile.jpg",
-        "kumasi-desktop.jpg"
-      )}
+      {_accra}
+      {_kumasi}
     </div>
     <div className="middle">
-      {insertImageFrame(
-        "/properties/latest?town=tamale",
-        "Tamale",
-        "tamale-mobile.jpg",
-        "tamale-desktop.jpg"
-      )}
-      {insertImageFrame(
-        "/properties/latest?town=takoradi",
-        "Takoradi",
-        "takoradi-mobile.jpg",
-        "takoradi-desktop.jpg"
-      )}
-      {insertImageFrame(
-        "/properties/latest?town=sunyani",
-        "Sunyani",
-        "sunyani-mobile.jpg",
-        "sunyani-desktop.jpg"
-      )}
+      {_tamale}
+      {_takoradi}
+      {_sunyani}
     </div>
-    <div className="bottom">
-      {insertImageFrame(
-        "/properties/latest?town=obuasi",
-        "Obuasi",
-        "obuasi-mobile.jpg",
-        "obuasi-desktop.jpg"
-      )}
-    </div>
+    <div className="bottom">{_obuasi}</div>
   </section>
 );

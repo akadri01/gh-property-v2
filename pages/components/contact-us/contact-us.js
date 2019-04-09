@@ -18,7 +18,7 @@ class ContactUsForm extends Component {
             <b>Phone</b> &nbsp;+233 302 785508
           </div>
           <div>
-            <b>Email</b>&nbsp;&nbsp;&nbsp; info@akwaabaautotrader.com
+            <b>Email</b>&nbsp;&nbsp;&nbsp; info@weghana-property.com
           </div>
         </div>
         {!this.props.enquire ? (
