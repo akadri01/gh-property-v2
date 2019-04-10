@@ -1,11 +1,3 @@
-/**
- **
- **  Organizes form values before being submited
- **
- **  Utility function for user advert post. Being used in /pages/redux/action/index.js
- **
- **/
-
 import { featuresCheckboxFieldList } from "../components/shared/data";
 import { getUserDataFromLocalStorage } from "./localStorage";
 

@@ -1,9 +1,3 @@
-/**
- **
- **  Handles all local storage operations
- **
- **/
-
 // User Data and Auth
 export const saveUserDataToLocalStorage = userDataObj => {
   localStorage.setItem("userData", JSON.stringify(userDataObj));

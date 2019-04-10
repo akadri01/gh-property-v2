@@ -1,8 +1,3 @@
-/**
- **
- **  Checks authorization on browser
- **
- **/
 import Router from "next/router";
 import { getUserDataFromLocalStorage } from "./localStorage.js";
 

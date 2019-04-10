@@ -1,9 +1,3 @@
-/**
- **
- **  Button loader animation controlers
- **
- **/
-
 export const displayLoader = targetBtnSelector => {
   const targetBtn = document.querySelector(targetBtnSelector);
   if (!targetBtn.classList.contains("button-loader")) {

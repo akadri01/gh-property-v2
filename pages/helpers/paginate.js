@@ -1,11 +1,3 @@
-/**
- **
- **  Provides last sequence of pagination
- **
- **  Utility function for /pages/component/pagination-bar/pagination-bar.js
- **
- **/
-
 import Router from "next/router";
 import {
   getPropertySearchQueryFromLocalStorage,

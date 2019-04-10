@@ -1,9 +1,3 @@
-/**
- **
- **  Redux-form input generators
- **
- **/
-
 import React, { Component, Fragment } from "react";
 import { popupWindow } from "../helpers/popup";
 

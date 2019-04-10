@@ -1,8 +1,3 @@
-/**
- **
- **  Custom pop up window
- **
- **/
 export const popupWindow = (idSelector, message) => {
   // Add script to make the popup removable
   const script =
