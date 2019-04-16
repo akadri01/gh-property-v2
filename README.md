@@ -24,11 +24,11 @@ Make sure you have the latest Stable or LTS version of Node.js installed.
 
 - `npm run dev` - start the dev server
 - `npm clean` - delete the dist folder
-- `npm run production` - create a production ready build in `.next` folder
+- `npm run build` - create a production ready build in `.next` folder
 
 ## Production code
 
-Run `npm run production`. The production-ready code will be located under `.next` folder.
+Run `npm run build`. The production-ready code will be located under `.next` folder.
 
 ## Contributing
 

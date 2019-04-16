@@ -80,9 +80,9 @@ class SetupServer {
   }
 
   start() {
-    this.server.listen(process.env.PORT, e => {
+    this.server.listen(3000, e => {
       if (e) throw e;
-      console.log(`Server is running on port ${process.env.PORT}`);
+      console.log(`Server is running on port 3000`);
     });
   }
 }

@@ -1,6 +1,4 @@
-import { reduxInitialState } from "../redux-initial-state.js";
-
-export default (state = reduxInitialState.user, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case "REGISTER_USER":
       return {

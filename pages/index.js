@@ -9,7 +9,7 @@ import Footer from "./components/footer/footer";
 import BuySellRentTabs from "./components/trio-tabs/trio-tabs";
 import RecentAds from "./components/recent-ads/recent-ads";
 
-const Index = ({ recentProperties }) => (
+const Index = () => (
   <Fragment>
     <Head>
       <title>WeGhana Real Estate</title>
