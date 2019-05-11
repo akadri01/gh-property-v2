@@ -28,16 +28,11 @@ export const registerUser = formValues => async dispatch => {
     console.log(e);
     return dispatch({
       type: "REGISTER_USER",
-      payload: []
+      payload: [] 
     });
   }
 };
-export const refreshUserConsole = userData => dispatch => {
-  return dispatch({
-    type: "REFRESH_USER_CONSOLE",
-    payload: userData
-  });
-};
+
 export const postAdvert = formValues => async dispatch => {
   try {
     const formData = generateAdvertFormData(formValues);

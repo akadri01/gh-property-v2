@@ -19,11 +19,6 @@ export default (state = [], action) => {
       return {
         ...state
       };
-    case "REFRESH_USER_CONSOLE":
-      return {
-        ...state,
-        userData: action.payload
-      };
     case "POST_ADVERT":
       return {
         ...state,
