@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Head from "next/head";
 import "./styles/Main.scss";
 import { connect } from "react-redux";
-import Navigation from "./containers/navigation";
+import Navigation from "./components/navigation/navigation.js";
 import Banner from "./components/banner/banner";
 import TownNavigation from "./components/town-nav/town-nav";
 import Footer from "./components/footer/footer";

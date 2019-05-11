@@ -1,7 +1,31 @@
 import Link from "next/link";
-import { searchFormSubmit } from "../../helpers/form-handles.js";
+import Router from "next/router";
 
-export default () => (
+const searchFormSubmit = (searchFormSubmitEvent, query = "") => {
+  searchFormSubmitEvent.preventDefault();
+  const inputs = document.getElementById("searchForm").elements;
+  const values = {};
+  for (let i = 0; i < inputs.length; i++) {
+    const { value, name, checked } = inputs.item(i);
+    if (value.length) {
+      if (value.includes("TOWN_")) {
+        values.town = value.replace(/TOWN_/g, "");
+      }
+      if (value.includes("REGION_")) {
+        values.region = value.replace(/REGION_/g, "");
+      }
+      if (!value.match(/TOWN_|REGION_/g) && checked === true) {
+        values[name] = value;
+      }
+    }
+  }
+  Object.keys(values).forEach(key => {
+    query += `${key}=${values[key]}&`;
+  });
+  return Router.push(`/properties/latest?${query.replace(/\&$/, "")}`);
+};
+
+export default () => 
   <form className="banner__form" id="searchForm" onSubmit={searchFormSubmit}>
     <h2>Search for property in Ghana</h2>
     <select name="location">
@@ -48,4 +72,3 @@ export default () => (
     </div>
     <button type="submit">search</button>
   </form>
-);

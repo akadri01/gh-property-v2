@@ -2,13 +2,6 @@ import generateAdvertFormData from "../../helpers/generate-advert-formdata";
 import { getUserDataFromLocalStorage } from "../../helpers/localStorage";
 
 // USER ACTIONS
-export const adjustNavForLocalUser = () => dispatch => {
-  const user = getUserDataFromLocalStorage();
-  return dispatch({
-    type: "ADJUST_NAV_FOR_LOCAL_USER",
-    payload: user
-  });
-};
 export const loginUser = formValues => async dispatch => {
   try {
     const { data } = await axios.post("/auth/user/login", formValues);

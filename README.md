@@ -1,4 +1,5 @@
-# Gh Real Estate Website
+# Gh Real Estate Website Version 2.0 
+
 
 About the technologies used;
 
@@ -8,7 +9,6 @@ About the technologies used;
 - [x] Mongodb
 - [x] ES6 linting
 - [x] SASS support
-- [x] Redux state management
 - [x] Pug & Hbs template engines
 
 ## Starting the dev server

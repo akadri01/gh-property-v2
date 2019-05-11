@@ -1,15 +1,46 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
 import Link from "next/link";
+import _isEmpty from "lodash.isempty";
 import Router from "next/router";
-import { adjustNavForLocalUser } from "../../redux/actions";
-import { removeUserDataFromLocalStorage } from "../../helpers/localStorage.js";
+import { removeUserDataFromLocalStorage, getUserDataFromLocalStorage } from "../../helpers/localStorage.js";
 import {
   locationRegionSelectField,
   locationTownSelectField
 } from "../shared/data.js";
 
-class Navigation extends Component {
+export default class Navigation extends Component {
+  state={
+    user: {}
+  }
+  get isProfilePage() {
+    return window.location.pathname === "/user/console" ? (
+      <a onClick={this.logout} className="links">
+        Logout
+      </a>
+    ) : (
+      <Fragment>
+        <Link href="/user/console">
+          <a className="links">My page</a>
+        </Link>
+        <a onClick={this.logout} className="links">
+          Logout
+        </a>
+      </Fragment>
+    );
+  }
+
+  componentDidMount() {
+    const user = getUserDataFromLocalStorage();
+    return !_isEmpty(user) ? this.setState({user}) : undefined; 
+  }
+
+  logout = () => {
+    axios.get("/auth/user/logout");
+    removeUserDataFromLocalStorage();
+    window.location.pathname !== "/"
+      ? Router.push("/")
+      : window.location.reload(false);
+  };
   render() {
     return (
       <section className="navigation">
@@ -95,7 +126,7 @@ class Navigation extends Component {
                 </div>
               </div>
             </div>
-            {this.props.localUser ? (
+            {!_isEmpty(this.state.user) ? (
               this.isProfilePage
             ) : (
               <Link href="/user/auth">
@@ -112,41 +143,4 @@ class Navigation extends Component {
       </section>
     );
   }
-
-  get isProfilePage() {
-    return window.location.pathname === "/user/console" ? (
-      <a onClick={this.logout} className="links">
-        Logout
-      </a>
-    ) : (
-      <Fragment>
-        <Link href="/user/console">
-          <a className="links">My page</a>
-        </Link>
-        <a onClick={this.logout} className="links">
-          Logout
-        </a>
-      </Fragment>
-    );
-  }
-
-  componentDidMount() {
-    this.props.dispatch(adjustNavForLocalUser());
-  }
-
-  logout = () => {
-    axios.get("/auth/user/logout");
-    removeUserDataFromLocalStorage();
-    window.location.pathname !== "/"
-      ? Router.push("/")
-      : window.location.reload(false);
-  };
-}
-
-function mapStateToProps(state) {
-  return {
-    localUser: state.user.userData
-  };
-}
-
-export default connect(mapStateToProps)(Navigation);
+} 

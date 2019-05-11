@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import "../styles/Main.scss";
-import Navigation from "../containers/navigation";
+import Navigation from "../components/navigation";
 import Footer from "../components/footer/footer";
 import ContactUs from "../components/contact-us/contact-us.js";
 

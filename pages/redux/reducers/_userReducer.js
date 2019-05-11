@@ -34,11 +34,6 @@ export default (state = [], action) => {
         ...state,
         userData: action.payload
       };
-    case "ADJUST_NAV_FOR_LOCAL_USER":
-      return {
-        ...state,
-        userData: action.payload
-      };
     default:
       return state;
   }
