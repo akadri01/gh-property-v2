@@ -4,9 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 import rooterReducer from "../reducers";
 const reduxInitialState = {
-  user: [],
-  property: [],
-  enquire: false
+  user: []
 };
 
 const initializeStore = (initialState = reduxInitialState) => {
