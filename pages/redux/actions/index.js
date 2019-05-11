@@ -70,22 +70,6 @@ export const editAdvert = formValues => async dispatch => {
   }
 };
 
-// ENQUIRE ACTION
-export const postEnquire = formValues => dispatch => {
-  try {
-    axios.post("/api/enquire", formValues);
-    return dispatch({
-      type: "POST_ENQUIRE",
-      payload: true
-    });
-  } catch (e) {
-    console.log(e);
-    return dispatch({
-      type: "POST_ENQUIRE",
-      payload: false
-    });
-  }
-};
 
 // PROPERTY ACTIONS
 export const fetchPropertiesForHomePage = () => async dispatch => {

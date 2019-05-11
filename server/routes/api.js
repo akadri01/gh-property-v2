@@ -96,7 +96,7 @@ class ApiRouter {
       });
   }
 
-  saveCustomerEnquire(req) {
+  saveCustomerEnquire(req,res) {
     const enquire = new Enquire({
       name: req.body.name,
       contact: req.body.contact,
@@ -104,6 +104,7 @@ class ApiRouter {
     });
     enquire
       .save()
+      .then(()=> res.status(204).send())
       .catch(e => logError(e, "Error: Api > saveCustomerEnquire()"));
   }
 
