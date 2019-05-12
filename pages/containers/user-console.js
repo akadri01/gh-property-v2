@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Router from "next/router";
-import isAuthorized from "../helpers/auth-on-client.js";
+import { clientAuth } from "../helpers/utility-func.js";
 import _isEmpty from "lodash.isempty";
 import UserConsole from "../components/user/console/console.js";
 
@@ -15,9 +15,8 @@ export default class UserData extends Component {
       </Fragment>
     );
   }
-
   async componentDidMount() {
-    const user = await isAuthorized("/user/auth");
+    const user = await clientAuth("/user/auth");
     return user.posts_allowed < 1
       ? Router.push("/user/topup")
       : this.setState({user});

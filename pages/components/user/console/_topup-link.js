@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
-import isPlural from "../../../helpers/isPlural.js";
+import {isPlural} from "../../../helpers/utility-func.js";
 
-export default ({ name, posts_allowed }) => (
+export default ({ name, posts_allowed }) => 
   <Fragment>
     <div className="console__topup-text-container">
       <span className="console__topup-text-container-text">Hello {name}</span>
@@ -15,4 +15,3 @@ export default ({ name, posts_allowed }) => (
       <a className="console__topup-text-container-btn">Top up</a>
     </Link>
   </Fragment>
-);

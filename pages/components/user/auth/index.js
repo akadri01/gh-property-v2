@@ -6,6 +6,7 @@ import Router from "next/router";
 import { getUserDataFromLocalStorage } from "../../../helpers/localStorage.js";
 
 export default class Auth extends Component {
+  componentDidMount = () => getUserDataFromLocalStorage() ? Router.push("/user/console") : undefined;
   render() {
     return (
       <section className="auth mobile-desktop-frame">
@@ -24,11 +25,5 @@ export default class Auth extends Component {
         </div>
       </section>
     );
-  }
-
-  componentDidMount() {
-    if (getUserDataFromLocalStorage()) {
-      return Router.push("/user/console");
-    }
   }
 }

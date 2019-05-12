@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import { Component, Fragment } from "react";
 import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
 import { required, email, length, confirmation } from "redux-form-validators";

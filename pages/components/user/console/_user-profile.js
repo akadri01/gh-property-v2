@@ -1,7 +1,7 @@
-import React, { Fragment, Component } from "react";
+import { Fragment, Component } from "react";
 import Router from "next/router";
 import Link from "next/link";
-import isPlural from "../../../helpers/isPlural.js";
+import {isPlural} from "../../../helpers/utility-func.js";
 import { removeAdvert } from "../../../helpers/form-handles.js";
 import { popupWindow } from "../../../helpers/popup.js";
 const trashImg = "/static/images/icons/bin.svg";

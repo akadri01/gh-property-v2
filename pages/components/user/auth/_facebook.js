@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Router from "next/router";
 import { popupWindow } from "../../../helpers/popup.js";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";

@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
 import isValidEmail from "sane-email-validation";
 import { required, email, length, confirmation } from "redux-form-validators";
-
 import { registerUser } from "../../../redux/actions";
 import { renderFormInput } from "../../../helpers/reduxForm";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";

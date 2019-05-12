@@ -1,4 +1,4 @@
-%redux-form-borders {
+%default-form-borders {
   border: $gray-border;
   &:hover {
     border-color: $color-yellow;
@@ -50,7 +50,7 @@
   }
 }
 
-.default-redux-form {
+.default-form {
   font-family: $font-family-body;
   input[type="text"],
   input[type="password"],
@@ -58,16 +58,17 @@
   input[type="email"],
   input[type="number"] {
     text-indent: 10px;
-    height: 33px;
+    height: 40px;
     font-size: $font-size-medium;
-    @extend %redux-form-borders;
+    margin-bottom: 16px;
+    @extend %default-form-borders;
     width: 100%;
   }
   select {
     font-size: $font-size-medium;
     padding-left: 28px;
     @include backgroundIcon("list.svg", 13px, 12px center);
-    @extend %redux-form-borders;
+    @extend %default-form-borders;
     height: 33px;
     width: 100%;
     background-color: transparent;
@@ -79,24 +80,17 @@
     display: block;
     margin: 7px 0 2px;
   }
-  .redux-input-container {
-    height: 45px;
-  }
-  .redux-form-file-input-container {
+  textarea {
     margin-bottom: 16px;
-  }
-  .redux-textarea-container {
     height: 130px;
-    textarea {
-      text-indent: 10px;
-      padding-top: 10px;
-      height: 110px;
-      font-size: $font-size-medium;
-      @extend %redux-form-borders;
-      width: 100%;
-    }
+    text-indent: 10px;
+    padding-top: 10px;
+    height: 110px;
+    font-size: $font-size-medium;
+    @extend %default-form-borders;
+    width: 100%;
   }
-  .redux-checkbox-container {
+  .default-checkbox-container {
     margin-bottom: 11px;
     @include desktopSmall {
       margin-bottom: 18px;

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import isPlural from "../../helpers/isPlural.js";
+import {isPlural} from "../../helpers/utility-func.js";
 
 export default ({ searchResultsQty, notFoundStr }) => (
   <h1 className="listing--title">

@@ -5,11 +5,6 @@ export default (state = [], action) => {
         ...state,
         register: action.payload
       };
-    case "LOGIN_USER":
-      return {
-        ...state,
-        userData: action.payload
-      };
     case "AUTH_USER":
       return {
         ...state,

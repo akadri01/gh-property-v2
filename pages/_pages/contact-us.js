@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import Router from "next/router";
 import Head from "next/head";
+import axios from "axios";
 import "../styles/Main.scss";
+import { retrieveFormValues } from "../helpers/utility-func.js";
 import Navigation from "../components/navigation/navigation.js";
 import Footer from "../components/footer/footer";
-import axios from "axios";
 import { popupWindow } from "../helpers/popup.js";
 
 export default class Contact extends Component {
@@ -14,14 +15,7 @@ export default class Contact extends Component {
   }
   postEnquire = e => {
     e.preventDefault();
-    const inputs = e.target.elements;
-    const values = {};
-    for (let i = 0; i < inputs.length; i++) {
-      const { value, name } = inputs.item(i);
-      if (value.length) {
-        values[name] = value;
-      }
-    }
+    const values = retrieveFormValues(e.target.elements);
     axios.post("/api/enquire", values).then(()=> {
       return this.setState({ 
         enquire: true,
@@ -50,26 +44,20 @@ export default class Contact extends Component {
           </div>
           {!this.state.enquire ? (
             <form
-              className="default-redux-form"
+              className="default-form"
               id="postEnquireForm"
               onSubmit={this.postEnquire}
             >
               <div className="desktop-flex">
                 <label>Name</label>
-                <div className="redux-input-container">
-                  <input type="text" name="name" placeholder=" Your name" minLength="2" maxLength="30" required/>
-                </div>
+                <input type="text" name="name" placeholder=" Your name" minLength="2" maxLength="30" required/>
               </div>
               <div className="desktop-flex">
                 <label>Phone or Email</label>
-                <div className="redux-input-container">
-                  <input type="text" name="contact" placeholder=" Phone or Email" minLength="6" maxLength="40" required/>
-                </div>
+                <input type="text" name="contact" placeholder=" Phone or Email" minLength="6" maxLength="40" required/>
               </div>
               <label>Your message</label>
-              <div className="redux-textarea-container">
-                <textarea name="text" placeholder=" Tell us..." minLength="10" maxLength="3000" required></textarea>
-              </div>
+              <textarea name="text" placeholder=" Tell us..." minLength="10" maxLength="3000" required></textarea>
               <button type="submit">
                 Send
               </button>

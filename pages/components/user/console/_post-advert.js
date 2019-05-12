@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
+import { Component, Fragment } from "react";
 import Router from "next/router";
 import { reduxForm, Field } from "redux-form";
 import { required, email, length, confirmation } from "redux-form-validators";
 import { popupWindow } from "../../../helpers/popup.js";
-import { delay } from "../../../helpers/delay.js";
+import { delay } from "../../../helpers/utility-func.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
 import {

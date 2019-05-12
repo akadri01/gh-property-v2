@@ -1,6 +1,6 @@
 import { Component, Fragment } from "react";
 import _isEmpty from "lodash.isempty";
-import isAuthorized from "../helpers/auth-on-client.js";
+import { clientAuth } from "../helpers/utility-func.js";
 import UserAdvertsComponent from "../components/user/user-adverts/user-adverts";
 
 export default class UserAdverts extends Component {
@@ -19,7 +19,7 @@ export default class UserAdverts extends Component {
     );
   }
   componentDidMount() {
-    const user = isAuthorized("/user/auth");
+    const user = clientAuth("/user/auth");
     return !Array.isArray(user.posts)
       ? Router.push("/user/auth")
       : this.setState({ user });
