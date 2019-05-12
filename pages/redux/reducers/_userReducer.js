@@ -1,10 +1,13 @@
 export default (state = [], action) => {
   switch (action.type) {
+<<<<<<< HEAD
     case "REGISTER_USER":
       return {
         ...state,
         register: action.payload
       };
+=======
+>>>>>>> remove-redux
     case "AUTH_USER":
       return {
         ...state,
