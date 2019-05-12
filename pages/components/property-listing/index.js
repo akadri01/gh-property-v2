@@ -1,18 +1,17 @@
 import React, { Fragment, Component } from "react";
 import Link from "next/link";
-import associateImgPath from "../../helpers/associate-image-path.js";
-import isPlural from "../../helpers/isPlural.js";
-import { beautifyPrice, beautifyDate } from "../../helpers/beautify.js";
+import {associateImagePath, isPlural} from "../../helpers/utility-func.js";
+import { beautifyPrice, beautifyDate } from "../../helpers/utility-func.js";
 import PaginationBar from "../pagination-bar/pagination-bar.js";
 import { getSortQueryFromLocalStorage } from "../../helpers/localStorage";
-import createFailedSearchInfo from "../../helpers/create-failed-search-info.js";
+import {createFailedSearchInformation} from "../../helpers/utility-func.js";
 import PageInfoTitle from "./_page-title.js";
 import SortForm from "./_sort-form.js";
 import FilterForm from "./_filter-form.js";
 import NotFoundImg from "./_not-found-img.js";
 
 export default props => {
-  const notFoundStr = createFailedSearchInfo(props.searchQuery);
+  const notFoundStr = createFailedSearchInformation(props.searchQuery);
   return (
     <section className="listing mobile-desktop-frame">
       <FilterForm />
@@ -49,7 +48,7 @@ export default props => {
               <Link href={`/property/${url}`}>
                 <a className="listing__container-item">
                   <img
-                    src={associateImgPath(img_directory, images[0])}
+                    src={associateImagePath(img_directory, images[0])}
                     className="listing__container-item-img"
                     alt={`Property in ${town}`}
                     title={imageTitle}

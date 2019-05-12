@@ -1,7 +1,7 @@
 import _times from "lodash.times";
 import { PAGINATION_QUANTITY } from "../../../globals/globals.json";
 import paginate from "../../helpers/paginate.js";
-import isPlural from "../../helpers/isPlural.js";
+import {isPlural} from "../../helpers/utility-func.js";
 
 export default ({ searchResultsQty, searchQuery }) => {
   const totalPageQty = Math.ceil(searchResultsQty / PAGINATION_QUANTITY);

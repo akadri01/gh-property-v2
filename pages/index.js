@@ -1,6 +1,7 @@
 import Head from "next/head";
-import _before from "lodash.before";
 import { Waypoint } from "react-waypoint";
+import _before from "lodash.before";
+import _times from "lodash.times";
 import axios from 'axios';
 import React, { Component, Fragment } from "react";
 import Link from "next/link";
@@ -10,7 +11,6 @@ import TownNavigation from "./components/town-nav/town-nav";
 import Footer from "./components/footer/footer";
 import BuySellRentTabs from "./components/trio-tabs/trio-tabs";
 import SimpleThumbnail from "./components/thumbnails/simple-thumbnail.js";
-import { placeholderProperties } from "./helpers/placeholders.js";
 import "./styles/Main.scss";
 
 export default class Home extends Component {
@@ -19,6 +19,19 @@ export default class Home extends Component {
   }
   insertProperties = properties => properties.map(property => <SimpleThumbnail {...property} />);
   fetchproperties = async () => axios.get("/api/fetch/homepage/properties/recent").then(({data}) => this.setState({properties:data}));
+  insertPlaceholders = (qty, items = []) => {
+    _times(qty, () => {
+      items.push({
+        advert_type: "...",
+        premises_type: "...",
+        town: "...",
+        title: "...",
+        img_directory: "icons",
+        images: ["loader.gif"]
+      });
+    });
+    return items;
+  }
   render(){
     return(
       <Fragment>
@@ -40,7 +53,7 @@ export default class Home extends Component {
           <div className="recentAds__frame">
             {this.state.properties.length
               ? this.insertProperties(this.state.properties)
-              : this.insertProperties(placeholderProperties(8))}
+              : this.insertProperties(this.insertPlaceholders(8))}
           </div>
         </section>
         <style>{`

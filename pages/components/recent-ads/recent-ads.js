@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from "react";
+import { Component, Fragment } from "react";
 import { Waypoint } from "react-waypoint";
 import _before from "lodash.before";
 import Link from "next/link";
 import axios from 'axios';
 import SimpleThumbnail from "../thumbnails/simple-thumbnail.js";
-import { placeholderProperties } from "../../helpers/placeholders.js";
 
 export default class RecentAds extends Component {
   state={
@@ -16,6 +15,19 @@ export default class RecentAds extends Component {
           return <SimpleThumbnail {...property} />;
         });
   };
+  insertPlaceholders = (qty, items = []) => {
+    _times(qty, () => {
+      items.push({
+        advert_type: "...",
+        premises_type: "...",
+        town: "...",
+        title: "...",
+        img_directory: "icons",
+        images: ["loader.gif"]
+      });
+    });
+    return items;
+  }
   render() {
     return (
       <Fragment>
@@ -30,10 +42,13 @@ export default class RecentAds extends Component {
           <div className="recentAds__frame">
             {this.state.properties.length
               ? this.insertProperties(this.state.properties)
-              : this.insertProperties(placeholderProperties(8))}
+              : this.insertProperties(this.insertPlaceholders(8))}
           </div>
         </section>
       </Fragment>
     );
   }
 }
+
+
+

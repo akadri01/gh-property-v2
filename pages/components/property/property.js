@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PreviousPage from "../shared/previous-page.js";
-import { beautifyDate, beautifyPrice } from "../../helpers/beautify.js";
+import { beautifyDate, beautifyPrice } from "../../helpers/utility-func.js";
 import Carousel from "../carousel/carousel.js";
 import SocialMediaShare from "../social-media-share/social-media-share.js";
 import {

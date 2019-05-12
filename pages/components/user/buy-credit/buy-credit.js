@@ -1,6 +1,4 @@
-import React from "react";
-
-export default () => (
+export default () => 
   <section className="topup email-confirm-link mobile-desktop-frame">
     <h1>Top up</h1>
     <p>
@@ -23,4 +21,3 @@ export default () => (
       <button />
     </form>
   </section>
-);
