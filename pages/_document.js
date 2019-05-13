@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from "next/document";
+import { checkForPopup } from "./helpers/popup.js";
 
-class Doc extends Document {
+export default class Doc extends Document {
   render() {
     return (
       <html lang="en">
@@ -21,12 +22,6 @@ class Doc extends Document {
             href="https://fonts.googleapis.com/css?family=Lato"
             rel="stylesheet"
           />
-          <script
-            type="text/javascript"
-            src="/static/vendors/axios.js"
-            async
-            defer
-          />
         </Head>
         <body>
           <Main />
@@ -35,6 +30,7 @@ class Doc extends Document {
       </html>
     );
   }
+  componentDidMount() {
+    checkForPopup();
+  }
 }
-
-export default Doc;

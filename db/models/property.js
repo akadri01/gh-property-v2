@@ -39,7 +39,7 @@ const PropertySchema = new schema({
   user_email: String
 });
 
-PropertySchema.statics.createNew = function(body, session) {
+PropertySchema.statics.createNew = (body, session) => {
   // set images
   const placeholders = ["thumbnail.jpg", "main.jpg"];
   const images =
@@ -134,9 +134,7 @@ PropertySchema.statics.searchSortWithTotalRecordQty = function(
       .sort(sortObj)
       .limit(limitQty)
       .skip(skipQty)
-      .then(properties => {
-        return cb(properties, totalRecordQty);
-      })
+      .then(properties => cb(properties, totalRecordQty))
       .catch(e => {
         logError(e, "Error: db/models/Property/ searchDetailed()");
         return cb(false);
@@ -172,11 +170,7 @@ PropertySchema.statics.editContent = function(body, cb) {
       }
       return cb(true);
     })
-    .catch(e => {
-      if (e) {
-        return cb(false);
-      }
-    });
+    .catch(e => cb(false));
 };
 
 const Property = mongoose.model("property", PropertySchema);

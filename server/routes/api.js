@@ -61,9 +61,7 @@ class ApiRouter {
   }
 
   userEditAdvert(req, res) {
-    Property.editContent(req.body, status => {
-      return res.json({ success: status });
-    });
+    Property.editContent(req.body, status => res.json({ success: status }));
   }
 
   userRemoveAdvert(req, res) {

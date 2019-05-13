@@ -24,13 +24,7 @@ const databaseHelpers = {
         url,
         title,
         thumbnailPath,
-        (e, user) => {
-          if (e || !user) {
-            return cb({});
-          }
-          return cb(user);
-        }
-      );
+        (e, user) => e || !user ? cb({}) : cb(user));
     } catch (e) {
       logError(e, "Error: > createAdUpdateUser()");
       return cb({});

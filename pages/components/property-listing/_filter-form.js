@@ -15,11 +15,11 @@ export default () => {
         Filter
       </button>
       <form
-        className="listing__filter-form default-redux-form"
+        className="listing__filter-form default-form"
         id="filterForm"
         onSubmit={filterFormSubmit}
       >
-        <div className="redux-input-container">
+        <div className="input-container">
           <label>Premises type</label>
           <select name="premises_type">
             <option value="house" selected>
@@ -31,7 +31,7 @@ export default () => {
             <option value="building">Building</option>
           </select>
         </div>
-        <div className="redux-input-container">
+        <div className="input-container">
           <label>Advert type</label>
           <select name="advert_type">
             <option value="sale" selected>
@@ -40,7 +40,7 @@ export default () => {
             <option value="rent">Rental</option>
           </select>
         </div>
-        <div className="redux-input-container">
+        <div className="input-container">
           <label>Min price</label>
           <select name="minPrice">
             {minPrice.map(({ value, text }) => (
@@ -48,7 +48,7 @@ export default () => {
             ))}
           </select>
         </div>
-        <div className="redux-input-container">
+        <div className="input-container">
           <label>Max price</label>
           <select name="maxPrice">
             {maxPrice.map(({ value, text }) => (
@@ -56,7 +56,7 @@ export default () => {
             ))}
           </select>
         </div>
-        <div className="redux-input-container">
+        <div className="input-container">
           <label>Town</label>
           <select name="town">
             {locationTownSelectField.map(townObj => {

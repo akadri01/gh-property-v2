@@ -9,9 +9,7 @@ export const popupWindow = (idSelector, message) => {
   document.body.appendChild(scriptTag);
 
   // remove if any existing popup scripts
-  document.querySelectorAll(".popup-script-tag").forEach(elm => {
-    elm.parentNode.removeChild(elm);
-  });
+  document.querySelectorAll(".popup-script-tag").forEach(elm => elm.parentNode.removeChild(elm));
 
   // create new pop up
   const parentElm = document.getElementById(idSelector)

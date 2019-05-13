@@ -201,7 +201,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        .redux-checkbox-container {
+        .checkbox-container {
           width: 50%;
           @include desktopSmall {
             width: 190px;

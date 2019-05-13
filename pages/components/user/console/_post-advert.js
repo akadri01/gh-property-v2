@@ -1,19 +1,10 @@
 import { Component, Fragment } from "react";
+import axios from 'axios';
 import Router from "next/router";
-import { reduxForm, Field } from "redux-form";
-import { required, email, length, confirmation } from "redux-form-validators";
 import { popupWindow } from "../../../helpers/popup.js";
 import { delay } from "../../../helpers/utility-func.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
-import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
-import {
-  RenderFileInput,
-  renderFormInput,
-  renderSelectField,
-  renderTextarea,
-  renderCheckbox
-} from "../../../helpers/reduxForm";
-import { postAdvert } from "../../../redux/actions";
+import { saveUserDataToLocalStorage,getUserDataFromLocalStorage } from "../../../helpers/localStorage.js";
 import {
   premisesTypeSelectField,
   featuresCheckboxFieldList,
@@ -29,307 +20,234 @@ import {
   locationTownSelectField
 } from "../../shared/data";
 
-class PostAdvert extends Component {
+export default class PostAdvert extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.mainImg = [];
+    this.images = [];
   }
-  postAd = async formValues => {
+
+  postAd = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    const { _id, name, email } = getUserDataFromLocalStorage();
+    let values = {};
+    const inputs = e.target.elements;
+
+    // Extract form values
+    for (let i = 0; i < inputs.length; i++) {
+      const { value, name } = inputs.item(i);
+      if (value.length && name !== 'mainImage' && name !== "images") {
+        if (!name.includes('features')) {
+          values[name] = value;
+        }
+        if (name.includes('features') && inputs.item(i).checked === true) {
+          values[name] = value;
+        }
+      }
+    } 
+
+    // Add selected checkboxes
+    values.features = this.sortCheckboxValues(values);
+
+    // Add user information
+    values.userName = name;
+    values.userId = _id;
+    values.userEmail = email;
+
+    // Append all values
+    formData.append("inputValues", JSON.stringify(values));
+
+    // Append images
+    if (this.mainImg.length || this.images.length) {
+      this.mainImg =
+        !this.mainImg || !this.mainImg.length
+          ? [this.images[0]]
+          : this.mainImg;
+      const allImages =
+        this.images && this.images.length
+          ? [this.mainImg[0], ...this.images]
+          : [this.mainImg[0]];
+      allImages.forEach((singleImg, i) => {
+        const imgName = "img" + i;
+        formData.append(imgName, singleImg);
+      });
+    }
+
+    // Send to form data server
     displayLoader("#postAdvertSubmit");
-    const { payload } = await this.props.dispatch(postAdvert(formValues));
+    const { data } = await axios.post("/api/user/create/advert", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
     removeLoader("#postAdvertSubmit");
-    if (!payload._id) {
+    if (!data._id) {
       return popupWindow(
         "postAdvertForm",
         "Unfortunately we were not able to post your ad. Please try again later."
       );
     }
-    saveUserDataToLocalStorage(payload);
+    saveUserDataToLocalStorage(data);
     popupWindow("postAdvertForm", "Congratulations, your advert is live!");
-    // await delay(3500);
-    // payload.posts_allowed < 1
-    //   ? Router.push("/user/topup")
-    //   : window.location.reload(false);
+
+    await delay(3500);
+    return data.posts_allowed < 1 ? Router.push("/user/topup") : window.location.reload(false);
   };
+
+  registerMainImg = e => {
+    if (!e.target.files[0]) {
+      this.mainImg = [];
+      return;
+    }
+    if (!this.checkFileSize(e.target.files[0].size)) {
+      e.target.value = "";
+      this.mainImg = [];
+      return popupWindow(
+        "postAdvertForm",
+        "Your main image is too large, maximum size 1MB."
+      );
+    }
+    if (!this.checkFileType(e.target.files[0].name)) {
+      e.target.value = "";
+      this.mainImg = [];
+      return popupWindow(
+        "postAdvertForm",
+        'Accepted image types: jpeg - jpg - png - gif'
+      );
+    }
+    this.mainImg = [e.target.files[0]];
+  };
+
+  // 786432  Bytes = 750KB (0.75MB)
+  checkFileSize = file => file > 786432 ? false : true;
+
+  checkFileType = fileName => {
+    const accepted = /jpeg|jpg|png|gif/;
+    const extention = fileName.split('.').pop();
+    return accepted.test(extention)
+  }
+
+  sortCheckboxValues = values => {
+    const arr = [];
+    featuresCheckboxFieldList.forEach(obj => {
+      if (values.hasOwnProperty(obj.idAndName)) {
+        arr.push(obj.labelAndValue);
+      }
+    });
+    return arr;
+  };
+
+  registerImages = e => {
+    if (!e.target.files[0]) {
+      this.images = [];
+      return;
+    }
+    const fileQty = e.target.files.length;
+    if (fileQty > 5) {
+      e.target.value = "";
+      this.images = [];
+      return popupWindow("postAdvertForm", "Maximum 5 images!");
+    }
+    for (let i = 0; i < fileQty; i++) {
+      if (!this.checkFileSize(e.target.files[i].size)) {
+        e.target.value = "";
+        return popupWindow(
+          "postAdvertForm",
+          "Maximum picture size is 1MB! Please choose smaller photos."
+        );
+      }
+      if (!this.checkFileType(e.target.files[i].name)) {
+        e.target.value = "";
+        this.images = [];
+        return popupWindow(
+          "postAdvertForm",
+          'Accepted image types: jpeg - jpg - png - gif'
+        );
+      }
+      this.images = [...this.images, e.target.files[i]];
+    }
+  };
+  
+  insertSelectMenu = (label, name, options) => (
+    <div className="desktop-flex">
+      <label>{label}</label>
+      <select name={name}>
+        {options.map(({value, text}) => (
+          <option value={value} key={value}>{text}</option>
+          ))}
+      </select>
+    </div>
+  )
 
   render() {
     return (
       <Fragment>
         <h1 className="section-main-title">Create new advert</h1>
         <form
-          onSubmit={this.props.handleSubmit(this.postAd)}
+          onSubmit={this.postAd}
           id="postAdvertForm"
-          className="console__post-advert-form default-redux-form"
+          className="console__post-advert-form default-form"
         >
           <h3 className="console__post-advert-form-section-title">
             General information
           </h3>
           <section className="desktop-flex-container">
+            {this.insertSelectMenu('Type of the premises', 'premises_type', premisesTypeSelectField)}
+            {this.insertSelectMenu('Advert type', 'advert_type', purposeSelectField)}
+            {this.insertSelectMenu('Advert posted by', 'posted_by', postedBySelectField)}
+            {this.insertSelectMenu('Rooms quantity', 'rooms_qty', roomsSelectField)}
+            {this.insertSelectMenu('Region of the premises', 'region', locationRegionSelectField)}
+            {this.insertSelectMenu('Town of the premises', 'town', locationTownSelectField)}
+            {this.insertSelectMenu('Age of the premises', 'age', premisesAgeSelectField)}
+            {this.insertSelectMenu('Located floor of the premises', 'located_floor', floorQtySelectField)}
+            {this.insertSelectMenu('Total floor of the building', 'total_floor', floorQtySelectField)}
+            {this.insertSelectMenu('Bathroom quantity', 'total_bathroom', bathroomQtySelectField)}
+            {this.insertSelectMenu('Balcony quantity', 'total_balcony', balconyQtySelectField)}
+            {this.insertSelectMenu('Garden', 'garden', yesNoSelectField)}
+            {this.insertSelectMenu('Furnished', 'furniture', yesNoSelectField)}
             <div className="desktop-flex">
-              <Field
-                name="premises_type"
-                component={renderSelectField}
-                label="Type of the premises"
-                validate={required()}
-              >
-                {premisesTypeSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
+              <label>Phone number</label>
+              <input type="number" name="phone" placeholder=" e.g.  0200 290 823" minLength="8" maxLength="14"/>
             </div>
             <div className="desktop-flex">
-              <Field
-                name="advert_type"
-                component={renderSelectField}
-                label="Advert type"
-                validate={required()}
-              >
-                {purposeSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
+              <label>Price (GH₵)</label>
+              <input type="number" name="price" placeholder=" e.g. 85000" minLength="2" maxLength="11"/>
             </div>
             <div className="desktop-flex">
-              <Field
-                name="posted_by"
-                component={renderSelectField}
-                label="Advert posted by"
-                validate={required()}
-              >
-                {postedBySelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="rooms_qty"
-                component={renderSelectField}
-                label="Rooms quantity"
-                validate={required()}
-              >
-                {roomsSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="region"
-                component={renderSelectField}
-                label="Region of the premises"
-                validate={required()}
-              >
-                {locationRegionSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="town"
-                component={renderSelectField}
-                label="Town of the premises"
-                validate={required()}
-              >
-                {locationTownSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="age"
-                component={renderSelectField}
-                label="Age of the premises"
-                validate={required()}
-              >
-                {premisesAgeSelectField.map((option, i) => (
-                  <option value={option.value} key={option.value + i}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="located_floor"
-                component={renderSelectField}
-                label="Located floor of the premises"
-                validate={required()}
-              >
-                {floorQtySelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="total_floor"
-                component={renderSelectField}
-                label="Total floor of the building"
-                validate={required()}
-              >
-                {floorQtySelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="total_bathroom"
-                component={renderSelectField}
-                label="Bathroom quantity"
-                validate={required()}
-              >
-                {bathroomQtySelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="total_balcony"
-                component={renderSelectField}
-                label="Balcony quantity"
-                validate={required()}
-              >
-                {balconyQtySelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="garden"
-                component={renderSelectField}
-                label="Garden"
-                validate={required()}
-              >
-                {yesNoSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="furniture"
-                component={renderSelectField}
-                label="Furnished"
-                validate={required()}
-              >
-                {yesNoSelectField.map(option => (
-                  <option value={option.value} key={option.value}>
-                    {option.text}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="phone"
-                label=" Phone number"
-                placeholder=" e.g.  0200 290 823"
-                type="number"
-                component={renderFormInput}
-                validate={[required(), length({ min: 8, max: 14 })]}
-              />
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="price"
-                label=" Price (GH₵)"
-                placeholder=" e.g. 85000"
-                type="number"
-                component={renderFormInput}
-                validate={[required(), length({ min: 2, max: 11 })]}
-              />
-            </div>
-            <div className="desktop-flex">
-              <Field
-                name="area"
-                label=" Area of the premises (m2)"
-                placeholder=" e.g. 130"
-                type="number"
-                component={renderFormInput}
-                validate={[required(), length({ min: 1, max: 9 })]}
-              />
+              <label>Area of the premises (m2)</label>
+              <input type="number" name="area" placeholder=" e.g. 130" minLength="1" maxLength="9"/>
             </div>
           </section>
           <h3 className="console__post-advert-form-section-title">
             Description
           </h3>
-          <Field
-            name="title"
-            label=" Advert title"
-            placeholder=" e.g. Spacious modern flat in Accra"
-            type="text"
-            component={renderFormInput}
-            validate={[required(), length({ min: 10, max: 110 })]}
-          />
-          <Field
-            name="detail"
-            label=" Tell more about the premises"
-            placeholder=" ..."
-            type="textarea"
-            component={renderTextarea}
-            validate={[required(), length({ min: 10, max: 3000 })]}
-          />
+          <label>Advert title</label>
+          <input type="text" name="title" placeholder=" e.g. Spacious modern flat in Accra" minLength="10" maxLength="110"/>
+          <label>Tell more about the premises</label>
+          <textarea name="detail" placeholder=" ..." minLength="10" maxLength="4000"></textarea>
           <h3 className="console__post-advert-form-section-title">Features</h3>
           <div className="console__post-advert-form-features-container">
-            {featuresCheckboxFieldList.map(({ labelAndValue, idAndName }) => {
-              return (
-                <Field
-                  key={idAndName}
-                  name={idAndName}
-                  labelAndValue={labelAndValue}
-                  id={idAndName}
-                  component={renderCheckbox}
-                />
-              );
-            })}
+            {featuresCheckboxFieldList.map(({ labelAndValue, idAndName }) => (
+                <div className="checkbox-container default-checkbox-container">
+                  <input type="checkbox" name={idAndName} id={idAndName} value={labelAndValue} />
+                  <label htmlFor={idAndName}>{labelAndValue}</label>
+                </div>
+              )) 
+            }
           </div>
           <h3 className="console__post-advert-form-section-title">
             Upload images
           </h3>
-          <Field
-            name="mainImage"
-            label=" Main image"
-            component={RenderFileInput}
-          />
-          <Field
-            name="images"
-            label=" Other images (maximum 6)"
-            isMultiple={true}
-            component={RenderFileInput}
-          />
+          <label>Main image</label>
+          <input type="file" name="mainImage" onChange={this.registerMainImg}/>
+          <label>Other images (maximum 6)</label>
+          <input type="file" name="images" multiple onChange={this.registerImages}/>
           <button
             className="console__post-advert-form-submit-btn"
             id="postAdvertSubmit"
             type="submit"
-            disabled={this.props.submitting}
           >
             Post
           </button>
@@ -338,9 +256,3 @@ class PostAdvert extends Component {
     );
   }
 }
-
-PostAdvert = reduxForm({
-  form: "PostAdvertForm"
-})(PostAdvert);
-
-export default PostAdvert;

@@ -17,13 +17,9 @@ const adminSchema = new schema({
   }
 });
 
-adminSchema.methods.hashPassword = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(3));
-};
+adminSchema.methods.hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(3));
 
-adminSchema.methods.comparePassword = function(password, hash) {
-  return bcrypt.compareSync(password, hash);
-};
+adminSchema.methods.comparePassword = (password, hash) => bcrypt.compareSync(password, hash);
 
 adminSchema.statics.authenticate = function(email, password, cb) {
   this.findOne({ email: email }, function(e, user) {

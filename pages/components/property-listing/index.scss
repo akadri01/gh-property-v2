@@ -44,7 +44,7 @@
         max-width: 980px;
         margin: 0 auto;
       }
-      .redux-input-container {
+      .input-container {
         width: 49%;
         @include desktopSmall {
           margin-bottom: 0;
@@ -58,7 +58,7 @@
           $color-yellow no-repeat 16% center !important;
         background-size: 18px !important;
         font-size: $font-size-medium !important;
-        height: 33px !important;
+        height: 39px !important;
         @include desktopSmall {
           width: 13% !important;
         }

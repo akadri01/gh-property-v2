@@ -5,7 +5,7 @@ export default () =>
       Your account balance is empty. To top up your balance, please select a top
       up value from the menu bellow and click on payment button.
     </p>
-    <form className="topup__form default-redux-form">
+    <form className="topup__form default-form">
       <select>
         <option value="">Select your top up</option>
         <option value="5">1 post 5 gh₵</option>

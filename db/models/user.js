@@ -39,17 +39,11 @@ const userSchema = new schema({
 /**
  *  Auth
  */
-userSchema.methods.hashPassword = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(3));
-};
+userSchema.methods.hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(3));
 
-userSchema.statics.hashPassword = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(3));
-};
+userSchema.statics.hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(3));
 
-userSchema.methods.comparePassword = function(password, hash) {
-  return bcrypt.compareSync(password, hash);
-};
+userSchema.methods.comparePassword = (password, hash) => bcrypt.compareSync(password, hash);
 
 userSchema.statics.authenticate = function(email, password, cb) {
   this.findOne({ email: email }, function(e, user) {
@@ -67,7 +61,7 @@ userSchema.statics.authenticate = function(email, password, cb) {
 /**
  *  Create User
  */
-userSchema.statics.createNew = function({ name, email, password }) {
+userSchema.statics.createNew = ({ name, email, password }) => {
   const newUser = new User({
     name: name,
     email: email
@@ -80,12 +74,10 @@ userSchema.statics.createNew = function({ name, email, password }) {
  *  Facebook Create or Login User
  */
 userSchema.statics.handleUserWithFacebook = function(reqBody, cb) {
-  // check if user exists
   this.authenticate(reqBody.email, reqBody.fbUserId, user => {
     if (user) {
       return cb(user);
     } else {
-      // register new user
       const newUser = new User({
         name: reqBody.name,
         email: reqBody.email,
@@ -94,12 +86,8 @@ userSchema.statics.handleUserWithFacebook = function(reqBody, cb) {
       newUser.password = newUser.hashPassword(reqBody.fbUserId);
       newUser
         .save()
-        .then(user => {
-          return cb(user);
-        })
-        .catch(e => {
-          return cb(e);
-        });
+        .then(user => cb(user))
+        .catch(e => cb(e));
     }
   });
 };
@@ -139,9 +127,7 @@ userSchema.statics.updatePropertyAdverts = function(
     user.posts_allowed = user.posts_allowed - 1;
     user
       .save()
-      .then(updatedUser => {
-        return cb(false, updatedUser);
-      })
+      .then(updatedUser => cb(false, updatedUser))
       .catch(e => {
         logError(e, "Error: updatePropertyAdverts()");
         return cb(e, false);

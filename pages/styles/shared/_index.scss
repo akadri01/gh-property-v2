@@ -69,7 +69,8 @@
     padding-left: 28px;
     @include backgroundIcon("list.svg", 13px, 12px center);
     @extend %default-form-borders;
-    height: 33px;
+    margin-bottom: 16px;
+    height: 40px;
     width: 100%;
     background-color: transparent;
   }
@@ -83,12 +84,18 @@
   textarea {
     margin-bottom: 16px;
     height: 130px;
-    text-indent: 10px;
-    padding-top: 10px;
+    padding: 10px 5px 5px 5px;
     height: 110px;
     font-size: $font-size-medium;
     @extend %default-form-borders;
     width: 100%;
+    @include desktopSmall {
+      padding: 20px;
+      height: 270px;
+      width: 75%;
+      line-height: $font-size-mega;
+      color: #3f3f3f;
+    }
   }
   .default-checkbox-container {
     margin-bottom: 11px;
@@ -114,7 +121,7 @@
     transform: translateY(-3px);
   }
   button {
-    display: inline-block;
+    display: block;
     background: $color-green;
     width: 200px;
     height: 40px;

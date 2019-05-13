@@ -1,5 +1,6 @@
 import Router from "next/router";
 import isValidEmail from "sane-email-validation";
+import axios from 'axios';
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
 import { popupWindow } from "../../../helpers/popup.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
