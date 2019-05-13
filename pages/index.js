@@ -49,6 +49,7 @@ export default class Home extends Component {
             <p>
               { this.state.properties.length ? "We have listed most recent properties for you" : "No recent properties to view" }
             </p>
+            <hr/>
           </div>
           <div className="recentAds__frame">
             {this.state.properties.length

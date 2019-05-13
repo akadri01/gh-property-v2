@@ -30,14 +30,14 @@
     }
     h2 {
       @include showTextShadow;
-      font-size: $font-size-large;
+      font-size: $font-size-xlarge;
       text-align: center;
       @include desktopSmall {
         width: 100%;
-        font-size: $font-size-mega;
+        font-size: calculateRem(30px);
       }
       @include desktopMedium {
-        font-size: calculateRem(30px);
+        font-size: calculateRem(32px);
         letter-spacing: 1.2px;
       }
     }
@@ -90,13 +90,13 @@
         cursor: pointer;
         margin-right: 5px;
         outline: none;
-        height: 31px;
+        height: 30px;
         width: 25px;
       }
       input:checked::before {
         position: absolute;
         left: 7px;
-        top: 3px;
+        top: 4px;
         font-size: $font-size-xxlarge;
         content: "\02143";
         transform: rotate(40deg);
@@ -114,6 +114,7 @@
         color: white;
         font-size: calculateRem(13px);
         width: 47px;
+        margin-top: 3px;
         text-align: center;
       }
     }
@@ -127,10 +128,10 @@
       color: #fff;
       font-weight: 900;
       border: none;
-      font-size: $font-size-large;
+      font-size: $font-size-xxlarge;
       letter-spacing: 1.2px;
-      padding-top: 3px;
       text-transform: uppercase;
+      padding-bottom: 4px;
       @include desktopSmall {
         height: 48px;
         width: 25%;

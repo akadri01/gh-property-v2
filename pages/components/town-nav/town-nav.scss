@@ -39,21 +39,20 @@
       margin-top: 10%;
       h2 {
         text-align: center;
-        font-size: calculateRem(29px);
+        font-size: calculateRem(37px);
         color: white;
+        margin-bottom: 0;
         @include desktopSmall {
-          font-size: calculateRem(32px);
-          margin-bottom: 0;
+          font-size: calculateRem(42px);
         }
       }
       p {
         color: $color-yellow;
         text-align: center;
-        font-size: $font-size-xlarge;
         font-weight: 900;
+        font-size: $font-size-xlarge;
         @include desktopSmall {
           margin-top: 15px;
-          font-size: $font-size-xxlarge;
         }
       }
     }

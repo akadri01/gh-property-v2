@@ -141,22 +141,25 @@
 .default-group {
   text-align: center;
   color: $color-black;
+  @include desktopSmall {
+    padding: 20px 0 36px;
+  }
   h1 {
-    font-size: $font-size-medium;
+    font-size: $font-size-large;
     text-transform: uppercase;
     font-weight: 900;
     @include desktopSmall {
       margin-bottom: 1px;
-      font-size: $font-size-large;
+      font-size: $font-size-xlarge;
     }
   }
   p {
     font-family: $font-family-title;
-    font-size: $font-size-large;
-    line-height: $font-size-xxlarge;
+    font-size: $font-size-xlarge;
+    line-height: $font-size-mega;
     margin-bottom: 25px;
     @include desktopSmall {
-      font-size: $font-size-mega;
+      font-size: calculateRem(33px);
     }
   }
   hr {
