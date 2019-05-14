@@ -1,6 +1,5 @@
 import fetch from "isomorphic-unfetch";
-import { DOMAIN_NAME } from "../../globals/globals.json";
-import { HOST_PORT } from "../../globals/globals.json";
+import { DOMAIN_NAME,HOST_PORT } from "../../globals.json";
 import _isEmpty from "lodash.isempty";
 
 const basePath =

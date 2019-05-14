@@ -11,7 +11,7 @@ const Property = require("../../db/models/property");
 const helpers = require("../helpers");
 const dbHelpers = require("../../db/helpers");
 const Properties = require("../../db/models/property.js");
-const PAGINATION_QUANTITY = require("../../globals/globals.json")
+const PAGINATION_QUANTITY = require("../../globals.json")
   .PAGINATION_QUANTITY;
 const logError = helpers.logError;
 const Enquire = require("../../db/models/enquire");

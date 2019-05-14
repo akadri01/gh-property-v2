@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const consolidate = require("consolidate");
 const cookieParser = require("cookie-parser");
-const { DB_URI, SESSION_SECRET } = require("../config");
+const { DB_URI, SESSION_SECRET } = require("../config.js");
 
 // Routes
 const apiRoutes = require("./routes/api.js");

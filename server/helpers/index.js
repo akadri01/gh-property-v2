@@ -12,7 +12,7 @@ const sharp = require("sharp");
 const randomString = require("randomstring");
 const multer = require("multer");
 const sendGrid = require("@sendgrid/mail");
-const config = require("../../config/");
+const config = require("../../config.js");
 const logger = require("./_logger");
 sendGrid.setApiKey(config.SENDGRID_API_KEY);
 

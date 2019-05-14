@@ -1,8 +1,8 @@
 "use strict";
 
-const User = require("../models/user");
-const Property = require("../models/property");
-const logError = require("../../server/helpers/index.js").logError;
+const User = require("./models/user");
+const Property = require("./models/property");
+const logError = require("../server/helpers/index.js").logError;
 
 const databaseHelpers = {
   createAdUpdateUser: async (body, session, cb) => {

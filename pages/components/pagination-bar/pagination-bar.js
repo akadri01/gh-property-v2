@@ -1,5 +1,5 @@
 import _times from "lodash.times";
-import { PAGINATION_QUANTITY } from "../../../globals/globals.json";
+import { PAGINATION_QUANTITY } from "../../../globals.json";
 import paginate from "../../helpers/paginate.js";
 import {isPlural} from "../../helpers/utility-func.js";
 
