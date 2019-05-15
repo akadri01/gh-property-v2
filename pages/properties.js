@@ -1,14 +1,14 @@
 import React, { Fragment, Component } from "react";
 import Head from "next/head";
-import "../styles/Main.scss";
-import fetch from "../helpers/fetch";
-import Navigation from "../components/navigation/navigation";
-import Footer from "../components/footer/footer";
-import PropertyListing from "../components/property-listing/index.js";
+import "./styles/Main.scss";
+import fetch from "./helpers/fetch";
+import Navigation from "./components/navigation/navigation";
+import Footer from "./components/footer/footer";
+import PropertyListing from "./components/property-listing/index.js";
 import {
   savePropertySearchQueryToLocalStorage,
   setInitialSortQueryToLocalStorage
-} from "../helpers/localStorage.js";
+} from "./helpers/localStorage.js";
 
 class Properties extends Component {
   static async getInitialProps({ req }) {

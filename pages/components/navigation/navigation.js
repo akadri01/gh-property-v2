@@ -7,7 +7,7 @@ import { removeUserDataFromLocalStorage, getUserDataFromLocalStorage } from "../
 import {
   locationRegionSelectField,
   locationTownSelectField
-} from "../shared/data.js";
+} from "../../dataset/";
 
 export default class Navigation extends Component {
   state={

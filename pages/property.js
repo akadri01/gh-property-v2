@@ -1,12 +1,12 @@
 import React, { Fragment, Component } from "react";
 import Head from "next/head";
 import _isEmpty from "lodash.isempty";
-import "../styles/Main.scss";
+import "./styles/Main.scss";
 import Router from "next/router";
-import fetch from "../helpers/fetch";
-import Navigation from "../components/navigation/navigation";
-import Footer from "../components/footer/footer";
-import Property from "../components/property/property";
+import fetch from "./helpers/fetch";
+import Navigation from "./components/navigation/navigation";
+import Footer from "./components/footer/footer";
+import Property from "./components/property/property";
 
 export default class PropertyPage extends Component {
   static async getInitialProps({ query }) {

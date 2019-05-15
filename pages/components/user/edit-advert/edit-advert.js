@@ -5,7 +5,7 @@ import { popupWindow } from "../../../helpers/popup.js";
 import { delay, retrieveFormValues } from "../../../helpers/utility-func.js";
 import { displayLoader, removeLoader } from "../../../helpers/btn-loader.js";
 import { saveUserDataToLocalStorage } from "../../../helpers/localStorage.js";
-import PreviousPage from "../../shared/previous-page.js";
+import {PreviousPageBtn} from "../../../helpers/utility-func.js";
 import {
   premisesTypeSelectField,
   yesNoSelectField,
@@ -18,7 +18,7 @@ import {
   roomsSelectField,
   locationRegionSelectField,
   locationTownSelectField
-} from "../../shared/data";
+} from "../../../dataset/";
 
 export default class EditAdvert extends Component {
   editAd = async e => {
@@ -136,7 +136,7 @@ export default class EditAdvert extends Component {
           <br />
           <br />
         </section>
-        <PreviousPage />
+        <PreviousPageBtn />
       </Fragment>
     );
   }

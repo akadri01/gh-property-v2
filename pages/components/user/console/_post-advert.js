@@ -18,7 +18,7 @@ import {
   roomsSelectField,
   locationRegionSelectField,
   locationTownSelectField
-} from "../../shared/data";
+} from "../../../dataset/";
 
 export default class PostAdvert extends Component {
   constructor(props) {

@@ -86,3 +86,14 @@ export const beautifyDate = (isoDate, fullLength) => {
 }
 
 export const delay = time => new Promise(resolve => setTimeout(resolve, time));
+
+export const PreviousPageBtn = () => 
+  <div className="go-to-previous-page mobile-desktop-frame">
+    <button
+      onClick={() => {
+        Router.back();
+      }}
+    >
+      Previous page
+    </button>
+  </div>

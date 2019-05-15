@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import { towns, seoLinks, typeLinks } from "../shared/data";
+import { towns, seoLinks, typeLinks } from "../../dataset/";
 
 const createLink = (base, link, key, val) => (
   <Link

@@ -19,6 +19,27 @@
   font-size: $font-size-small;
 }
 
+
+// social media share
+.social {
+  width: 140px;
+  height: 46px;
+  padding-top: 10px;
+  &__frame {
+    width: 140px;
+    margin: 0 auto;
+    &-item {
+      cursor: pointer;
+      transition: 0.2s;
+      float: left;
+      margin-left: 12px;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
 // Page layout
 .single-property-page {
   @include desktopSmall {

@@ -1,13 +1,13 @@
 import React, { Fragment, Component } from "react";
 import Head from "next/head";
 import _isEmpty from "lodash.isempty";
-import "../styles/Main.scss";
-import fetch from "../helpers/fetch";
-import Navigation from "../components/navigation/navigation";
-import Footer from "../components/footer/footer";
+import "./styles/Main.scss";
+import fetch from "./helpers/fetch";
+import Navigation from "./components/navigation/navigation";
+import Footer from "./components/footer/footer";
 import Router from "next/router";
-import { clientAuth } from "../helpers/utility-func.js";
-import EditAdvertComponent from "../components/user/edit-advert/edit-advert.js";
+import { clientAuth } from "./helpers/utility-func.js";
+import EditAdvertComponent from "./components/user/edit-advert/edit-advert.js";
 
 export default class EditAd extends Component {
   constructor(props) {

@@ -188,3 +188,155 @@
     }
   }
 }
+
+// static pages
+.static {
+  width: 90%;
+  margin: 50px auto;
+  @include desktopSmall {
+    margin-top: 14vh;
+    margin-bottom: 15vh;
+  }
+  ul li,
+  p {
+    font-size: $font-size-medium;
+    line-height: $font-size-xxlarge;
+  }
+  ul {
+    padding-left: 15px;
+    @include desktopSmall {
+      padding-left: 30px;
+      margin-top: 35px;
+      margin-bottom: 35px;
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  h4 {
+    margin-bottom: 0;
+    margin-top: 35px;
+  }
+}
+
+// trio tabs
+.trioTabs {
+  display: none;
+  justify-content: space-between;
+  width: 950px;
+  margin: 100px auto 0;
+  height: 130px;
+  @include desktopSmall {
+    display: flex;
+  }
+  &__tab {
+    cursor: pointer;
+    width: 270px;
+    height: 100px;
+    position: relative;
+    display: block;
+    padding: 23px 12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: $color-green;
+    text-align: center;
+    transition: 0.3s $transition;
+    @include backgroundIcon("right-fat-arrow-white.svg", 20px, center 62px);
+    border-radius: 6px;
+    &:hover {
+      background-color: $color-yellow;
+      height: 116px;
+      background-position: 93% 90%;
+    }
+    &:hover > p {
+      display: block;
+    }
+    &:before {
+      height: 18px;
+      background-color: #d6d6d6;
+      position: absolute;
+      filter: blur(6px);
+      bottom: -35px;
+      left: 0;
+      display: block;
+      width: 100%;
+      pointer-events: none;
+      content: "";
+      border-radius: 50%;
+    }
+    h2 {
+      font-family: $font-family-title;
+      margin-bottom: 5px;
+      margin-top: 6px;
+      font-size: $font-size-xxlarge;
+      word-spacing: 4px;
+    }
+    p {
+      display: none;
+      margin-top: 11px;
+    }
+  }
+}
+
+
+// town nav
+.town-nav {
+  margin-top: 40px;
+  @include desktopSmall {
+    margin-top: 100px;
+  }
+  @include desktopSmall {
+    .top,
+    .middle,
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .top {
+      .town-nav__town {
+        width: 49.3%;
+      }
+    }
+    .middle {
+      .town-nav__town {
+        width: 32.5%;
+      }
+    }
+    .bottom {
+      .town-nav__town {
+        width: 100%;
+      }
+    }
+  }
+  &__town {
+    width: 100%;
+    position: relative;
+    &:hover > div p {
+      text-decoration: underline;
+    }
+    &-content {
+      position: absolute;
+      width: 100%;
+      margin-top: 10%;
+      h2 {
+        text-align: center;
+        font-size: calculateRem(37px);
+        color: white;
+        margin-bottom: 0;
+        @include desktopSmall {
+          font-size: calculateRem(42px);
+        }
+      }
+      p {
+        color: $color-yellow;
+        text-align: center;
+        font-weight: 900;
+        font-size: $font-size-xlarge;
+        @include desktopSmall {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}

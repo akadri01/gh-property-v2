@@ -1,7 +1,7 @@
 import Head from "next/head";
-import "../../styles/Main.scss";
-import Navigation from "../../components/navigation/navigation";
-import Footer from "../../components/footer/footer";
+import "./styles/Main.scss";
+import Navigation from "./components/navigation/navigation";
+import Footer from "./components/footer/footer";
 
 export default () => {
   return (
@@ -12,7 +12,7 @@ export default () => {
       </Head>
       <Navigation />
       <div className="static">
-        <h2>Data protection & Privacy policy</h2>
+        <h2>Terms & Conditions</h2>
         <p>
           Efficiently streamline intermandated metrics after impactful
           deliverables. Quickly scale bricks-and-clicks experiences via
@@ -29,6 +29,16 @@ export default () => {
           effective mindshare. Continually reconceptualize proactive internal or
           "organic" sources vis-a-vis leading-edge opportunities.
         </p>
+        <ul>
+          <li>Intermandated metrics after impactful deliverables</li>
+          <li>
+            Credibly facilitate cost effective users and impactful testing
+            procedures
+          </li>
+          <li>Dynamically integrate customer directed strategic</li>
+          <li>Bricks-and-clicks experiences via efficient value</li>
+          <li>Communicate professional vortals</li>
+        </ul>
         <p>
           Vortals rather than front-end models. Credibly facilitate cost
           effective users and impactful testing procedures. Dynamically

@@ -21,16 +21,12 @@
 @import "../components/footer/footer.scss";
 @import "../components/user/auth/auth.scss";
 @import "../components/user/console/console.scss";
-@import "../components/user/buy-credit/buy-credit.scss";
-@import "../components/trio-tabs/trio-tabs.scss";
 @import "../components/thumbnails/thumbnails.scss";
 @import "../components/property-listing/index.scss";
 @import "../components/property/property.scss";
-@import "../components/social-media-share/social-media-share.scss";
 @import "../components/pagination-bar/pagination-bar.scss";
 @import "../components/user/user-adverts/user-adverts.scss";
 @import "../components/user/edit-advert/edit-advert.scss";
-@import "../_pages/static/index.scss";
 
 // Shared styles  *keep at the bottom (overides)
 @import "shared/_js-classes.scss";

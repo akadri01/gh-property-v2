@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import Router from "next/router";
 import Head from "next/head";
 import axios from "axios";
-import "../styles/Main.scss";
-import { retrieveFormValues } from "../helpers/utility-func.js";
-import Navigation from "../components/navigation/navigation.js";
-import Footer from "../components/footer/footer";
-import { popupWindow } from "../helpers/popup.js";
+import "./styles/Main.scss";
+import { retrieveFormValues } from "./helpers/utility-func.js";
+import Navigation from "./components/navigation/navigation.js";
+import Footer from "./components/footer/footer";
+import { popupWindow } from "./helpers/popup.js";
 
 export default class Contact extends Component {
   state={

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import "../../styles/Main.scss";
-import Navigation from "../../components/navigation/navigation";
-import Footer from "../../components/footer/footer";
+import "./styles/Main.scss";
+import Navigation from "./components/navigation/navigation";
+import Footer from "./components/footer/footer";
 
 export default () => {
   return (

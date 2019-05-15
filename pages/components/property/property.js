@@ -1,16 +1,42 @@
-import React, { Fragment } from "react";
-import PreviousPage from "../shared/previous-page.js";
+import React, {Component, Fragment } from "react";
+const ReactCarousel = require("react-responsive-carousel").Carousel;
+import {PreviousPageBtn} from "../../helpers/utility-func.js";
 import { beautifyDate, beautifyPrice } from "../../helpers/utility-func.js";
-import Carousel from "../carousel/carousel.js";
 import SocialMediaShare from "../social-media-share/social-media-share.js";
 import {
   featuresCheckboxFieldList,
   premisesAgeSelectField
-} from "../shared/data.js";
+} from "../../dataset/";
 const featuresList = featuresCheckboxFieldList.map(obj => obj.labelAndValue);
 
+class Carousel extends Component {
+  render() {
+    return (
+      <section className="gallery">
+        <ReactCarousel
+          showArrows={true}
+          onChange={this.onChange}
+          onClickItem={this.onClickItem}
+          onClickThumb={this.onClickThumb}
+        >
+          {this.props.images.slice(1, this.props.images.length).map(img => {
+            return (
+              <div>
+                <img
+                  src={`/static/images/property-uploads/${
+                    this.props.directory
+                  }/${img}`}
+                />
+              </div>
+            );
+          })}
+        </ReactCarousel>
+      </section>
+    );
+  }
+}
+
 export default property => {
-  console.log(property);
   const {
     advert_type,
     area,
@@ -222,7 +248,7 @@ export default property => {
           </div>
         </aside>
       </section>
-      <PreviousPage />
+      <PreviousPageBtn />
     </Fragment>
   );
 };

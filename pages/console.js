@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
-import "../styles/Main.scss";
-import Navigation from "../components/navigation/navigation.js";
-import Footer from "../components/footer/footer";
-import Auth from "../components/user/auth/index.js";
+import "./styles/Main.scss";
+import Navigation from "./components/navigation/navigation.js";
+import Footer from "./components/footer/footer";
+import UserConsole from "./components/user/console/console.js";
 
 export default () => (
   <Fragment>
@@ -11,8 +11,8 @@ export default () => (
       <title>WeGhana Real Estate</title>
       <meta name="description" content="Ghana real estate web platform" />
     </Head>
-    <Navigation />
-    <Auth />
+    <Navigation consolePage={true} />
+    <UserConsole />
     <Footer />
   </Fragment>
 );

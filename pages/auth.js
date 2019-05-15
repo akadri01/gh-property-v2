@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
-import "../styles/Main.scss";
-import Navigation from "../components/navigation/navigation";
-import Footer from "../components/footer/footer";
-import UserAdverts from "../containers/user-adverts.js";
+import "./styles/Main.scss";
+import Navigation from "./components/navigation/navigation.js";
+import Footer from "./components/footer/footer";
+import Auth from "./components/user/auth/index.js";
 
 export default () => (
   <Fragment>
@@ -12,7 +12,7 @@ export default () => (
       <meta name="description" content="Ghana real estate web platform" />
     </Head>
     <Navigation />
-    <UserAdverts />
+    <Auth />
     <Footer />
   </Fragment>
 );
