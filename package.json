@@ -48,6 +48,7 @@
     "react-dom": "^16.8.3",
     "react-facebook-login": "^4.1.1",
     "react-google-invisible-recaptcha": "^0.2.11",
+    "react-instantsearch": "^5.5.0",
     "react-redux": "^6.0.1",
     "react-responsive-carousel": "^3.1.45",
     "react-responsive-picture": "^3.1.0",

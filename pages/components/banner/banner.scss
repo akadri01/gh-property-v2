@@ -1,12 +1,14 @@
 .banner {
   position: relative;
+  z-index: 1;
   font-family: $font-family-title;
   @include navbarGap;
-  &__form {
+  &__overlay {
     @include absCenter;
     top: 120px;
     background: rgba(40, 40, 40, 0.8);
     width: 310px;
+    height: 226px;
     padding: 15px;
     @include tablet {
       top: 190px;
@@ -28,6 +30,12 @@
     @include desktopMega {
       top: 260px;
     }
+    .ais-InstantSearch__root {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+
+    }
     h2 {
       @include showTextShadow;
       font-size: $font-size-xlarge;
@@ -41,101 +49,97 @@
         letter-spacing: 1.2px;
       }
     }
-    select {
-      height: 43px;
-      background: white;
-      width: 210px;
-      border: 1px solid $color-green;
-      color: #585858;
-      font-size: $font-size-medium;
-      text-indent: 14px;
-      width: 80%;
-      margin-left: 10%;
-      @include desktopSmall {
-        padding-left: 20px;
-        height: 50px;
-        margin-left: 0;
-        width: 40%;
-        @include backgroundIcon("location.svg", 22px, 10px center);
-      }
-    }
-    &-radios {
-      width: 50%;
-      margin: 17px 10% 17px;
+    form.ais-SearchBox-form {
       display: flex;
-      justify-content: space-between;
-      @include desktopSmall {
-        margin-top: 0;
-        width: 20%;
-        margin-left: 0;
-        margin-right: 0;
-      }
-      &-radio {
-        * {
-          display: block;
+      justify-content: center;
+      .ais-SearchBox-input {
+        order: 1;
+        height: 43px;
+        background: white;
+        border: none;
+        color: #585858;
+        font-size: $font-size-large;
+        outline: none;
+        text-indent: 14px;
+        width: 80%;
+        @include desktopSmall {
+          padding-left: 20px;
+          height: 50px;
+          @include backgroundIcon("location.svg", 22px, 10px center);
         }
       }
-      input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        display: inline-block;
-        position: relative;
-        background-color: white;
-        color: $color-green;
-        top: 0;
-        border: 0;
-        left: 22%;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-right: 5px;
-        outline: none;
-        height: 30px;
-        width: 25px;
+      .ais-SearchBox-input::placeholder {
+        font-family: $font-family-title;
       }
-      input:checked::before {
-        position: absolute;
-        left: 7px;
-        top: 4px;
-        font-size: $font-size-xxlarge;
-        content: "\02143";
-        transform: rotate(40deg);
-        font-weight: 900;
+      button.ais-SearchBox-submit {
+        order: 2;
+        width: 30px;
+        height: 41px;
+        margin-top: 1px;
+        background-color: $color-yellow;
+        outline: 1px solid $color-yellow;
+        color: #fff;
+        border: none;
+        padding-bottom: 4px;
+        @include desktopSmall {
+          height: 48px;
+          width: 25%;
+        }
       }
-      input:hover {
-        background-color: #f7f7f7;
-      }
-      input:checked {
-        background-color: #f1f1f1;
-      }
-      label {
-        font-weight: 900;
-        cursor: pointer;
-        color: white;
-        font-size: calculateRem(13px);
-        width: 47px;
-        margin-top: 3px;
-        text-align: center;
+      button.ais-SearchBox-reset {
+        display: none;
       }
     }
-    button {
-      font-family: $font-family-title;
-      width: 80%;
-      height: 42px;
-      margin-left: 10%;
-      background-color: $color-yellow;
-      outline: 1px solid $color-yellow;
-      color: #fff;
-      font-weight: 900;
-      border: none;
-      font-size: $font-size-xxlarge;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding-bottom: 4px;
-      @include desktopSmall {
-        height: 48px;
-        width: 25%;
-        margin-left: 0;
+  }
+  .ais-Stats {
+    color: white;
+    background: -moz-linear-gradient(left, rgba(40,40,40,1) 15%, rgba(40,40,40,0.58) 51%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(40,40,40,1) 15%,rgba(40,40,40,0.58) 51%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(40,40,40,1) 15%,rgba(40,40,40,0.58) 51%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#282828', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+    width: calc(90% + 3px);
+    padding: 5px;
+    font-style: italic;
+    margin: 0 auto;
+    @include desktopSmall { 
+      width: 100%;
+    }
+  }
+  .ais-Hits {
+        background: rgba(255, 255, 255, 0.9);
+    border: 1px solid lightgray;
+    display: none;
+    max-height: 420px;
+    overflow-y: scroll; 
+    &::-webkit-scrollbar {
+      width: 7px;
+      background-color: #f5f5f5;
+    }
+    ul {
+      padding: 0;
+      margin:0;
+      li {
+        list-style: none;
+      }
+      .searched a {
+        display: block;
+        padding: 14px 10px;
+        transition: .2s;
+        border-left: 3px solid #f2f2f2;
+        &:hover {
+          background: #f2f2f2;
+          border-left-color: $color-green;
+        }
+        small {
+          color: #777777;
+          font-family: $font-family-title;
+          font-weight: 900;
+          margin-left: 4px;
+        }
+        .ais-Highlight {
+          color: $color-black;
+          border-bottom: 1px solid #3700ff;
+        }
       }
     }
   }

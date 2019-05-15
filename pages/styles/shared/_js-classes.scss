@@ -41,3 +41,26 @@
     height: 80px !important;
   }
 }
+.active-button-msg {
+  position: relative;
+  &:after {
+    color: tomato;
+    content: 'Select';
+    text-align: center;
+    font-weight: 900;
+    font-family: $font-family-title;
+    display: block;
+    position: absolute;
+    width: 70px;
+    height: 73px;
+    top: 44px;
+    left:-15px;
+    @include backgroundIcon('left-down-arrow-curve.svg', 37px, left center);
+    @include desktopSmall {
+      width: 70px;
+      height: 76px;
+      top: 80px;
+      background-size: 30px;
+    }
+  }
+}
